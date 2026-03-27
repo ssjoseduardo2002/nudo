@@ -1,12 +1,43 @@
-// app.component.scss corregido
+// Layout principal para navegación horizontal
 .layout-principal {
   display: flex;
-  flex-direction: column; // Ahora el flujo es vertical
+  flex-direction: column; // Los elementos se apilan uno sobre otro (Navbar arriba, Main abajo)
+  min-height: 100vh;
+  width: 100%;
 }
 
+// Contenedor del contenido dinámico (lo que cambia con las rutas)
 .contenido-principal {
-  margin-top: 70px; // El mismo alto que le dimos a la navbar
-  padding: 30px;
-  min-height: calc(100vh - 70px);
-  background-color: #f4f7f9;
+  // Ajuste de margen superior igual al alto de la .navbar-horizontal
+  margin-top: 90px; 
+  
+  // Relleno interno para que el texto no pegue a los bordes
+  padding: 40px; 
+  
+  // Asegura que el fondo cubra todo el alto restante
+  flex-grow: 1; 
+  
+  // Color de fondo suave que transmite tranquilidad y limpieza
+  background-color: #f9fbfd; 
+  
+  // Suavizado de bordes por si decides usar tarjetas dentro
+  box-sizing: border-box;
+}
+
+// Estilo global para scroll (opcional para un look más moderno)
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #003366; // El azul de Nudo
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00a8cc; // El verdecito de Nudo
 }
