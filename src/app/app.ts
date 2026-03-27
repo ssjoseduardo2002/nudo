@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { BarraLateral } from "./componentes_de_estructura/barra-lateral/barra-lateral";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, BarraLateral],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
