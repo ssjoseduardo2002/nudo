@@ -1,0 +1,12 @@
+// app.component.scss corregido
+.layout-principal {
+  display: flex;
+  flex-direction: column; // Ahora el flujo es vertical
+}
+
+.contenido-principal {
+  margin-top: 70px; // El mismo alto que le dimos a la navbar
+  padding: 30px;
+  min-height: calc(100vh - 70px);
+  background-color: #f4f7f9;
+}
