@@ -1,7 +1,17 @@
 <div class="layout-principal">
+  
   <app-barra-lateral></app-barra-lateral>
 
   <main class="contenido-principal">
-    <router-outlet></router-outlet>
+    
+    <app-encabezado 
+      titulo="¡Bienvenido, José!" 
+      subtitulo="Gestión de contratos legales para mentes creativas.">
+    </app-encabezado>
+
+    <section class="zona-de-vistas">
+      <router-outlet></router-outlet>
+    </section>
+
   </main>
 </div>
