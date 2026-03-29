@@ -1,0 +1,75 @@
+// VARIABLES DE MARCA NUDO
+$color-primario: #003366;    // Azul profundo (Confianza)
+$color-secundario: #00a8cc;  // Verdecito/Cian (Tranquilidad)
+$color-texto-suave: #576574; // Gris azulado para lectura descansada
+$transicion: all 0.3s ease;
+
+.contenedor-encabezado {
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba($color-secundario, 0.15); // Línea sutil de división
+  margin-bottom: 2.5rem;
+  animation: fadeIn 0.8s ease-out; // Entrada suave al cargar
+
+  .texto-bienvenida {
+    h1 {
+      font-size: 2.4rem;
+      color: $color-primario;
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    p {
+      font-size: 1.15rem;
+      color: $color-texto-suave;
+      margin-top: 0.6rem;
+      font-weight: 400;
+    }
+  }
+
+  // ELEMENTO DECORATIVO "NUDO"
+  .decoracion-nudo {
+    position: relative;
+    padding-right: 1rem;
+
+    .circulo-decorativo {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, rgba($color-secundario, 0.1), rgba($color-primario, 0.05));
+      border-radius: 18px; // Estilo Squircle moderno
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: $transicion;
+
+      &::after {
+        content: 'N'; // Inicial de NUDO como sello de agua
+        font-family: sans-serif;
+        font-weight: 900;
+        color: rgba($color-secundario, 0.3);
+        font-size: 1.5rem;
+      }
+
+      &:hover {
+        transform: rotate(10deg);
+        background: rgba($color-secundario, 0.15);
+      }
+    }
+  }
+}
+
+// Animación de entrada para que el usuario sienta fluidez
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
