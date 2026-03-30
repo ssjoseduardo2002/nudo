@@ -7,8 +7,9 @@ import { BarraLateral } from './componentes_de_estructura/barra-lateral/barra-la
 import { Encabezado } from './componentes_de_estructura/encabezado/encabezado'; 
 import { PieDePagina } from './componentes_de_estructura/pie-de-pagina/pie-de-pagina'; 
 
-// 2. IMPORTACIÓN DE LA VISTA DE INICIO
+// 2. IMPORTACIÓN DE LAS VISTAS
 import { Inicio } from './componentes_de_vistas/inicio/inicio'; 
+import { LaMenteDetrasDeNudo } from './componentes_de_vistas/la-mente-detras-de-nudo/la-mente-detras-de-nudo'; 
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,8 @@ import { Inicio } from './componentes_de_vistas/inicio/inicio';
     BarraLateral,   
     Encabezado,
     PieDePagina,
-    Inicio // <--- REGISTRAMOS INICIO AQUÍ
+    Inicio,
+    LaMenteDetrasDeNudo // REGISTRAMOS TU BIOGRAFÍA AQUÍ
   ], 
   templateUrl: './app.html',
   styleUrl: './app.scss'
