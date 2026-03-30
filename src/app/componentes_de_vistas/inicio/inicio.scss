@@ -1,0 +1,83 @@
+.contenedor-inicio {
+    padding: 2rem;
+    animation: fadeIn 0.8s ease-out; // Animación de entrada suave
+
+    .tarjeta-hero {
+        display: flex;
+        background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+        border-radius: 24px;
+        padding: 3rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+        align-items: center;
+        gap: 3rem;
+        margin-bottom: 3rem;
+
+        .imagen-contenedor img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+        }
+
+        .texto-hero {
+            .etiqueta {
+                background: #e3f2fd;
+                color: #0d47a1;
+                padding: 4px 12px;
+                border-radius: 12px;
+                font-size: 0.8rem;
+                font-weight: bold;
+            }
+            h2 { font-size: 2.5rem; color: #0d3b66; margin: 1rem 0; }
+            p { color: #546e7a; font-size: 1.1rem; line-height: 1.6; }
+            .btn-nudo-principal {
+                margin-top: 2rem;
+                padding: 12px 32px;
+                background: #0d3b66;
+                color: white;
+                border: none;
+                border-radius: 12px;
+                cursor: pointer;
+                transition: transform 0.2s;
+                &:hover { transform: translateY(-3px); background: #154a7a; }
+            }
+        }
+    }
+
+    .reja-acciones {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+
+        .tarjeta-accion {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #edf2f7;
+
+            &:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+            }
+
+            .circulo-icono {
+                width: 120px;
+                height: 120px;
+                margin: 0 auto 1.5rem;
+                border-radius: 50%;
+                overflow: hidden;
+                img { width: 100%; height: 100%; object-fit: cover; }
+            }
+            
+            h3 { color: #0d3b66; margin-bottom: 0.5rem; }
+            p { color: #90a4ae; font-size: 0.9rem; }
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

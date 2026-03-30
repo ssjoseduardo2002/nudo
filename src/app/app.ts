@@ -2,10 +2,13 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-// 1. IMPORTACIONES DE TUS COMPONENTES DE ESTRUCTURA
+// 1. IMPORTACIONES DE ESTRUCTURA
 import { BarraLateral } from './componentes_de_estructura/barra-lateral/barra-lateral'; 
 import { Encabezado } from './componentes_de_estructura/encabezado/encabezado'; 
-import { PieDePagina } from './componentes_de_estructura/pie-de-pagina/pie-de-pagina'; // <--- ESTA ES LA NUEVA PIEZA
+import { PieDePagina } from './componentes_de_estructura/pie-de-pagina/pie-de-pagina'; 
+
+// 2. IMPORTACIÓN DE LA VISTA DE INICIO
+import { Inicio } from './componentes_de_vistas/inicio/inicio'; 
 
 @Component({
   selector: 'app-root',
@@ -15,7 +18,8 @@ import { PieDePagina } from './componentes_de_estructura/pie-de-pagina/pie-de-pa
     RouterOutlet,   
     BarraLateral,   
     Encabezado,
-    PieDePagina      // 2. REGISTRAMOS EL PIE DE PÁGINA AQUÍ
+    PieDePagina,
+    Inicio // <--- REGISTRAMOS INICIO AQUÍ
   ], 
   templateUrl: './app.html',
   styleUrl: './app.scss'
