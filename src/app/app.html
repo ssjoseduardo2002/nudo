@@ -5,13 +5,15 @@
   <main class="contenido-principal">
     
     <app-encabezado 
-      titulo="¡Hola, José!" 
-      subtitulo="Protege tu trabajo de manera profesional y segura con NUDO.">
+      [usuario]="'José'" 
+      [seccion]="'Panel de Control'">
     </app-encabezado>
 
     <section class="vista-activa">
       <router-outlet></router-outlet>
     </section>
+
+    <app-pie-de-pagina></app-pie-de-pagina>
 
   </main>
 </div>

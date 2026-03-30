@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core'; // Importamos OnInit
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,23 +9,21 @@ import { CommonModule } from '@angular/common';
   styleUrl: './encabezado.scss'
 })
 export class Encabezado implements OnInit {
-  
-  /**
-   * @Input permite que este componente reciba datos desde fuera.
-   * Si no se le pasa nada, usará estos valores por defecto.
-   */
-  @Input() titulo: string = 'Bienvenido a NUDO';
-  @Input() subtitulo: string = 'Protege tu trabajo de manera profesional y segura.';
+  @Input() usuario: string = 'José'; 
+  @Input() seccion: string = 'Inicio'; 
 
-  constructor() {
-    // El constructor se mantiene limpio, siguiendo la mentalidad de trading:
-    // Solo lo necesario para inicializar.
-  }
+  saludoDinamico: string = '';
 
   ngOnInit(): void {
-    // Aquí podrías añadir lógica que se ejecute al cargar el componente,
-    // como verificar la hora del día para decir "Buenos días" o "Buenas tardes".
-    console.log('Encabezado de NUDO inicializado correctamente.');
+    // Lógica de tiempo para un saludo profesional
+    const hora = new Date().getHours();
+    if (hora < 12) {
+      this.saludoDinamico = '¡Buenos días';
+    } else if (hora < 19) {
+      this.saludoDinamico = '¡Buenas tardes';
+    } else {
+      this.saludoDinamico = '¡Buenas noches';
+    }
+    console.log('Encabezado dinámico listo para ' + this.usuario);
   }
-
 }
