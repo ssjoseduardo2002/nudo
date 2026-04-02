@@ -4,14 +4,12 @@
 
   <main class="contenido-principal">
     
-    <app-encabezado 
-      [enPantallaAcceso]="true">
-    </app-encabezado>
-
-    <section class="vista-activa">
-      <app-acceso></app-acceso>
-      <router-outlet></router-outlet>
-    </section>
+    <div class="contenedor-centrado-vista">
+      <section class="vista-activa">
+        <app-acceso></app-acceso>
+        <router-outlet></router-outlet>
+      </section>
+    </div>
 
     <app-pie-de-pagina></app-pie-de-pagina>
 

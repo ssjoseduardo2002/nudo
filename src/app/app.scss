@@ -1,43 +1,23 @@
-// Layout principal para navegación horizontal
-.layout-principal {
+/* app.component.scss */
+.layout-nudo {
+  display: grid;
+  grid-template-columns: 280px 1fr; // Barra lateral fija
+  grid-template-rows: auto 1fr auto; // Header, Contenido, Footer
+  height: 100vh;
+  background-color: #f4f7f9; // Fondo gris muy tenue profesional
+
+  &.modo-acceso {
+    grid-template-columns: 1fr; // Sin barra lateral en login
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eef2f5;
+  }
+}
+
+.main-content {
   display: flex;
-  flex-direction: column; // Los elementos se apilan uno sobre otro (Navbar arriba, Main abajo)
-  min-height: 100vh;
-  width: 100%;
-}
-
-// Contenedor del contenido dinámico (lo que cambia con las rutas)
-.contenido-principal {
-  // Ajuste de margen superior igual al alto de la .navbar-horizontal
-  margin-top: 90px; 
-  
-  // Relleno interno para que el texto no pegue a los bordes
-  padding: 40px; 
-  
-  // Asegura que el fondo cubra todo el alto restante
-  flex-grow: 1; 
-  
-  // Color de fondo suave que transmite tranquilidad y limpieza
-  background-color: #f9fbfd; 
-  
-  // Suavizado de bordes por si decides usar tarjetas dentro
-  box-sizing: border-box;
-}
-
-// Estilo global para scroll (opcional para un look más moderno)
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #003366; // El azul de Nudo
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #00a8cc; // El verdecito de Nudo
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 2rem;
 }

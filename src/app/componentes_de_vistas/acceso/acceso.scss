@@ -1,116 +1,88 @@
-.contenedor-acceso {
+.pantalla-login {
   display: flex;
-  height: 90vh; // Aumentamos un poco el alto al no tener header arriba
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f0f4f8; // Fondo neutro para que resalte el cuadro
+  padding: 20px;
+}
+
+.tarjeta-acceso {
+  display: flex;
+  width: 1000px; // Ancho fijo para mantener la proporción
+  height: 600px; // Alto suficiente para que nada se encime
   background: white;
   border-radius: 20px;
-  margin: 1rem; // Un pequeño margen para que no toque los bordes de la pantalla
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 
-  .columna-visual {
-    flex: 1.2;
+  .lado-visual {
+    flex: 1;
     position: relative;
-    background: #0d47a1; // Color base de NUDO
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .img-fondo {
+    .ilustracion {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      opacity: 0.7;
+      object-fit: cover; // Evita que la imagen se estire feo
     }
-
-    .overlay-texto {
+    .texto-soporte {
       position: absolute;
-      z-index: 2;
+      bottom: 40px;
+      left: 40px;
       color: white;
-      padding: 3rem;
-      text-align: left;
-      
-      h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-      p { font-size: 1.1rem; opacity: 0.9; line-height: 1.5; }
+      h2 { font-size: 2rem; margin-bottom: 10px; }
     }
   }
 
-  .columna-formulario {
+  .lado-formulario {
     flex: 1;
     display: flex;
-    flex-direction: column; // Acomodamos el logo arriba y el formulario abajo
-    align-items: center;
-    justify-content: center;
-    padding: 3rem; // Un poco más de padding interno
+    flex-direction: column;
+    padding: 40px;
+    justify-content: space-between; // ESTO EMPUJA EL REGISTRO HASTA ABAJO
 
-    // --- NUEVO ESTILO PARA EL LOGO ---
-    .logo-contenedor-acceso {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      margin-bottom: 2rem; // Espacio entre logo y formulario
+    .cabecera-interna {
+      text-align: center;
+      .contenedor-logo {
+        margin-bottom: 15px;
+        .logo-pequeno {
+          width: 100px; // TAMAÑO PEQUEÑO Y CONTROLADO
+          height: auto;
+        }
+      }
+      h1 { color: #0d3b66; font-size: 1.8rem; }
+      p { color: #78909c; font-size: 0.9rem; }
+    }
 
-      .logo-img {
-        width: 180px; // <<< TAMAÑO DEL LOGO CONTROLADO AQUÍ
-        height: auto;
+    .formulario-nudo {
+      .grupo-input {
+        margin-bottom: 20px;
+        label { display: block; font-weight: 600; color: #0d3b66; margin-bottom: 5px; font-size: 0.9rem; }
+        input {
+          width: 100%;
+          padding: 12px;
+          border: 1px solid #cfd8dc;
+          border-radius: 10px;
+          background: #fcfdfe;
+        }
+      }
+      .btn-ingresar {
+        width: 100%;
+        padding: 14px;
+        background: #0d47a1;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
       }
     }
 
-    .tarjeta-login {
-      width: 100%;
-      max-width: 400px;
-
-      .header-login {
-        text-align: center;
-        margin-bottom: 2rem;
-        // Se eliminó el mini-logo y el "Bienvenido de nuevo"
-        h1 { color: #0d3b66; font-size: 1.8rem; margin-bottom: 0.5rem; }
-        p { color: #78909c; font-size: 0.9rem; }
-      }
-
-      .formulario {
-        .campo {
-          margin-bottom: 1.5rem;
-          label { display: block; color: #0d3b66; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem; }
-          input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #e0e6ed;
-            border-radius: 10px;
-            outline: none;
-            transition: border 0.3s;
-            &:focus { border-color: #0d47a1; }
-          }
-        }
-
-        .btn-principal {
-          width: 100%;
-          padding: 14px;
-          background: #0d47a1;
-          color: white;
-          border: none;
-          border-radius: 10px;
-          font-weight: bold;
-          cursor: pointer;
-          transition: background 0.3s;
-          &:hover { background: #0a357a; }
-        }
-      }
-
-      .footer-login {
-        margin-top: 2rem;
-        text-align: center;
-        font-size: 0.9rem;
-        color: #78909c;
-        .btn-enlace {
-          background: none;
-          border: none;
-          color: #0d47a1;
-          font-weight: bold;
-          cursor: pointer;
-          margin-left: 5px;
-          &:hover { text-decoration: underline; }
-        }
-      }
+    .pie-registro {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #f0f0f0; // Línea sutil para separar
+      p { font-size: 0.9rem; color: #546e7a; }
+      .link { color: #0d47a1; font-weight: bold; cursor: pointer; }
     }
   }
 }

@@ -1,43 +1,21 @@
-.pie-nudo {
-    background-color: #f8f9fa;
-    border-top: 1px solid #e9ecef;
-    padding: 40px 20px 20px;
-    margin-top: 50px; // Espacio respecto al contenido de arriba
-    color: #495057;
-
-    .contenido-footer {
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        max-width: 1200px;
-        margin: 0 auto;
-        gap: 30px;
+.footer-global {
+  padding: 15px;
+  background: white;
+  border-top: 1px solid #eee;
+  
+  .contenido-footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    p { font-size: 0.75rem; color: #999; } // PEQUEÑO PERO LEGIBLE
+    .links-legales a {
+      font-size: 0.75rem;
+      color: #666;
+      margin-left: 15px;
+      text-decoration: none;
     }
-
-    .columna-footer {
-        h3, h4 {
-            color: #0d3b66; // Tu azul de confianza
-            margin-bottom: 15px;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-            li { margin-bottom: 8px; }
-            a { 
-                text-decoration: none; 
-                color: #6c757d;
-                &:hover { color: #0d3b66; }
-            }
-        }
-    }
-
-    .barra-copyright {
-        text-align: center;
-        margin-top: 40px;
-        padding-top: 20px;
-        border-top: 1px solid #dee2e6;
-        font-size: 0.9rem;
-        color: #adb5bd;
-    }
+  }
 }

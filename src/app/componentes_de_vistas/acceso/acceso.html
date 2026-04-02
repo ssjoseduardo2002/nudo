@@ -1,11 +1,42 @@
-<div class="columna-formulario">
-  
-  <div class="logo-contenedor-acceso">
-    <img src="images/logotipo.png" alt="Logo NUDO" class="logo-img">
-  </div>
+<div class="pantalla-login">
+  <div class="tarjeta-acceso">
+    
+    <div class="lado-visual">
+      <img src="images/bloque_de_color2.png" alt="Seguridad NUDO" class="ilustracion">
+      <div class="texto-soporte">
+        <h2>Protege tu talento.</h2>
+        <p>Seguridad legal inmediata para tus proyectos.</p>
+      </div>
+    </div>
 
-  <div class="tarjeta-login">
-    <header class="header-login">
-      <h1>{{ esRegistro ? 'Crea tu cuenta' : 'Ingresar' }}</h1>
-      <p>{{ esRegistro ? 'Únete a la red de creativos protegidos.' : 'Introduce tus credenciales para acceder a tu panel.' }}</p>
-    </header>
+    <div class="lado-formulario">
+      
+      <div class="cabecera-interna">
+        <div class="contenedor-logo">
+          <img src="images/logotipo.png" alt="NUDO" class="logo-pequeno">
+        </div>
+        <h1>Ingresar</h1>
+        <p>Introduce tus credenciales para acceder.</p>
+      </div>
+
+      <form class="formulario-nudo">
+        <div class="grupo-input">
+          <label>Correo Electrónico</label>
+          <input type="email" placeholder="tu@correo.com">
+        </div>
+
+        <div class="grupo-input">
+          <label>Contraseña</label>
+          <input type="password" placeholder="••••••••">
+        </div>
+
+        <button type="submit" class="btn-ingresar">Iniciar Sesión</button>
+      </form>
+
+      <footer class="pie-registro">
+        <p>¿Aún no eres parte? <span class="link">Regístrate gratis</span></p>
+      </footer>
+
+    </div>
+  </div>
+</div>
