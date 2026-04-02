@@ -1,13 +1,22 @@
-<header class="contenedor-encabezado">
-    <div class="texto-bienvenida">
-        <h1>{{ saludoDinamico }}, {{ usuario }}!</h1>
-        
-        <p>Estás en la sección de <strong>{{ seccion }}</strong>. Protege tu trabajo con NUDO.</p>
-    </div>
+<header class="encabezado-nudo">
+  <div class="logo-contenedor">
+    <img src="images/logotipo.png" alt="Nudo Logo" class="logo-img">
+  </div>
 
-    <div class="decoracion-nudo">
-        <div class="circulo-decorativo">
-            <span class="letra-n">N</span>
-        </div>
+  <nav class="navegacion-principal" *ngIf="!enPantallaAcceso">
+    <button class="btn-nav">Inicio</button>
+    <button class="btn-nav">Contratos</button>
+    <button class="btn-nav">Crear</button>
+    <button class="btn-nav destacado">La mente detrás de NUDO</button>
+  </nav>
+
+  <div class="usuario-acciones" *ngIf="!enPantallaAcceso">
+    <div class="perfil-info">
+      <span class="nombre-usuario">{{ usuario }}</span>
+      <div class="avatar">JS</div>
     </div>
+    <button class="btn-ajustes">
+       <i class="icono-engrane"></i>
+    </button>
+  </div>
 </header>

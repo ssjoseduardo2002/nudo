@@ -1,12 +1,15 @@
 <div class="layout-principal">
   
-  <app-barra-lateral></app-barra-lateral>
+  <app-barra-lateral *ngIf="!mostrarSoloAcceso"></app-barra-lateral>
 
   <main class="contenido-principal">
     
+    <app-encabezado 
+      [enPantallaAcceso]="true">
+    </app-encabezado>
+
     <section class="vista-activa">
       <app-acceso></app-acceso>
-
       <router-outlet></router-outlet>
     </section>
 
