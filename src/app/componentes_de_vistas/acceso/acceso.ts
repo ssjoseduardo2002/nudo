@@ -1,23 +1,23 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-acceso',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
   templateUrl: './acceso.html',
-  styleUrl: './acceso.scss'
+  styleUrls: ['./acceso.scss']
 })
-export class Acceso {
-  esRegistro: boolean = false;
+export class AccesoComponent {
+  constructor(private router: Router) {}
 
-  alternarModo() {
-    this.esRegistro = !this.esRegistro;
+  // Acción del botón "Iniciar Sesión"
+  onLogin() {
+    console.log('Accediendo a NUDO...');
+    // Aquí iría la validación de credenciales
+    this.router.navigate(['/inicio']); 
   }
 
-  onSubmit() {
-    console.log(this.esRegistro ? 'Registrando usuario...' : 'Iniciando sesión...');
-    // Aquí conectaremos luego con Firebase o tu Backend
+  // Acción del enlace "Regístrate gratis"
+  goToRegistro() {
+    this.router.navigate(['/registro']);
   }
 }

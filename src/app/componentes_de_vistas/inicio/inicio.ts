@@ -1,13 +1,27 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './inicio.html',
-  styleUrl: './inicio.scss'
+  styleUrls: ['./inicio.scss']
 })
-export class Inicio {
-  // Aquí podrías meter lógica de datos en el futuro
+export class InicioComponent {
+  constructor(private router: Router) {}
+
+  // Botón: Nuevo Contrato
+  crearNuevoContrato() {
+    this.router.navigate(['/catalogo']);
+  }
+
+  // Botón: Mis Documentos
+  verDocumentos() {
+    // Por ahora lo mandamos al catálogo o una vista de lista
+    this.router.navigate(['/catalogo']);
+  }
+
+  // Botón: Configuración
+  irAPerfil() {
+    this.router.navigate(['/perfil-de-usuario']);
+  }
 }
