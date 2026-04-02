@@ -7,6 +7,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./generador-contrato.scss']
 })
 export class GeneradorContratoComponent {
+  // Estructura basada en tu documento de apoyo
+  datosContrato = {
+    nombreEmpresa: '',        // 
+    representanteLegal: '',   // 
+    nombreProfesionista: '',  // [cite: 2]
+    cedulaProfesional: '',    // [cite: 8]
+    objetoServicio: '',       // [cite: 12]
+    honorariosTotales: 0      // [cite: 15]
+  };
+
   pasoActual: number = 1;
 
   constructor(private router: Router) {}
@@ -15,16 +25,12 @@ export class GeneradorContratoComponent {
     if (this.pasoActual < 3) {
       this.pasoActual++;
     } else {
-      // Si ya está en el último paso, va al editor
-      this.router.navigate(['/editor-contrato']);
+      // Al finalizar, enviamos los datos al editor
+      this.router.navigate(['/editor-contrato'], { state: { data: this.datosContrato } });
     }
   }
 
   retrocederPaso() {
-    if (this.pasoActual > 1) {
-      this.pasoActual--;
-    } else {
-      this.router.navigate(['/catalogo']);
-    }
+    if (this.pasoActual > 1) this.pasoActual--;
   }
 }

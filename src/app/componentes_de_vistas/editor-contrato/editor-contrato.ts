@@ -1,11 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-editor-contrato',
-  imports: [],
   templateUrl: './editor-contrato.html',
-  styleUrl: './editor-contrato.scss',
+  styleUrls: ['./editor-contrato.scss']
 })
-export class EditorContrato {
+export class EditorContratoComponent implements OnInit {
+  contratoFinal: any;
 
+  ngOnInit() {
+    // Recuperamos los datos enviados desde el generador
+    this.contratoFinal = history.state.data || {
+      nombreEmpresa: '______',
+      nombreProfesionista: 'José'
+    };
+  }
+
+  // Lógica para el botón "Exportar PDF" que vimos en el HTML
+  exportarPDF() {
+    console.log('Generando PDF para:', this.contratoFinal.nombreEmpresa);
+    window.print(); // Solución rápida para previsualizar/guardar
+  }
 }

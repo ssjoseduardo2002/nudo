@@ -9,15 +9,13 @@ import { Router } from '@angular/router';
 export class AccesoComponent {
   constructor(private router: Router) {}
 
-  // Acción del botón "Iniciar Sesión"
   onLogin() {
-    console.log('Accediendo a NUDO...');
-    // Aquí iría la validación de credenciales
-    this.router.navigate(['/inicio']); 
+    // Redirección inmediata al Inicio como lo configuramos
+    this.router.navigate(['/inicio']);
   }
 
-  // Acción del enlace "Regístrate gratis"
-  goToRegistro() {
-    this.router.navigate(['/registro']);
+  onRegistro() {
+    // Acción para el enlace "¿Aún no eres parte? Regístrate gratis"
+    console.log('Navegando a registro...');
   }
 }
