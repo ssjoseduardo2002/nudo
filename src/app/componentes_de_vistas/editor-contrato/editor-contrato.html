@@ -1,1 +1,45 @@
-<p>editor-contrato works!</p>
+<div class="contenedor-vista-cuadro">
+  <div class="interfaz-editor">
+    
+    <aside class="herramientas-editor">
+      <div class="grupo-herramientas">
+        <h3>Herramientas</h3>
+        <button class="btn-herramienta">💾 Guardar Borrador</button>
+        <button class="btn-herramienta">📄 Exportar PDF</button>
+        <button class="btn-herramienta">📧 Enviar a Firma</button>
+      </div>
+      
+      <div class="ilustracion-editor">
+        <img src="images/monocromo3.png" alt="Edición NUDO">
+      </div>
+    </aside>
+
+    <main class="area-documento">
+      <div class="hoja-contrato">
+        <header class="logo-contrato">
+          <img src="images/logotipo.png" alt="Logo NUDO">
+        </header>
+        
+        <section class="cuerpo-documento" contenteditable="true">
+          <h2>CONTRATO DE PRESTACIÓN DE SERVICIOS</h2>
+          <p>En la ciudad de [Ciudad], a los [Día] del mes de [Mes] de 2026...</p>
+          <p><strong>REUNIDOS:</strong> De una parte, [Nombre del Cliente] y de otra parte, <strong>José</strong>, en calidad de prestador de servicios...</p>
+          <br>
+          <p>[Aquí va el cuerpo legal del contrato generado...]</p>
+        </section>
+
+        <footer class="firmas-contrato">
+          <div class="espacio-firma">
+            <div class="linea-firma"></div>
+            <p>Firma del Cliente</p>
+          </div>
+          <div class="espacio-firma">
+            <div class="linea-firma"></div>
+            <p>Firma del Prestador</p>
+          </div>
+        </footer>
+      </div>
+    </main>
+
+  </div>
+</div>

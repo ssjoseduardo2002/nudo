@@ -1,0 +1,84 @@
+.interfaz-editor {
+  display: flex;
+  gap: 2rem;
+  background: #f0f4f8; // Fondo gris claro para que la "hoja" resalte
+  padding: 2rem;
+  border-radius: 20px;
+  min-height: 80vh;
+}
+
+.herramientas-editor {
+  flex: 0.3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .grupo-herramientas {
+    h3 { color: #0d3b66; margin-bottom: 1.5rem; font-size: 1.2rem; }
+    .btn-herramienta {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 1rem;
+      background: white;
+      border: 1px solid #cfd8dc;
+      border-radius: 10px;
+      text-align: left;
+      font-weight: 600;
+      color: #37474f;
+      cursor: pointer;
+      transition: 0.3s;
+      &:hover { background: #eef2f5; border-color: #0d47a1; color: #0d47a1; }
+    }
+  }
+
+  .ilustracion-editor {
+    img { width: 100%; opacity: 0.6; border-radius: 15px; }
+  }
+}
+
+.area-documento {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+  max-height: 80vh;
+  padding-right: 10px;
+
+  .hoja-contrato {
+    width: 100%;
+    max-width: 800px;
+    background: white;
+    padding: 60px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    min-height: 1000px;
+    display: flex;
+    flex-direction: column;
+
+    .logo-contrato {
+      text-align: right;
+      margin-bottom: 40px;
+      img { width: 80px; }
+    }
+
+    .cuerpo-documento {
+      flex: 1;
+      color: #333;
+      line-height: 1.6;
+      font-family: 'Georgia', serif; // Fuente más "legal"
+      outline: none;
+      h2 { text-align: center; margin-bottom: 30px; font-size: 1.5rem; }
+    }
+
+    .firmas-contrato {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 60px;
+      .espacio-firma {
+        text-align: center;
+        width: 200px;
+        .linea-firma { border-top: 1px solid #333; margin-bottom: 10px; }
+        p { font-size: 0.8rem; color: #666; }
+      }
+    }
+  }
+}

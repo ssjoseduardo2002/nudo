@@ -1,83 +1,84 @@
-.contenedor-inicio {
-    padding: 2rem;
-    animation: fadeIn 0.8s ease-out; // Animación de entrada suave
+.banner-inicio {
+  display: flex;
+  background: #0d3b66;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 200px;
+  margin-bottom: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4rem;
 
-    .tarjeta-hero {
-        display: flex;
-        background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
-        border-radius: 24px;
-        padding: 3rem;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-        align-items: center;
-        gap: 3rem;
-        margin-bottom: 3rem;
+  .texto-bienvenida {
+    color: white;
+    h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+    p { opacity: 0.8; font-size: 1.1rem; }
+  }
 
-        .imagen-contenedor img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 20px;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
-        }
-
-        .texto-hero {
-            .etiqueta {
-                background: #e3f2fd;
-                color: #0d47a1;
-                padding: 4px 12px;
-                border-radius: 12px;
-                font-size: 0.8rem;
-                font-weight: bold;
-            }
-            h2 { font-size: 2.5rem; color: #0d3b66; margin: 1rem 0; }
-            p { color: #546e7a; font-size: 1.1rem; line-height: 1.6; }
-            .btn-nudo-principal {
-                margin-top: 2rem;
-                padding: 12px 32px;
-                background: #0d3b66;
-                color: white;
-                border: none;
-                border-radius: 12px;
-                cursor: pointer;
-                transition: transform 0.2s;
-                &:hover { transform: translateY(-3px); background: #154a7a; }
-            }
-        }
-    }
-
-    .reja-acciones {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-
-        .tarjeta-accion {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid #edf2f7;
-
-            &:hover {
-                transform: translateY(-10px);
-                box-shadow: 0 15px 35px rgba(0,0,0,0.06);
-            }
-
-            .circulo-icono {
-                width: 120px;
-                height: 120px;
-                margin: 0 auto 1.5rem;
-                border-radius: 50%;
-                overflow: hidden;
-                img { width: 100%; height: 100%; object-fit: cover; }
-            }
-            
-            h3 { color: #0d3b66; margin-bottom: 0.5rem; }
-            p { color: #90a4ae; font-size: 0.9rem; }
-        }
-    }
+  .img-banner {
+    height: 100%;
+    width: 300px;
+    object-fit: cover;
+  }
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+.tablero-resumen {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+
+  .tarjeta-stat {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    border: 1px solid #f0f4f8;
+
+    .cifra { font-size: 2.5rem; font-weight: bold; color: #0d47a1; display: block; }
+    p { color: #78909c; font-weight: 600; margin-top: 10px; }
+
+    &.especial {
+      background: #fff9c4; // Un tono amarillo suave para la nota con pin
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      text-align: left;
+      .icono-pin { width: 30px; }
+      p { color: #827717; margin: 0; font-size: 0.9rem; }
+    }
+  }
+}
+
+.accesos-rapidos {
+  h2 { color: #0d3b66; margin-bottom: 1.5rem; }
+  
+  .grid-opciones {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+
+    .opcion-card {
+      background: white;
+      border: 2px solid #eef2f5;
+      border-radius: 15px;
+      padding: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      transition: 0.3s;
+
+      .icono { font-size: 2rem; }
+      span { font-weight: bold; color: #37474f; }
+
+      &:hover {
+        border-color: #0d47a1;
+        background: #f0f7ff;
+        transform: translateY(-3px);
+      }
+    }
+  }
 }

@@ -1,0 +1,57 @@
+.contenedor-vista-cuadro {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  .encabezado-seccion {
+    text-align: center;
+    margin-bottom: 3rem;
+    h1 { color: #0d3b66; font-size: 2.2rem; }
+    p { color: #78909c; font-size: 1.1rem; }
+  }
+}
+
+.grid-catalogo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); // Cuadros proporcionales
+  gap: 2rem;
+}
+
+.tarjeta-contrato {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+  border: 1px solid #f0f4f8;
+
+  &:hover { transform: translateY(-5px); }
+
+  .icono-contrato {
+    height: 150px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img { height: 100%; width: 100%; object-fit: cover; opacity: 0.8; }
+  }
+
+  .info-contrato {
+    padding: 1.5rem;
+    text-align: center;
+    h3 { color: #0d3b66; margin-bottom: 0.5rem; }
+    p { color: #546e7a; font-size: 0.9rem; margin-bottom: 1.5rem; min-height: 40px; }
+  }
+}
+
+.btn-accion-nudo {
+  width: 100%;
+  padding: 12px;
+  background: #0d47a1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  &:hover { background: #0a357a; }
+}
