@@ -1,15 +1,14 @@
 import { Routes } from '@angular/router';
 
-// Variables de componentes reales
-import { AccesoComponent } from './componentes_de_vistas/acceso/acceso.component';
-import { InicioComponent } from './componentes_de_vistas/inicio/inicio.component';
-import { CatalogoComponent } from './componentes_de_vistas/catalogo/catalogo.component';
-import { GeneradorContratoComponent } from './componentes_de_vistas/generador-contrato/generador-contrato.component';
-import { EditorContratoComponent } from './componentes_de_vistas/editor-contrato/editor-contrato.component';
-import { CentroAyudaComponent } from './componentes_de_vistas/centro-ayuda/centro-ayuda.component';
-import { PerfilDeUsuarioComponent } from './componentes_de_vistas/perfil-de-usuario/perfil-de-usuario.component';
-import { PasarelaPagoComponent } from './componentes_de_vistas/pasarela-pago/pasarela-pago.component';
-import { LaMenteDetrasDeNudoComponent } from './componentes_de_vistas/la-mente-detras-de-nudo/la-mente-detras-de-nudo.component';
+import { AccesoComponent } from './componentes_de_vistas/acceso/acceso';
+import { InicioComponent } from './componentes_de_vistas/inicio/inicio';
+import { CatalogoComponent } from './componentes_de_vistas/catalogo/catalogo';
+import { GeneradorContratoComponent } from './componentes_de_vistas/generador-contrato/generador-contrato';
+import { EditorContratoComponent } from './componentes_de_vistas/editor-contrato/editor-contrato';
+import { CentroAyudaComponent } from './componentes_de_vistas/centro-ayuda/centro-ayuda';
+import { PerfilDeUsuarioComponent } from './componentes_de_vistas/perfil-de-usuario/perfil-de-usuario';
+import { PasarelaPagoComponent } from './componentes_de_vistas/pasarela-pago./pasarela-pago.';
+import { LaMenteDetrasDeNudoComponent } from './componentes_de_vistas/la-mente-detras-de-nudo/la-mente-detras-de-nudo';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'acceso', pathMatch: 'full' },

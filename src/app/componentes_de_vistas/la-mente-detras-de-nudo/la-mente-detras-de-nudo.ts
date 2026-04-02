@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './la-mente-detras-de-nudo.html',
   styleUrl: './la-mente-detras-de-nudo.scss'
 })
-export class LaMenteDetrasDeNudo {
+export class LaMenteDetrasDeNudoComponent {
   // Aquí puedes agregar más datos sobre ti si quieres en el futuro,
   // como links a tus redes o portafolio.
 }

@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-perfil-de-usuario',
-  imports: [],
+  standalone: true,
   templateUrl: './perfil-de-usuario.html',
-  styleUrl: './perfil-de-usuario.scss',
+  styleUrls: ['./perfil-de-usuario.scss']
 })
-export class PerfilDeUsuario {
-
+export class PerfilDeUsuarioComponent { // <--- AGREGAMOS "Component" AL FINAL
 }
