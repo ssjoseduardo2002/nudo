@@ -1,1 +1,47 @@
-<p>acceso works!</p>
+<div class="contenedor-acceso">
+  <div class="columna-visual">
+    <div class="overlay-texto">
+      <h2>Protege tu talento.</h2>
+      <p>NUDO es la herramienta que convierte tus tratos en seguridad legal inmediata.</p>
+    </div>
+    <img src="images/bloque_de_color2.png" alt="Ilustración NUDO" class="img-fondo">
+  </div>
+
+  <div class="columna-formulario">
+    <div class="tarjeta-login">
+      <header class="header-login">
+        <img src="images/logotipo.png" alt="Logo NUDO" class="mini-logo">
+        <h1>{{ esRegistro ? 'Crea tu cuenta' : '¡Bienvenido de nuevo!' }}</h1>
+        <p>{{ esRegistro ? 'Únete a la red de creativos protegidos.' : 'Ingresa tus credenciales para continuar.' }}</p>
+      </header>
+
+      <form (ngSubmit)="onSubmit()" class="formulario">
+        <div class="campo" *ngIf="esRegistro">
+          <label>Nombre Completo</label>
+          <input type="text" placeholder="Ej. Juan Pérez" required>
+        </div>
+
+        <div class="campo">
+          <label>Correo Electrónico</label>
+          <input type="email" placeholder="tu@correo.com" required>
+        </div>
+
+        <div class="campo">
+          <label>Contraseña</label>
+          <input type="password" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="btn-principal">
+          {{ esRegistro ? 'Registrarme' : 'Iniciar Sesión' }}
+        </button>
+      </form>
+
+      <footer class="footer-login">
+        <span>{{ esRegistro ? '¿Ya tienes cuenta?' : '¿Aún no eres parte?' }}</span>
+        <button (click)="alternarModo()" class="btn-enlace">
+          {{ esRegistro ? 'Inicia Sesión aquí' : 'Regístrate gratis' }}
+        </button>
+      </footer>
+    </div>
+  </div>
+</div>

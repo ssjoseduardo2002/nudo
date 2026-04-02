@@ -9,20 +9,23 @@ import { PieDePagina } from './componentes_de_estructura/pie-de-pagina/pie-de-pa
 
 // 2. IMPORTACIÓN DE LAS VISTAS
 import { Inicio } from './componentes_de_vistas/inicio/inicio'; 
-import { LaMenteDetrasDeNudo } from './componentes_de_vistas/la-mente-detras-de-nudo/la-mente-detras-de-nudo'; 
+import { LaMenteDetrasDeNudo } from './componentes_de_vistas/la-mente-detras-de-nudo/la-mente-detras-de-nudo';
+import { Acceso } from "./componentes_de_vistas/acceso/acceso"; 
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     CommonModule,
-    RouterOutlet,   
-    BarraLateral,   
+    RouterOutlet,
+    BarraLateral,
     Encabezado,
     PieDePagina,
     Inicio,
     LaMenteDetrasDeNudo // REGISTRAMOS TU BIOGRAFÍA AQUÍ
-  ], 
+    ,
+    Acceso
+], 
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

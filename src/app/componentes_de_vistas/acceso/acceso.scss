@@ -1,0 +1,101 @@
+.contenedor-acceso {
+  display: flex;
+  height: 85vh; // Ajustado para que quepa entre header y footer
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+
+  .columna-visual {
+    flex: 1.2;
+    position: relative;
+    background: #0d47a1; // Color base de NUDO
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .img-fondo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.7;
+    }
+
+    .overlay-texto {
+      position: absolute;
+      z-index: 2;
+      color: white;
+      padding: 3rem;
+      text-align: left;
+      
+      h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+      p { font-size: 1.1rem; opacity: 0.9; line-height: 1.5; }
+    }
+  }
+
+  .columna-formulario {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+
+    .tarjeta-login {
+      width: 100%;
+      max-width: 400px;
+
+      .header-login {
+        text-align: center;
+        margin-bottom: 2rem;
+        .mini-logo { width: 60px; margin-bottom: 1rem; }
+        h1 { color: #0d3b66; font-size: 1.8rem; margin-bottom: 0.5rem; }
+        p { color: #78909c; font-size: 0.9rem; }
+      }
+
+      .formulario {
+        .campo {
+          margin-bottom: 1.5rem;
+          label { display: block; color: #0d3b66; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem; }
+          input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e6ed;
+            border-radius: 10px;
+            outline: none;
+            transition: border 0.3s;
+            &:focus { border-color: #0d47a1; }
+          }
+        }
+
+        .btn-principal {
+          width: 100%;
+          padding: 14px;
+          background: #0d47a1;
+          color: white;
+          border: none;
+          border-radius: 10px;
+          font-weight: bold;
+          cursor: pointer;
+          transition: background 0.3s;
+          &:hover { background: #0a357a; }
+        }
+      }
+
+      .footer-login {
+        margin-top: 2rem;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #78909c;
+        .btn-enlace {
+          background: none;
+          border: none;
+          color: #0d47a1;
+          font-weight: bold;
+          cursor: pointer;
+          margin-left: 5px;
+          &:hover { text-decoration: underline; }
+        }
+      }
+    }
+  }
+}
