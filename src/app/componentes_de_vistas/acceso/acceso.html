@@ -10,9 +10,8 @@
   <div class="columna-formulario">
     <div class="tarjeta-login">
       <header class="header-login">
-        <img src="images/logotipo.png" alt="Logo NUDO" class="mini-logo">
-        <h1>{{ esRegistro ? 'Crea tu cuenta' : '¡Bienvenido de nuevo!' }}</h1>
-        <p>{{ esRegistro ? 'Únete a la red de creativos protegidos.' : 'Ingresa tus credenciales para continuar.' }}</p>
+        <h1>{{ esRegistro ? 'Crea tu cuenta' : 'Ingresar' }}</h1>
+        <p>{{ esRegistro ? 'Únete a la red de creativos protegidos.' : 'Introduce tus credenciales para acceder a tu panel.' }}</p>
       </header>
 
       <form (ngSubmit)="onSubmit()" class="formulario">

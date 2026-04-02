@@ -1,8 +1,9 @@
 .contenedor-acceso {
   display: flex;
-  height: 85vh; // Ajustado para que quepa entre header y footer
+  height: 90vh; // Aumentamos un poco el alto al no tener header arriba
   background: white;
   border-radius: 20px;
+  margin: 1rem; // Un pequeño margen para que no toque los bordes de la pantalla
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 
