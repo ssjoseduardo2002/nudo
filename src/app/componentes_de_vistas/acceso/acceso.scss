@@ -37,9 +37,23 @@
   .columna-formulario {
     flex: 1;
     display: flex;
+    flex-direction: column; // Acomodamos el logo arriba y el formulario abajo
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: 3rem; // Un poco más de padding interno
+
+    // --- NUEVO ESTILO PARA EL LOGO ---
+    .logo-contenedor-acceso {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem; // Espacio entre logo y formulario
+
+      .logo-img {
+        width: 180px; // <<< TAMAÑO DEL LOGO CONTROLADO AQUÍ
+        height: auto;
+      }
+    }
 
     .tarjeta-login {
       width: 100%;
@@ -48,7 +62,7 @@
       .header-login {
         text-align: center;
         margin-bottom: 2rem;
-        .mini-logo { width: 60px; margin-bottom: 1rem; }
+        // Se eliminó el mini-logo y el "Bienvenido de nuevo"
         h1 { color: #0d3b66; font-size: 1.8rem; margin-bottom: 0.5rem; }
         p { color: #78909c; font-size: 0.9rem; }
       }
