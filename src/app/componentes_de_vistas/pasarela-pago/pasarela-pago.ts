@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-pasarela-pago',
   standalone: true,
   imports: [],
-  templateUrl: './pasarela-pago.html', // Usa dos puntos si el archivo físico los tiene
-  styleUrl: './pasarela-pago.scss',   // Usa dos puntos si el archivo físico los tiene
+  templateUrl: './pasarela-pago.html', // Solo un punto antes de .html
+  styleUrl: './pasarela-pago.scss'      // Solo un punto antes de .scss
 })
-export class PasarelaPagoComponent { } // Revisa que el nombre sea exacto
+export class PasarelaPagoComponent { }
