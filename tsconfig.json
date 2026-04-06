@@ -16,7 +16,7 @@
     "target": "ES2022",
     "module": "ES2022",
     "lib": ["ES2022", "dom"],
-    "moduleResolution": "node", // Cambiado de 'bundler' a 'node' para mayor compatibilidad
+    "moduleResolution": "node",
     "useDefineForClassFields": false,
     "paths": {
       "@angular/*": ["./node_modules/@angular/*"],
