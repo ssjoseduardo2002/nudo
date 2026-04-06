@@ -1,6 +1,13 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
+    "moduleResolution": "node",
+    "paths": {
+      "@angular/*": ["./node_modules/@angular/*"],
+      "tslib": ["./node_modules/tslib/tslib.d.ts"]
+    },
+    "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -23,11 +30,7 @@
   },
   "files": [],
   "references": [
-    {
-      "path": "./src/tsconfig.app.json"
-    },
-    {
-      "path": "./src/tsconfig.spec.json"
-    }
+    { "path": "./src/tsconfig.app.json" },
+    { "path": "./src/tsconfig.spec.json" }
   ]
 }
