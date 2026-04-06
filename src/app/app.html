@@ -2,16 +2,19 @@
   
   <app-barra-lateral *ngIf="!mostrarSoloAcceso"></app-barra-lateral>
 
-  <main class="contenido-principal">
+  <main class="contenido-principal" [class.full-width]="mostrarSoloAcceso">
     
     <div class="contenedor-centrado-vista">
       <section class="vista-activa">
-        <app-acceso></app-acceso>
-        <router-outlet></router-outlet>
+        
+        <app-acceso *ngIf="mostrarSoloAcceso"></app-acceso>
+        
+        <router-outlet *ngIf="!mostrarSoloAcceso"></router-outlet>
+        
       </section>
     </div>
 
-    <app-pie-de-pagina></app-pie-de-pagina>
+    <app-pie-de-pagina *ngIf="!mostrarSoloAcceso"></app-pie-de-pagina>
 
   </main>
 </div>

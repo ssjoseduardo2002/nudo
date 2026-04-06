@@ -2,12 +2,8 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "moduleResolution": "node",
-    "paths": {
-      "@angular/*": ["./node_modules/@angular/*"],
-      "tslib": ["./node_modules/tslib/tslib.d.ts"]
-    },
     "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -19,7 +15,16 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
-    "lib": ["ES2022", "dom"]
+    "lib": [
+      "ES2022",
+      "dom"
+    ],
+    "moduleResolution": "node",
+    "useDefineForClassFields": false,
+    "paths": {
+      "@angular/*": ["./node_modules/@angular/*"],
+      "tslib": ["./node_modules/tslib/tslib.d.ts"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -30,7 +35,11 @@
   },
   "files": [],
   "references": [
-    { "path": "./src/tsconfig.app.json" },
-    { "path": "./src/tsconfig.spec.json" }
+    {
+      "path": "./src/tsconfig.app.json"
+    },
+    {
+      "path": "./src/tsconfig.spec.json"
+    }
   ]
 }
