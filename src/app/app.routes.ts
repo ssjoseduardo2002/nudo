@@ -7,7 +7,7 @@ import { GeneradorContratoComponent } from './componentes_de_vistas/generador-co
 import { EditorContratoComponent } from './componentes_de_vistas/editor-contrato/editor-contrato';
 import { CentroAyudaComponent } from './componentes_de_vistas/centro-ayuda/centro-ayuda';
 import { PerfilDeUsuarioComponent } from './componentes_de_vistas/perfil-de-usuario/perfil-de-usuario';
-import { PasarelaPagoComponent } from './componentes_de_vistas/pasarela-pago./pasarela-pago.';
+import { PasarelaPagoComponent } from './componentes_de_vistas/pasarela-pago/pasarela-pago';
 import { LaMenteDetrasDeNudoComponent } from './componentes_de_vistas/la-mente-detras-de-nudo/la-mente-detras-de-nudo';
 
 export const routes: Routes = [
