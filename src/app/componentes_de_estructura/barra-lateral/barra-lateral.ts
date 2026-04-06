@@ -10,7 +10,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './barra-lateral.html',
   styleUrl: './barra-lateral.scss'
 })
-export class BarraLateral {
+export class BarraLateralComponent {
   // DATOS DEL USUARIO (Simulados, luego vendrán de un Servicio)
   public usuarioLogueado = {
     nombre: 'José',
