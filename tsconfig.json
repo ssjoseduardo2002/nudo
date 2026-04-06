@@ -19,8 +19,9 @@
       "ES2022",
       "dom"
     ],
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "useDefineForClassFields": false,
+    "ignoreDeprecations": "5.0",
     "paths": {
       "@angular/*": ["./node_modules/@angular/*"],
       "tslib": ["./node_modules/tslib/tslib.d.ts"]

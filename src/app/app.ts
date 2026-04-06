@@ -2,11 +2,9 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
 
-// Importación de Estructura
+// Asegúrate de que los nombres de los archivos sean exactos
 import { FooterComponent } from './footer/footer'; 
 import { BarraLateralComponent } from './componentes_de_estructura/barra-lateral/barra-lateral'; 
-
-// Importación de Vistas
 import { AccesoComponent } from './componentes_de_vistas/acceso/acceso';
 
 @Component({
@@ -15,20 +13,14 @@ import { AccesoComponent } from './componentes_de_vistas/acceso/acceso';
   imports: [
     RouterOutlet, 
     CommonModule,      
-    FooterComponent,   
+    FooterComponent,   // Este es el que te marcaba error
     AccesoComponent,   
     BarraLateralComponent 
   ], 
   templateUrl: './app.html',
-  styleUrl: './app.scss' // Nota: 'styleUrl' en singular es el estándar actual
+  styleUrl: './app.scss'
 })
 export class AppComponent {
   title = 'NUDO';
-  
-  // Esta variable controlará si vemos la app completa o solo el login
   mostrarSoloAcceso: boolean = false; 
-
-  constructor() {
-    // Aquí podrías añadir lógica para detectar si el usuario está en la ruta de acceso
-  }
 }

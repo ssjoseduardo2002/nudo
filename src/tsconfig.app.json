@@ -2,16 +2,10 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../dist/out-tsc/app",
-    "types": []
+    "types": [],
+    "ignoreDeprecations": "6.0"
   },
-  "files": [
-    "main.ts"
-  ],
-  "include": [
-    "**/*.d.ts",
-    "**/*.ts"
-  ],
-  "exclude": [
-    "**/*.spec.ts"
-  ]
+  "files": [ "main.ts" ],
+  "include": [ "**/*.d.ts", "**/*.ts" ],
+  "exclude": [ "**/*.spec.ts" ]
 }
