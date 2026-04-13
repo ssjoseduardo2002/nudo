@@ -2,9 +2,24 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../dist/out-tsc/app",
-    "types": []
+    "types": [],
+    "composite": false,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true
   },
-  "files": [ "main.ts" ],
-  "include": [ "**/*.d.ts", "**/*.ts" ],
-  "exclude": [ "**/*.spec.ts" ]
+  "files": [
+    "main.ts"
+  ],
+  "include": [
+    "**/*.d.ts",
+    "**/*.ts"
+  ],
+  "exclude": [
+    "**/*.spec.ts"
+  ]
 }
+  
