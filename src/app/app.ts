@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
 
-// Asegúrate de que los nombres de los archivos sean exactos
+// Importaciones de componentes de estructura y vistas
 import { FooterComponent } from './footer/footer'; 
 import { BarraLateralComponent } from './componentes_de_estructura/barra-lateral/barra-lateral'; 
 import { AccesoComponent } from './componentes_de_vistas/acceso/acceso';
@@ -13,7 +13,7 @@ import { AccesoComponent } from './componentes_de_vistas/acceso/acceso';
   imports: [
     RouterOutlet, 
     CommonModule,      
-    FooterComponent,   // Este es el que te marcaba error
+    FooterComponent,   
     AccesoComponent,   
     BarraLateralComponent 
   ], 
@@ -22,5 +22,10 @@ import { AccesoComponent } from './componentes_de_vistas/acceso/acceso';
 })
 export class AppComponent {
   title = 'NUDO';
-  mostrarSoloAcceso: boolean = false; 
+
+  /**
+   * Cambiamos esto a 'true' para que el sistema sepa 
+   * que estamos en la fase de login y oculte la barra lateral y el footer.
+   */
+  public mostrarSoloAcceso: boolean = true; 
 }
