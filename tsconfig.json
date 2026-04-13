@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -16,12 +15,8 @@
     "target": "ES2022",
     "module": "ES2022",
     "lib": ["ES2022", "dom"],
-    "moduleResolution": "node",
-    "useDefineForClassFields": false,
-    "paths": {
-      "@angular/*": ["./node_modules/@angular/*"],
-      "tslib": ["./node_modules/tslib/tslib.d.ts"]
-    }
+    "moduleResolution": "bundler",
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
