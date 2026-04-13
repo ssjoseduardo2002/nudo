@@ -1,4 +1,4 @@
-<div class="layout-principal">
+<div class="layout-principal" [class.modo-acceso-total]="mostrarSoloAcceso">
   
   <app-barra-lateral *ngIf="!mostrarSoloAcceso"></app-barra-lateral>
 
@@ -7,6 +7,7 @@
       <section class="vista-activa">
         
         <app-acceso *ngIf="mostrarSoloAcceso"></app-acceso>
+
         <router-outlet *ngIf="!mostrarSoloAcceso"></router-outlet>
         
       </section>
