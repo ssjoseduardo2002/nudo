@@ -1,47 +1,86 @@
-/* app.component.scss */
+/* ==========================================================================
+   CONFIGURACIÓN GLOBAL Y BLOQUEO DE SCROLL
+   ========================================================================== */
+
+// Bloqueamos el scroll a nivel de componente raíz de Angular
+:host {
+  display: block;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden !important;
+}
+
+// Refuerzo para el body (asegura que el navegador no intente scrollear)
+body {
+  overflow: hidden !important;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+}
+
+/* ==========================================================================
+   LAYOUT PRINCIPAL
+   ========================================================================== */
 
 .layout-principal {
   display: flex;
-  min-height: 100vh;
-  width: 100%; // Aseguramos que ocupe todo el ancho
+  height: 100vh; // Cambiado de min-height a height para asegurar el congelamiento
+  width: 100%;
   background-color: #f4f7f9;
   transition: all 0.3s ease;
-  overflow: hidden; // Evita scrollbars extraños durante la transición
+  overflow: hidden !important; // Evita scrollbars en cualquier modo
 
-  // Estilos cuando estamos en la pantalla de Acceso
+  /* -----------------------------------------------------------------------
+     MODO ACCESO TOTAL (Login / Registro)
+     ----------------------------------------------------------------------- */
   &.modo-acceso-total {
-    display: flex; // Cambiamos a flex para centrar todo el contenido-principal
+    display: flex;
     justify-content: center;
     align-items: center;
     background-color: #eef2f5;
 
     .contenido-principal {
-      margin-left: 0 !important; // Matamos cualquier margen heredado
-      width: 100vw; // Ocupa el ancho total de la ventana
+      margin-left: 0 !important;
+      width: 100vw;
       height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 0;
+      overflow: hidden !important;
     }
 
     .contenedor-centrado-vista {
-      max-width: none; // En login no queremos límites, que la tarjeta respire
+      max-width: none;
       padding: 0;
       width: 100%;
+      height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
+      overflow: hidden !important;
+    }
+
+    .vista-activa {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
     }
   }
 }
+
+/* -----------------------------------------------------------------------
+   COMPONENTES INTERNOS DEL LAYOUT
+   ----------------------------------------------------------------------- */
 
 .contenido-principal {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
-  overflow-y: auto;
+  overflow-y: hidden; // Cambiado de auto a hidden para cumplir tu petición
   position: relative;
 }
 
@@ -58,23 +97,6 @@
 .vista-activa {
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-/* app.component.scss */
-
-// MATA EL SCROLL GLOBAL DE LA APP
-:host {
-  display: block;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden !important; // Esta es la línea mágica
-}
-
-// También asegúralo en el body por si acaso (puedes poner esto en styles.scss si prefieres)
-body {
-  overflow: hidden !important;
-  height: 100vh;
-  width: 100vw;
+  // Si en el futuro una vista (que no sea el acceso) necesita scroll, 
+  // se le pondría overflow-y: auto solo a ese componente específico.
 }
