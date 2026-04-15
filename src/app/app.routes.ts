@@ -12,19 +12,27 @@ import { PasarelaPagoComponent } from './componentes_de_vistas/pasarela-pago/pas
 import { LaMenteDetrasDeNudoComponent } from './componentes_de_vistas/la-mente-detras-de-nudo/la-mente-detras-de-nudo';
 
 export const routes: Routes = [
-  // Redirección inicial: Si el usuario entra a la raíz, lo mandamos al login (Acceso)
+  // 1. Redirección inicial
   { path: '', redirectTo: 'acceso', pathMatch: 'full' },
   
+  // 2. Rutas de Autenticación e Inicio
   { path: 'acceso', component: AccesoComponent, title: 'NUDO - Acceso' },
   { path: 'inicio', component: InicioComponent, title: 'NUDO - Inicio' },
+
+  // 3. Rutas de Operatividad de Contratos
   { path: 'catalogo', component: CatalogoComponent, title: 'NUDO - Catálogo' },
   { path: 'generador-contrato', component: GeneradorContratoComponent, title: 'NUDO - Generador' },
   { path: 'editor-contrato', component: EditorContratoComponent, title: 'NUDO - Editor' },
-  { path: 'centro-ayuda', component: CentroAyudaComponent, title: 'NUDO - Ayuda' },
-  { path: 'perfil-de-usuario', component: PerfilDeUsuarioComponent, title: 'NUDO - Mi Perfil' },
-  { path: 'pasarela-pago', component: PasarelaPagoComponent, title: 'NUDO - Pago Seguro' },
-  { path: 'la-mente-detras-de-nudo', component: LaMenteDetrasDeNudoComponent, title: 'La Mente Detrás' },
 
-  // Comodín: Si escriben cualquier cosa mal en la URL, los regresa al acceso
+  // 4. Rutas de Soporte y Usuario
+  { path: 'centro-ayuda', component: CentroAyudaComponent, title: 'NUDO - Ayuda' },
+  { path: 'perfil-usuario', component: PerfilDeUsuarioComponent, title: 'NUDO - Mi Perfil' },
+  { path: 'pago-seguro', component: PasarelaPagoComponent, title: 'NUDO - Pago Seguro' },
+
+  // 5. SECCIÓN ESPECIAL DEL CEO (La Mente Detrás)
+  // He simplificado el path para que sea fácil de llamar
+  { path: 'mente-detras', component: LaMenteDetrasDeNudoComponent, title: 'NUDO - La Mente Detrás' },
+
+  // 6. Comodín: Error 404 -> Regresa al acceso
   { path: '**', redirectTo: 'acceso' }
 ];
