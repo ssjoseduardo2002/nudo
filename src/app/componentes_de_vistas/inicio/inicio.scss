@@ -1,25 +1,33 @@
+/* ==========================================================================
+   VISTA DE INICIO - PANEL DEL CEO DE NUDO
+   ========================================================================== */
+
 .banner-inicio {
   display: flex;
-  background: #0d3b66;
+  background: #0d3b66; // El azul corporativo de NUDO
   border-radius: 20px;
   overflow: hidden;
-  height: 200px;
+  min-height: 180px; // Altura mínima para que respire
   margin-bottom: 2rem;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start; // Alineamos al inicio tras quitar la imagen
   padding: 0 4rem;
 
   .texto-bienvenida {
     color: white;
-    h1 { font-size: 2.2rem; margin-bottom: 0.5rem; }
-    p { opacity: 0.8; font-size: 1.1rem; }
+    h1 { 
+      font-size: 2.2rem; 
+      margin-bottom: 0.5rem; 
+      font-weight: 700;
+    }
+    p { 
+      opacity: 0.9; 
+      font-size: 1.1rem; 
+      margin: 0;
+    }
   }
 
-  .img-banner {
-    height: 100%;
-    width: 300px;
-    object-fit: cover;
-  }
+  // Se eliminaron los estilos de .img-banner para optimizar carga
 }
 
 .tablero-resumen {
@@ -36,23 +44,42 @@
     box-shadow: 0 4px 15px rgba(0,0,0,0.02);
     border: 1px solid #f0f4f8;
 
-    .cifra { font-size: 2.5rem; font-weight: bold; color: #0d47a1; display: block; }
-    p { color: #78909c; font-weight: 600; margin-top: 10px; }
+    .cifra { 
+      font-size: 2.5rem; 
+      font-weight: bold; 
+      color: #0d47a1; 
+      display: block; 
+    }
+    p { 
+      color: #78909c; 
+      font-weight: 600; 
+      margin-top: 10px; 
+      margin-bottom: 0;
+    }
 
     &.especial {
-      background: #fff9c4; // Un tono amarillo suave para la nota con pin
+      background: #fff9c4; // Tono "post-it" para notas importantes
       display: flex;
       align-items: center;
       gap: 15px;
       text-align: left;
       .icono-pin { width: 30px; }
-      p { color: #827717; margin: 0; font-size: 0.9rem; }
+      p { 
+        color: #827717; 
+        margin: 0; 
+        font-size: 0.95rem; 
+        font-weight: 500;
+      }
     }
   }
 }
 
 .accesos-rapidos {
-  h2 { color: #0d3b66; margin-bottom: 1.5rem; }
+  h2 { 
+    color: #0d3b66; 
+    margin-bottom: 1.5rem; 
+    font-weight: 700;
+  }
   
   .grid-opciones {
     display: grid;
@@ -63,22 +90,50 @@
       background: white;
       border: 2px solid #eef2f5;
       border-radius: 15px;
-      padding: 1.5rem;
+      padding: 1.8rem;
       cursor: pointer;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
-      transition: 0.3s;
+      gap: 12px;
+      transition: all 0.3s ease;
+      
+      // RESET DE ENLACE (Importante ahora que usamos <a>)
+      text-decoration: none; 
+      color: inherit; 
 
-      .icono { font-size: 2rem; }
-      span { font-weight: bold; color: #37474f; }
+      .icono { 
+        font-size: 2.2rem; 
+      }
+      span { 
+        font-weight: bold; 
+        color: #37474f; 
+        font-size: 1.1rem;
+      }
 
       &:hover {
         border-color: #0d47a1;
         background: #f0f7ff;
-        transform: translateY(-3px);
+        transform: translateY(-5px); // Elevación sutil para feedback visual
+        box-shadow: 0 8px 20px rgba(13, 71, 161, 0.1);
+      }
+
+      &:active {
+        transform: translateY(-2px); // Efecto de pulsado
       }
     }
+  }
+}
+
+// Media query básica para que no se amontone en pantallas pequeñas
+@media (max-width: 992px) {
+  .tablero-resumen, .grid-opciones {
+    grid-template-columns: 1fr;
+  }
+  
+  .banner-inicio {
+    padding: 2rem;
+    text-align: center;
+    justify-content: center;
   }
 }
