@@ -1,12 +1,28 @@
+/* ==========================================================================
+   VISTA: LA MENTE DETRÁS DE NUDO
+   Perfil Profesional del CEO & Fundador
+   ========================================================================== */
+
+.contenedor-vista-cuadro {
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 100px); // Ajuste para centrar en el viewport
+}
+
 .tarjeta-autor {
   display: flex;
   background: white;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-  min-height: 550px;
+  max-width: 1200px;
+  width: 100%;
+  min-height: 600px;
   border: 1px solid #f0f4f8;
 
+  // --- Columna de Identidad Visual ---
   .columna-imagen {
     flex: 1;
     background: #f8f9fa;
@@ -20,15 +36,21 @@
     .marco-foto {
       width: 100%;
       height: 100%;
-      max-height: 400px;
+      max-height: 450px; // Un poco más de aire para la foto
       border-radius: 15px;
       overflow: hidden;
       box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      border: 5px solid white; // Efecto fotografía física
       
       .foto-autor {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+
+        &:hover {
+          transform: scale(1.03);
+        }
       }
     }
 
@@ -36,55 +58,111 @@
       margin-top: 1.5rem;
       background: #0d47a1;
       color: white;
-      padding: 8px 20px;
+      padding: 10px 24px;
       border-radius: 50px;
       font-weight: bold;
-      font-size: 0.8rem;
-      letter-spacing: 1px;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(13, 71, 161, 0.2);
     }
   }
 
+  // --- Columna de Narrativa y Biografía ---
   .columna-texto {
-    flex: 1.2;
+    flex: 1.4; // Le damos un poco más de peso al texto para que no se sienta apretado
     padding: 4rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
 
     .header-autor {
-      margin-bottom: 2rem;
-      h1 { color: #0d3b66; font-size: 2.2rem; margin: 0; }
-      .subtitulo { color: #0d47a1; font-weight: 600; margin-top: 5px; }
+      margin-bottom: 2.5rem;
+
+      h1 { 
+        color: #0d3b66; 
+        font-size: 2.5rem; 
+        margin: 0; 
+        font-weight: 800;
+      }
+
+      .subtitulo { 
+        color: #0d47a1; 
+        font-weight: 600; 
+        font-size: 1.2rem;
+        margin-top: 8px; 
+      }
+
+      .otro-subtitulo {
+        color: #90a4ae;
+        font-size: 0.85rem;
+        margin-top: 5px;
+        font-weight: 500;
+      }
     }
 
     .biografia-contenido {
       p {
         color: #546e7a;
-        line-height: 1.7;
+        line-height: 1.8; // Mayor interlineado para lectura fluida
         margin-bottom: 1.5rem;
         font-size: 1.05rem;
+        text-align: justify;
+
+        strong {
+          color: #0d3b66;
+          font-weight: 700;
+        }
       }
     }
 
     .footer-autor {
-      margin-top: 1rem;
+      margin-top: 2rem;
+
       .frase-inspiracional {
         font-style: italic;
-        color: #90a4ae;
-        border-left: 4px solid #e1e8ed;
-        padding-left: 15px;
-        margin-bottom: 2rem;
+        color: #78909c;
+        border-left: 4px solid #0d47a1; // El azul de NUDO en la cita
+        padding-left: 20px;
+        margin-bottom: 2.5rem;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        background: #fcfdfe;
+        padding-top: 10px;
+        padding-bottom: 10px;
       }
+
       .redes-autor {
         display: flex;
-        gap: 15px;
+        flex-direction: column; // En columna para los dos mensajes de cierre
+        gap: 8px;
+
         .placeholder-red {
-          font-size: 0.8rem;
+          font-size: 0.85rem;
           color: #0d3b66;
-          font-weight: bold;
+          font-weight: 700;
           text-transform: uppercase;
+          letter-spacing: 1px;
+          opacity: 0.8;
         }
       }
+    }
+  }
+}
+
+// Adaptación para tablets y laptops pequeñas
+@media (max-width: 1024px) {
+  .tarjeta-autor {
+    flex-direction: column;
+    max-width: 700px;
+    
+    .columna-imagen {
+      padding: 2rem;
+      .marco-foto { max-height: 350px; }
+    }
+
+    .columna-texto {
+      padding: 2.5rem;
     }
   }
 }
