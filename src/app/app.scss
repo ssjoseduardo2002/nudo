@@ -1,16 +1,14 @@
 /* ==========================================================================
-   CONFIGURACIÓN GLOBAL Y BLOQUEO DE SCROLL
+   CONFIGURACIÓN GLOBAL: BLOQUEO DE DESBORDE
    ========================================================================== */
 
-// Bloqueamos el scroll a nivel de componente raíz de Angular
 :host {
   display: block;
   height: 100vh;
   width: 100vw;
-  overflow: hidden !important;
+  overflow: hidden !important; // Bloquea el scroll exterior de la app
 }
 
-// Refuerzo para el body (asegura que el navegador no intente scrollear)
 body {
   overflow: hidden !important;
   height: 100vh;
@@ -24,79 +22,67 @@ body {
 
 .layout-principal {
   display: flex;
-  height: 100vh; // Cambiado de min-height a height para asegurar el congelamiento
+  height: 100vh;
   width: 100%;
   background-color: #f4f7f9;
-  transition: all 0.3s ease;
-  overflow: hidden !important; // Evita scrollbars en cualquier modo
+  overflow: hidden; // Garantiza que nada salga del marco principal
 
-  /* -----------------------------------------------------------------------
-     MODO ACCESO TOTAL (Login / Registro)
-     ----------------------------------------------------------------------- */
+  /* --- MODO ACCESO (Login) --- */
   &.modo-acceso-total {
-    display: flex;
     justify-content: center;
     align-items: center;
     background-color: #eef2f5;
 
-    .contenido-principal {
-      margin-left: 0 !important;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      overflow: hidden !important;
-    }
-
-    .contenedor-centrado-vista {
-      max-width: none;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden !important;
-    }
-
+    .contenido-principal, 
+    .contenedor-centrado-vista, 
     .vista-activa {
+      width: 100%;
+      height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 100%;
-      height: 100%;
+      overflow: hidden !important;
+      padding: 0;
+      margin: 0;
     }
   }
 }
 
-/* -----------------------------------------------------------------------
-   COMPONENTES INTERNOS DEL LAYOUT
-   ----------------------------------------------------------------------- */
+/* ==========================================================================
+   CONTENEDORES INTERNOS (Dashboard / Inicio)
+   ========================================================================== */
 
 .contenido-principal {
-  flex-grow: 1;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  transition: all 0.3s ease;
-  overflow-y: hidden; // Cambiado de auto a hidden para cumplir tu petición
+  height: 100vh;
+  overflow-y: auto; // Solo permite scroll vertical si el contenido realmente lo necesita
+  overflow-x: hidden; // MATA EL SCROLL HORIZONTAL POR COMPLETO
   position: relative;
 }
 
 .contenedor-centrado-vista {
   width: 100%;
-  max-width: 1400px; 
+  max-width: 1200px; // Un poco más estrecho para que no se pegue a los bordes
   margin: 0 auto;
-  padding: 2rem;
+  padding: 3rem 2rem; // Más aire arriba y abajo, respiro a los lados
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box; // Vital para que el padding no cree scroll
 }
 
 .vista-activa {
   width: 100%;
-  height: 100%;
-  // Si en el futuro una vista (que no sea el acceso) necesita scroll, 
-  // se le pondría overflow-y: auto solo a ese componente específico.
+  // Aquí es donde vive tu página de Inicio
+  display: block; 
+}
+
+/* -----------------------------------------------------------------------
+   AJUSTE PARA EL FOOTER (Para que no flote sobre el contenido)
+   ----------------------------------------------------------------------- */
+app-footer {
+  margin-top: auto; // Empuja el footer siempre al fondo
+  width: 100%;
 }
