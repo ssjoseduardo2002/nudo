@@ -13,18 +13,27 @@
       
       <div class="cabecera-interna">
         <h1>Ingresar</h1>
-        <p>Introduce tus credenciales para acceder.</p>
+        <p>Introduce tus datos para acceder.</p>
       </div>
 
-      <form class="formulario-nudo">
+      <form class="formulario-nudo" (submit)="onLogin(); $event.preventDefault()">
+        
         <div class="grupo-input">
           <label>Correo Electrónico</label>
-          <input type="email" placeholder="tu@correo.com">
+          <input 
+            type="email" 
+            name="correo"
+            [(ngModel)]="correo" 
+            placeholder="tu@correo.com">
         </div>
 
         <div class="grupo-input">
           <label>Contraseña</label>
-          <input type="password" placeholder="••••••••">
+          <input 
+            type="password" 
+            name="contrasena"
+            [(ngModel)]="contrasena" 
+            placeholder="••••••••">
         </div>
 
         <button type="submit" class="btn-ingresar">Iniciar Sesión</button>

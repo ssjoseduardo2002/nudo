@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
+import { filter } from 'rxjs/operators';
 
 // Importaciones de componentes de estructura y vistas
 import { FooterComponent } from './footer/footer'; 
@@ -22,10 +23,21 @@ import { AccesoComponent } from './componentes_de_vistas/acceso/acceso';
 })
 export class AppComponent {
   title = 'NUDO';
-
-  /**
-   * Cambiamos esto a 'true' para que el sistema sepa 
-   * que estamos en la fase de login y oculte la barra lateral y el footer.
-   */
+  
+  // Por defecto empezamos en true, pero el constructor se encargará de actualizarlo
   public mostrarSoloAcceso: boolean = true; 
+
+  constructor(private router: Router) {
+    // Escuchamos los cambios de ruta
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+      // Si la URL es la raíz o el acceso, ocultamos la estructura profesional
+      // Si es /inicio o cualquier otra cosa, mostramos la barra lateral y el footer
+      const urlActual = event.urlAfterRedirects || event.url;
+      this.mostrarSoloAcceso = (urlActual === '/acceso' || urlActual === '/' || urlActual === '');
+      
+      console.log('¿Modo Acceso?:', this.mostrarSoloAcceso); // Para que verifiques en la consola
+    });
+  }
 }
