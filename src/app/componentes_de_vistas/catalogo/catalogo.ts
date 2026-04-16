@@ -1,17 +1,21 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-catalogo',
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './catalogo.html',
-  styleUrls: ['./catalogo.scss']
+  styleUrl: './catalogo.scss'
 })
 export class CatalogoComponent {
-  constructor(private router: Router) {}
+  // Datos de prueba para que veas cómo luce el diseño
+  misContratos = [
+    { id: 1, nombre: 'Contrato de Servicios Web', fecha: '12/04/2026', estado: 'Protegido' },
+    { id: 2, nombre: 'NDA - Proyecto Creativo', fecha: '10/04/2026', estado: 'Pendiente' },
+    { id: 3, nombre: 'Acuerdo de Colaboración', fecha: '05/04/2026', estado: 'Protegido' }
+  ];
 
-  // Al hacer clic en "Usar este modelo"
-  seleccionarModelo(tipo: string) {
-    console.log(`Modelo seleccionado: ${tipo}`);
-    this.router.navigate(['/generador-contrato']);
-  }
+  constructor() {}
 }

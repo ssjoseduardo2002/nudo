@@ -1,41 +1,37 @@
-<div class="contenedor-vista-cuadro">
+<div class="contenedor-catalogo">
   <header class="encabezado-seccion">
-    <h1>Catálogo de Contratos</h1>
-    <p>Selecciona el modelo legal que mejor se adapte a tu próximo proyecto creativo.</p>
+    <div class="titulos">
+      <h2>📂 Mis NUDOS</h2>
+      <p>Gestiona, descarga y protege tus acuerdos legales.</p>
+    </div>
+    <button class="btn-nuevo" [routerLink]="['/generador-contrato']">
+      <span>+</span> Crear Nuevo
+    </button>
   </header>
 
-  <div class="grid-catalogo">
-    <div class="tarjeta-contrato">
-      <div class="icono-contrato">
-        <img src="images/monocromo.png" alt="Contrato Freelance">
+  <div class="grid-contratos">
+    <div class="tarjeta-contrato" *ngFor="let contrato of misContratos">
+      <div class="header-card">
+        <span class="badge" [class.pendiente]="contrato.estado === 'Pendiente'">
+          {{ contrato.estado }}
+        </span>
+        <span class="menu-opciones">...</span>
       </div>
-      <div class="info-contrato">
-        <h3>Freelance Digital</h3>
-        <p>Ideal para diseñadores, programadores y creadores de contenido.</p>
-        <button class="btn-accion-nudo">Usar este modelo</button>
+      
+      <div class="cuerpo-card">
+        <h3>{{ contrato.nombre }}</h3>
+        <p class="meta">Generado el: {{ contrato.fecha }}</p>
+      </div>
+
+      <div class="footer-card">
+        <button class="btn-accion secundario">Ver PDF</button>
+        <button class="btn-accion primario">Gestionar</button>
       </div>
     </div>
 
-    <div class="tarjeta-contrato">
-      <div class="icono-contrato">
-        <img src="images/monocromo2.png" alt="Cesión de Derechos">
-      </div>
-      <div class="info-contrato">
-        <h3>Cesión de Derechos</h3>
-        <p>Protege la propiedad intelectual de tus obras y creaciones.</p>
-        <button class="btn-accion-nudo">Usar este modelo</button>
-      </div>
-    </div>
-
-    <div class="tarjeta-contrato">
-      <div class="icono-contrato">
-        <img src="images/monocromo3.png" alt="Acuerdo de Confidencialidad">
-      </div>
-      <div class="info-contrato">
-        <h3>Confidencialidad (NDA)</h3>
-        <p>Asegura que tus ideas no salgan del equipo de trabajo.</p>
-        <button class="btn-accion-nudo">Usar este modelo</button>
-      </div>
+    <div class="tarjeta-vacia" [routerLink]="['/generador-contrato']">
+      <div class="circulo-plus">+</div>
+      <p>Crear un nuevo blindaje legal</p>
     </div>
   </div>
 </div>

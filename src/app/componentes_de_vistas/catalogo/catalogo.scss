@@ -1,57 +1,103 @@
-.contenedor-vista-cuadro {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem;
+.contenedor-catalogo {
+  padding: 2.5rem;
+  animation: fadeIn 0.4s ease-out;
 
   .encabezado-seccion {
-    text-align: center;
-    margin-bottom: 3rem;
-    h1 { color: #0d3b66; font-size: 2.2rem; }
-    p { color: #78909c; font-size: 1.1rem; }
-  }
-}
-
-.grid-catalogo {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); // Cuadros proporcionales
-  gap: 2rem;
-}
-
-.tarjeta-contrato {
-  background: white;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease;
-  border: 1px solid #f0f4f8;
-
-  &:hover { transform: translateY(-5px); }
-
-  .icono-contrato {
-    height: 150px;
-    background: #f8f9fa;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    img { height: 100%; width: 100%; object-fit: cover; opacity: 0.8; }
+    margin-bottom: 3rem;
+
+    h2 { color: #003366; font-size: 2rem; margin-bottom: 5px; }
+    p { color: #576574; font-size: 1rem; }
+
+    .btn-nuevo {
+      background: #00a8cc;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+      
+      &:hover { background: #008eb0; }
+    }
   }
 
-  .info-contrato {
-    padding: 1.5rem;
-    text-align: center;
-    h3 { color: #0d3b66; margin-bottom: 0.5rem; }
-    p { color: #546e7a; font-size: 0.9rem; margin-bottom: 1.5rem; min-height: 40px; }
+  .grid-contratos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+
+    .tarjeta-contrato {
+      background: white;
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border: 1px solid #f0f0f0;
+      transition: transform 0.3s;
+
+      &:hover { transform: translateY(-5px); border-color: #00a8cc; }
+
+      .header-card {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+        
+        .badge {
+          background: #e3fcef;
+          color: #00875a;
+          padding: 4px 12px;
+          border-radius: 6px;
+          font-size: 0.75rem;
+          font-weight: 700;
+          &.pendiente { background: #fff4e5; color: #ff9900; }
+        }
+      }
+
+      h3 { color: #003366; font-size: 1.2rem; margin-bottom: 8px; }
+      .meta { color: #8395a7; font-size: 0.85rem; }
+
+      .footer-card {
+        margin-top: 1.5rem;
+        display: flex;
+        gap: 10px;
+        
+        .btn-accion {
+          flex: 1;
+          padding: 10px;
+          border-radius: 8px;
+          font-size: 0.85rem;
+          font-weight: 600;
+          cursor: pointer;
+          border: none;
+          
+          &.primario { background: #003366; color: white; }
+          &.secundario { background: #f4f7f6; color: #003366; }
+        }
+      }
+    }
+
+    .tarjeta-vacia {
+      border: 2px dashed #d1d8e0;
+      border-radius: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      cursor: pointer;
+      color: #a4b0be;
+      transition: all 0.3s;
+
+      &:hover { border-color: #00a8cc; color: #00a8cc; background: #f0faff; }
+      .circulo-plus { font-size: 2rem; margin-bottom: 10px; }
+    }
   }
 }
 
-.btn-accion-nudo {
-  width: 100%;
-  padding: 12px;
-  background: #0d47a1;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  &:hover { background: #0a357a; }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
