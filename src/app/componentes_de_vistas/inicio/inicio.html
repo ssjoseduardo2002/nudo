@@ -1,9 +1,9 @@
-<div class="contenedor-vista-cuadro">
+<div class="contenedor-inicio-pro">
   
   <section class="banner-inicio">
     <div class="texto-bienvenida">
-      <h1>¡Qué gusto verte, José!</h1>
-      <p>Hoy es un gran día para asegurar nuevos proyectos en NUDO.</p>
+      <h1>¡Qué gusto verte, {{nombreUsuario}}!</h1>
+      <p>Hoy es un gran día para asegurar nuevos proyectos en <strong>NUDO</strong>.</p>
     </div>
   </section>
 
@@ -19,8 +19,8 @@
     </div>
 
     <div class="tarjeta-stat especial">
-      <img src="images/pin.png" alt="Nota" class="icono-pin">
-      <p>Recuerda revisar el contrato de "Agencia Creativa".</p>
+      <span class="pin-emoji">📌</span>
+      <p>Recuerda revisar el contrato de <strong>"Agencia Creativa"</strong>.</p>
     </div>
   </div>
 
@@ -28,17 +28,17 @@
     <h2>¿Qué quieres hacer ahora?</h2>
     
     <div class="grid-opciones">
-      <a routerLink="/crear" class="opcion-card">
-        <i class="icono">➕</i>
+      <a [routerLink]="['/generador-contrato']" class="opcion-card">
+        <i class="icono">⚡</i>
         <span>Nuevo Contrato</span>
       </a>
 
-      <a routerLink="/contratos" class="opcion-card">
+      <a [routerLink]="['/catalogo']" class="opcion-card">
         <i class="icono">📂</i>
         <span>Mis Documentos</span>
       </a>
 
-      <a routerLink="/configuracion" class="opcion-card">
+      <a [routerLink]="['/perfil-usuario']" class="opcion-card">
         <i class="icono">⚙️</i>
         <span>Configuración</span>
       </a>

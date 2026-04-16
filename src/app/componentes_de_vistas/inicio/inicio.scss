@@ -1,139 +1,82 @@
-/* ==========================================================================
-   VISTA DE INICIO - PANEL DEL CEO DE NUDO
-   ========================================================================== */
+.contenedor-inicio-pro {
+  padding: 2rem;
+  animation: fadeIn 0.5s ease;
 
-.banner-inicio {
-  display: flex;
-  background: #0d3b66; // El azul corporativo de NUDO
-  border-radius: 20px;
-  overflow: hidden;
-  min-height: 180px; // Altura mínima para que respire
-  margin-bottom: 2rem;
-  align-items: center;
-  justify-content: flex-start; // Alineamos al inicio tras quitar la imagen
-  padding: 0 4rem;
-
-  .texto-bienvenida {
-    color: white;
-    h1 { 
-      font-size: 2.2rem; 
-      margin-bottom: 0.5rem; 
-      font-weight: 700;
-    }
-    p { 
-      opacity: 0.9; 
-      font-size: 1.1rem; 
-      margin: 0;
-    }
-  }
-
-  // Se eliminaron los estilos de .img-banner para optimizar carga
-}
-
-.tablero-resumen {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 3rem;
-
-  .tarjeta-stat {
-    background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-    border: 1px solid #f0f4f8;
-
-    .cifra { 
-      font-size: 2.5rem; 
-      font-weight: bold; 
-      color: #0d47a1; 
-      display: block; 
-    }
-    p { 
-      color: #78909c; 
-      font-weight: 600; 
-      margin-top: 10px; 
-      margin-bottom: 0;
-    }
-
-    &.especial {
-      background: #fff9c4; // Tono "post-it" para notas importantes
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      text-align: left;
-      .icono-pin { width: 30px; }
-      p { 
-        color: #827717; 
-        margin: 0; 
-        font-size: 0.95rem; 
-        font-weight: 500;
-      }
-    }
-  }
-}
-
-.accesos-rapidos {
-  h2 { 
-    color: #0d3b66; 
-    margin-bottom: 1.5rem; 
-    font-weight: 700;
-  }
-  
-  .grid-opciones {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-
-    .opcion-card {
-      background: white;
-      border: 2px solid #eef2f5;
-      border-radius: 15px;
-      padding: 1.8rem;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      transition: all 0.3s ease;
-      
-      // RESET DE ENLACE (Importante ahora que usamos <a>)
-      text-decoration: none; 
-      color: inherit; 
-
-      .icono { 
-        font-size: 2.2rem; 
-      }
-      span { 
-        font-weight: bold; 
-        color: #37474f; 
-        font-size: 1.1rem;
-      }
-
-      &:hover {
-        border-color: #0d47a1;
-        background: #f0f7ff;
-        transform: translateY(-5px); // Elevación sutil para feedback visual
-        box-shadow: 0 8px 20px rgba(13, 71, 161, 0.1);
-      }
-
-      &:active {
-        transform: translateY(-2px); // Efecto de pulsado
-      }
-    }
-  }
-}
-
-// Media query básica para que no se amontone en pantallas pequeñas
-@media (max-width: 992px) {
-  .tablero-resumen, .grid-opciones {
-    grid-template-columns: 1fr;
-  }
-  
   .banner-inicio {
-    padding: 2rem;
-    text-align: center;
-    justify-content: center;
+    background: linear-gradient(135deg, #003366 0%, #00a8cc 100%);
+    border-radius: 20px;
+    padding: 3rem;
+    color: white;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 20px rgba(0, 51, 102, 0.2);
+
+    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    p { font-size: 1.1rem; opacity: 0.9; }
   }
+
+  .tablero-resumen {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+
+    .tarjeta-stat {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border: 1px solid #eee;
+
+      .cifra { font-size: 2rem; font-weight: 800; color: #003366; display: block; }
+      p { color: #576574; font-size: 0.9rem; margin-top: 5px; }
+
+      &.especial {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        text-align: left;
+        background: #fffbe6;
+        border-color: #ffe58f;
+        grid-column: span 2;
+
+        .pin-emoji { font-size: 1.5rem; }
+        p { color: #856404; margin: 0; }
+      }
+    }
+  }
+
+  .accesos-rapidos {
+    h2 { color: #003366; margin-bottom: 1.5rem; }
+    
+    .grid-opciones {
+      display: flex;
+      gap: 1.5rem;
+      
+      .opcion-card {
+        flex: 1;
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 1px solid #eee;
+        
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 20px rgba(0, 168, 204, 0.15);
+          border-color: #00a8cc;
+        }
+
+        .icono { font-size: 2rem; display: block; margin-bottom: 10px; }
+        span { color: #003366; font-weight: 600; }
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
