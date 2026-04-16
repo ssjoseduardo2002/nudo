@@ -8,14 +8,9 @@
 
     <main class="contenido-principal">
       
-      <div class="contenedor-centrado-vista">
-        <section class="vista-activa">
-          
-          <app-acceso *ngIf="mostrarSoloAcceso"></app-acceso>
-
-          <router-outlet *ngIf="!mostrarSoloAcceso"></router-outlet>
-          
-        </section>
+      <div class="zona-vistas-nudo">
+        <app-acceso *ngIf="mostrarSoloAcceso"></app-acceso>
+        <router-outlet *ngIf="!mostrarSoloAcceso"></router-outlet>
       </div>
 
       <app-pie-de-pagina [enPantallaAcceso]="mostrarSoloAcceso"></app-pie-de-pagina>
