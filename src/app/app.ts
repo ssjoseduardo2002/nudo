@@ -3,15 +3,16 @@ import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
 import { filter } from 'rxjs/operators';
 
-// Importaciones de Estructura
+// --- IMPORTACIONES DE ESTRUCTURA ---
 import { Encabezado } from './componentes_de_estructura/encabezado/encabezado'; 
 import { PieDePagina } from './componentes_de_estructura/pie-de-pagina/pie-de-pagina'; 
 import { BarraLateralComponent } from './componentes_de_estructura/barra-lateral/barra-lateral'; 
 
-// Importaciones de Vistas
+// --- IMPORTACIONES DE VISTAS ---
 import { AccesoComponent } from './componentes_de_vistas/acceso/acceso';
 import { InicioComponent } from './componentes_de_vistas/inicio/inicio';
-import { CatalogoComponent } from './componentes_de_vistas/catalogo/catalogo'; // <--- NUEVO
+import { CatalogoComponent } from './componentes_de_vistas/catalogo/catalogo';
+import { GeneradorContratoComponent } from './componentes_de_vistas/generador-contrato/generador-contrato';
 
 @Component({
   selector: 'app-root',
@@ -19,30 +20,37 @@ import { CatalogoComponent } from './componentes_de_vistas/catalogo/catalogo'; /
   imports: [
     RouterOutlet, 
     CommonModule,      
+    // Estructura
     Encabezado,       
     PieDePagina,      
     BarraLateralComponent,
+    // Vistas
     AccesoComponent,
     InicioComponent,
-    CatalogoComponent // <--- IMPORTANTE: Agregado a la lista
+    CatalogoComponent,
+    GeneradorContratoComponent
   ], 
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class AppComponent {
   title = 'NUDO';
+  
+  // Controla si se muestra el layout profesional o solo el login/acceso
   public mostrarSoloAcceso: boolean = true; 
 
   constructor(private router: Router) {
+    // Sistema de detección de ruta para cambiar el layout automáticamente
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
       const urlActual = event.urlAfterRedirects || event.url;
-      // Definimos qué rutas NO muestran la estructura profesional
-      const rutasDeAcceso = ['/acceso', '/', ''];
-      this.mostrarSoloAcceso = rutasDeAcceso.includes(urlActual);
       
-      console.log('Ruta activa:', urlActual, '| ¿Modo Acceso?:', this.mostrarSoloAcceso);
+      // Si el socio está en estas rutas, ocultamos sidebar y encabezado profesional
+      const rutasPrivadas = ['/acceso', '/', ''];
+      this.mostrarSoloAcceso = rutasPrivadas.includes(urlActual);
+      
+      console.log('Navegando a:', urlActual, '| Modo Acceso:', this.mostrarSoloAcceso);
     });
   }
 }

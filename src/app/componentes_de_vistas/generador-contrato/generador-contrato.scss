@@ -1,137 +1,66 @@
-.tarjeta-generador {
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 15px-35px rgba(0,0,0,0.08);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  min-height: 650px;
-}
-
-.stepper-progreso {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.contenedor-generador {
   padding: 2rem;
-  background: #fcfdfe;
-  border-bottom: 1px solid #f0f4f8;
+  max-width: 800px;
+  margin: 0 auto;
 
-  .paso {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.9rem;
-    color: #b0bec5;
-    font-weight: 600;
+  .header-generador {
+    text-align: center;
+    margin-bottom: 2rem;
+    h2 { color: #003366; margin-bottom: 1.5rem; }
 
-    span {
-      width: 28px;
-      height: 28px;
-      background: #e1e8ed;
-      border-radius: 50%;
+    .indicador-pasos {
       display: flex;
-      align-items: center;
       justify-content: center;
-      color: #78909c;
-    }
-
-    &.activo {
-      color: #0d47a1;
-      span { background: #0d47a1; color: white; }
-    }
-  }
-
-  .linea {
-    width: 50px;
-    height: 2px;
-    background: #e1e8ed;
-    margin: 0 15px;
-  }
-}
-
-.contenido-generador {
-  display: flex;
-  flex: 1;
-
-  .seccion-formulario {
-    flex: 1.2;
-    padding: 3rem;
-
-    header {
-      margin-bottom: 2rem;
-      h2 { color: #0d3b66; font-size: 1.8rem; }
-      p { color: #78909c; }
-    }
-
-    .formulario-paso {
-      .grupo-input {
-        margin-bottom: 1.5rem;
-        label { display: block; font-weight: 600; color: #0d3b66; margin-bottom: 8px; font-size: 0.9rem; }
-        input {
-          width: 100%;
-          padding: 12px;
-          border: 1px solid #cfd8dc;
-          border-radius: 10px;
-          &:focus { border-color: #0d47a1; outline: none; }
-        }
+      gap: 2rem;
+      .paso {
+        color: #ccc;
+        font-weight: 600;
+        padding-bottom: 5px;
+        border-bottom: 2px solid transparent;
+        &.activo { color: #00a8cc; border-color: #00a8cc; }
       }
     }
   }
 
-  .seccion-visual {
-    flex: 0.8;
-    background: #f8f9fa;
-    position: relative;
-    
-    .img-apoyo {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.7;
-    }
-
-    .tip-ayuda {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      left: 20px;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 1.5rem;
-      border-radius: 15px;
-      display: flex;
-      gap: 15px;
-      align-items: flex-start;
-      border-left: 5px solid #0d47a1;
-
-      .pin-icon { width: 20px; }
-      p { font-size: 0.85rem; color: #37474f; margin: 0; }
-    }
-  }
-}
-
-.acciones-pasos {
-  display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
-
-  .btn-siguiente {
-    flex: 2;
-    padding: 15px;
-    background: #0d47a1;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-
-  .btn-atras {
-    flex: 1;
-    padding: 15px;
+  .card-formulario {
     background: white;
-    color: #78909c;
-    border: 1px solid #cfd8dc;
-    border-radius: 10px;
-    cursor: pointer;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+
+    h3 { color: #003366; margin-bottom: 1.5rem; }
+
+    .input-nudo {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      margin-top: 5px;
+      font-size: 1rem;
+      &:focus { border-color: #00a8cc; outline: none; }
+    }
+
+    .grupo-input { margin-bottom: 1.5rem; label { color: #576574; font-weight: 500; } }
+
+    .resumen-nudo {
+      background: #f0faff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      p { margin: 8px 0; color: #003366; }
+    }
+
+    .controles {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #eee;
+
+      button { padding: 12px 25px; border-radius: 10px; border: none; font-weight: 600; cursor: pointer; transition: 0.3s; }
+      .btn-primario { background: #003366; color: white; &:hover { background: #002244; } }
+      .btn-secundario { background: #f4f7f6; color: #003366; }
+      .btn-exito { background: #00a8cc; color: white; &:hover { background: #008eb0; } }
+    }
   }
 }

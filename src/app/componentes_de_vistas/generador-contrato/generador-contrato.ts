@@ -1,36 +1,36 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-generador-contrato',
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './generador-contrato.html',
-  styleUrls: ['./generador-contrato.scss']
+  styleUrl: './generador-contrato.scss'
 })
 export class GeneradorContratoComponent {
-  // Estructura basada en tu documento de apoyo
+  pasoActual: number = 1;
+  
+  // Modelo básico para capturar datos
   datosContrato = {
-    nombreEmpresa: '',        // 
-    representanteLegal: '',   // 
-    nombreProfesionista: '',  // [cite: 2]
-    cedulaProfesional: '',    // [cite: 8]
-    objetoServicio: '',       // [cite: 12]
-    honorariosTotales: 0      // [cite: 15]
+    tipo: '',
+    cliente: '',
+    monto: 0,
+    fechaEntrega: ''
   };
 
-  pasoActual: number = 1;
-
-  constructor(private router: Router) {}
-
   siguientePaso() {
-    if (this.pasoActual < 3) {
-      this.pasoActual++;
-    } else {
-      // Al finalizar, enviamos los datos al editor
-      this.router.navigate(['/editor-contrato'], { state: { data: this.datosContrato } });
-    }
+    if (this.pasoActual < 3) this.pasoActual++;
   }
 
-  retrocederPaso() {
+  anteriorPaso() {
     if (this.pasoActual > 1) this.pasoActual--;
+  }
+
+  finalizarGeneracion() {
+    console.log('Generando NUDO con datos:', this.datosContrato);
+    alert('¡Contrato generado con éxito socio!');
   }
 }
