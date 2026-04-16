@@ -1,10 +1,17 @@
-<footer class="footer-global">
+<footer class="footer-global" *ngIf="!enPantallaAcceso">
   <div class="contenido-footer">
-    <p>© 2026 NUDO - Todos los derechos reservados.</p>
+    <div class="info-marca">
+      <p>© 2026 <strong>NUDO</strong> - Protegiendo el talento creativo.</p>
+    </div>
+
     <nav class="links-legales">
-      <a>Privacidad</a>
-      <a>Términos</a>
-      <a>Soporte</a>
+      <a [routerLink]="['/privacidad']" routerLinkActive="activo">Privacidad</a>
+      <a [routerLink]="['/terminos']" routerLinkActive="activo">Términos</a>
+      <a [routerLink]="['/centro-ayuda']" routerLinkActive="activo">Soporte</a>
+      
+      <div class="status-badge">
+        <span class="dot"></span> Sistema Protegido
+      </div>
     </nav>
   </div>
 </footer>

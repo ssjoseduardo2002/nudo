@@ -1,7 +1,16 @@
+@use "sass:color";
+
+// VARIABLES DE MARCA NUDO (Manteniendo la coherencia con el encabezado)
+$color-primario: #003366;    // Azul profundo
+$color-secundario: #00a8cc;  // Cian/Tranquilidad
+$color-texto-suave: #576574; // Gris azulado
+$transicion: all 0.3s ease;
+
 .footer-global {
-  padding: 15px;
+  width: 100%;
+  padding: 2rem 1.5rem; // Más espacio para un look más profesional
   background: white;
-  border-top: 1px solid #eee;
+  border-top: 1px solid rgba($color-secundario, 0.1); // Línea sutil con tu color de marca
   
   .contenido-footer {
     max-width: 1200px;
@@ -9,13 +18,61 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap; // Por si lo vemos en celular
+    gap: 1rem;
     
-    p { font-size: 0.75rem; color: #999; } // PEQUEÑO PERO LEGIBLE
-    .links-legales a {
-      font-size: 0.75rem;
-      color: #666;
-      margin-left: 15px;
-      text-decoration: none;
+    p { 
+      font-size: 0.85rem; 
+      color: $color-texto-suave;
+      margin: 0;
+      font-weight: 400;
+
+      strong {
+        color: $color-primario;
+        font-weight: 600;
+      }
+    }
+
+    .links-legales {
+      display: flex;
+      align-items: center;
+
+      a {
+        font-size: 0.85rem;
+        color: $color-texto-suave;
+        margin-left: 1.5rem;
+        text-decoration: none;
+        transition: $transicion;
+        font-weight: 500;
+
+        &:hover {
+          color: $color-secundario;
+          transform: translateY(-1px);
+        }
+
+        // Estilo para cuando la ruta legal esté activa
+        &.activo {
+          color: $color-primario;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
+
+// Media query para que en móviles se vea ordenado
+@media (max-width: 768px) {
+  .footer-global {
+    .contenido-footer {
+      flex-direction: column;
+      text-align: center;
+      
+      .links-legales {
+        margin-top: 0.5rem;
+        a {
+          margin: 0 0.75rem;
+        }
+      }
     }
   }
 }
