@@ -1,21 +1,24 @@
 <div class="layout-principal" [class.modo-acceso-total]="mostrarSoloAcceso">
   
-  <app-barra-lateral *ngIf="!mostrarSoloAcceso"></app-barra-lateral>
+  <app-encabezado [enPantallaAcceso]="mostrarSoloAcceso"></app-encabezado>
 
-  <main class="contenido-principal">
-    
-    <div class="contenedor-centrado-vista">
-      <section class="vista-activa">
-        
-        <app-acceso *ngIf="mostrarSoloAcceso"></app-acceso>
+  <div class="contenedor-cuerpo-app">
+    <app-barra-lateral *ngIf="!mostrarSoloAcceso"></app-barra-lateral>
 
-        <router-outlet *ngIf="!mostrarSoloAcceso"></router-outlet>
-        
-      </section>
-    </div>
+    <main class="contenido-principal">
+      
+      <div class="contenedor-centrado-vista">
+        <section class="vista-activa">
+          
+          <app-acceso *ngIf="mostrarSoloAcceso"></app-acceso>
 
-    <app-footer *ngIf="!mostrarSoloAcceso"></app-footer>
+          <router-outlet *ngIf="!mostrarSoloAcceso"></router-outlet>
+          
+        </section>
+      </div>
 
-  </main>
+      <app-pie-de-pagina [enPantallaAcceso]="mostrarSoloAcceso"></app-pie-de-pagina>
 
+    </main>
+  </div>
 </div>

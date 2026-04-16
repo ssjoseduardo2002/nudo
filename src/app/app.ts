@@ -3,8 +3,12 @@ import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common'; 
 import { filter } from 'rxjs/operators';
 
-// Importaciones de componentes de estructura y vistas
-import { FooterComponent } from './footer/footer'; 
+// IMPORTACIONES CON NOMBRES CORRECTOS
+// Nota: Verifica que en 'encabezado.ts' la clase se llame 'Encabezado'
+import { Encabezado } from './componentes_de_estructura/encabezado/encabezado'; 
+// Nota: Verifica que en 'pie-de-pagina.ts' la clase se llame 'PieDePagina'
+import { PieDePagina } from './componentes_de_estructura/pie-de-pagina/pie-de-pagina'; 
+// IMPORTANTE: Aquí cambiamos 'BarraLateral' por el nombre real de la clase
 import { BarraLateralComponent } from './componentes_de_estructura/barra-lateral/barra-lateral'; 
 import { AccesoComponent } from './componentes_de_vistas/acceso/acceso';
 
@@ -14,30 +18,25 @@ import { AccesoComponent } from './componentes_de_vistas/acceso/acceso';
   imports: [
     RouterOutlet, 
     CommonModule,      
-    FooterComponent,   
-    AccesoComponent,   
-    BarraLateralComponent 
+    Encabezado,       
+    PieDePagina,      
+    BarraLateralComponent, // <--- Usamos el nombre correcto aquí también
+    AccesoComponent   
   ], 
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class AppComponent {
   title = 'NUDO';
-  
-  // Por defecto empezamos en true, pero el constructor se encargará de actualizarlo
   public mostrarSoloAcceso: boolean = true; 
 
   constructor(private router: Router) {
-    // Escuchamos los cambios de ruta
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
-      // Si la URL es la raíz o el acceso, ocultamos la estructura profesional
-      // Si es /inicio o cualquier otra cosa, mostramos la barra lateral y el footer
       const urlActual = event.urlAfterRedirects || event.url;
-      this.mostrarSoloAcceso = (urlActual === '/acceso' || urlActual === '/' || urlActual === '');
-      
-      console.log('¿Modo Acceso?:', this.mostrarSoloAcceso); // Para que verifiques en la consola
+      const rutasDeAcceso = ['/acceso', '/', ''];
+      this.mostrarSoloAcceso = rutasDeAcceso.includes(urlActual);
     });
   }
 }
