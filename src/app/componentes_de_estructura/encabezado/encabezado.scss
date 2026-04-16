@@ -1,75 +1,98 @@
+// IMPORTANTE: Agregar esto al inicio para usar las nuevas funciones de color
+@use "sass:color";
+
 // VARIABLES DE MARCA NUDO
-$color-primario: #003366;    // Azul profundo (Confianza)
-$color-secundario: #00a8cc;  // Verdecito/Cian (Tranquilidad)
-$color-texto-suave: #576574; // Gris azulado para lectura descansada
+$color-primario: #003366;    // Azul profundo
+$color-secundario: #00a8cc;  // Verdecito/Cian
+$color-texto-suave: #576574; 
 $transicion: all 0.3s ease;
 
-.contenedor-encabezado {
+.encabezado-nudo {
   width: 100%;
-  padding: 2rem 0;
+  padding: 1rem 2.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba($color-secundario, 0.15); // Línea sutil de división
-  margin-bottom: 2.5rem;
-  animation: fadeIn 0.8s ease-out; // Entrada suave al cargar
+  background: white;
+  border-bottom: 1px solid rgba($color-secundario, 0.15); 
+  animation: fadeIn 0.8s ease-out;
 
-  .texto-bienvenida {
-    h1 {
-      font-size: 2.4rem;
-      color: $color-primario;
-      margin: 0;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
-
-    p {
-      font-size: 1.15rem;
-      color: $color-texto-suave;
-      margin-top: 0.6rem;
-      font-weight: 400;
+  .logo-contenedor {
+    .logo-img {
+      height: 45px;
+      transition: $transicion;
+      &:hover { transform: scale(1.05); }
     }
   }
 
-  // ELEMENTO DECORATIVO "NUDO"
-  .decoracion-nudo {
-    position: relative;
-    padding-right: 1rem;
+  .navegacion-principal {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
 
-    .circulo-decorativo {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, rgba($color-secundario, 0.1), rgba($color-primario, 0.05));
-      border-radius: 18px; // Estilo Squircle moderno
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .btn-nav {
+      text-decoration: none;
+      color: $color-texto-suave;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.6rem 1rem;
+      border-radius: 10px;
       transition: $transicion;
 
-      &::after {
-        content: 'N'; // Inicial de NUDO como sello de agua
-        font-family: sans-serif;
-        font-weight: 900;
-        color: rgba($color-secundario, 0.3);
-        font-size: 1.5rem;
+      &:hover {
+        background: rgba($color-secundario, 0.08);
+        color: $color-primario;
       }
 
+      &.activo-link {
+        color: $color-primario;
+        background: rgba($color-secundario, 0.12);
+        font-weight: 700;
+      }
+
+      &.destacado {
+        background: $color-primario;
+        color: white;
+        font-weight: 600;
+
+        &:hover {
+          // CAMBIO: Usamos color.adjust en lugar de lighten
+          background: color.adjust($color-primario, $lightness: 10%);
+          box-shadow: 0 4px 12px rgba($color-primario, 0.2);
+        }
+
+        &.activo-link {
+          // CAMBIO: Usamos color.adjust en lugar de darken
+          background: color.adjust($color-primario, $lightness: -5%);
+          box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+      }
+    }
+  }
+
+  .usuario-acciones {
+    .btn-ajustes {
+      background: none;
+      border: 1px solid #f0f4f8;
+      border-radius: 12px;
+      padding: 8px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: $transicion;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+
       &:hover {
-        transform: rotate(10deg);
-        background: rgba($color-secundario, 0.15);
+        background: #f8f9fa;
+        transform: rotate(45deg);
+        border-color: $color-secundario;
       }
     }
   }
 }
 
-// Animación de entrada para que el usuario sienta fluidez
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

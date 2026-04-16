@@ -29,10 +29,9 @@ export const routes: Routes = [
   { path: 'perfil-usuario', component: PerfilDeUsuarioComponent, title: 'NUDO - Mi Perfil' },
   { path: 'pago-seguro', component: PasarelaPagoComponent, title: 'NUDO - Pago Seguro' },
 
-  // 5. SECCIÓN ESPECIAL DEL CEO (La Mente Detrás)
-  // He simplificado el path para que sea fácil de llamar
+  // 5. SECCIÓN ESPECIAL DEL CEO
   { path: 'mente-detras', component: LaMenteDetrasDeNudoComponent, title: 'NUDO - La Mente Detrás' },
 
-  // 6. Comodín: Error 404 -> Regresa al acceso
+  // 6. Comodín
   { path: '**', redirectTo: 'acceso' }
 ];
