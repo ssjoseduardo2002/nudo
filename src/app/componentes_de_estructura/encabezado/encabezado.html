@@ -1,28 +1,30 @@
 <header class="encabezado-nudo">
   <div class="logo-contenedor">
-    <img src="assets/images/logotipo.png" alt="Nudo Logo" class="logo-img">
+    <img src="/assets/images/logotipo.png" alt="Nudo Logo" class="logo-img">
   </div>
 
   <nav class="navegacion-principal" *ngIf="!enPantallaAcceso">
-    <a routerLink="/inicio" 
+    
+    <a [routerLink]="['/inicio']" 
        routerLinkActive="activo-link" 
        class="btn-nav">Inicio</a>
 
-    <a routerLink="/catalogo" 
+    <a [routerLink]="['/catalogo']" 
        routerLinkActive="activo-link" 
        class="btn-nav">Contratos</a>
 
-    <a routerLink="/generador-contrato" 
+    <a [routerLink]="['/generador-contrato']" 
        routerLinkActive="activo-link" 
        class="btn-nav">Crear</a>
 
-    <a routerLink="/mente-detras" 
+    <a [routerLink]="['/mente-detras']" 
        routerLinkActive="activo-link" 
        class="btn-nav destacado">La mente detrás de NUDO</a>
+
   </nav>
 
   <div class="usuario-acciones" *ngIf="!enPantallaAcceso">
-    <a routerLink="/perfil-usuario" 
+    <a [routerLink]="['/perfil-usuario']" 
        routerLinkActive="activo-link"
        class="btn-ajustes" 
        title="Mi Perfil / Ajustes">
