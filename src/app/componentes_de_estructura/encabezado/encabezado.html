@@ -1,6 +1,6 @@
 <header class="encabezado-nudo">
   <div class="logo-contenedor">
-    <img src="/assets/images/logotipo.png" alt="Nudo Logo" class="logo-img">
+    <img src="assets/images/logotipo.png" alt="Logo NUDO" class="logo-img" (error)="$event.target.style.display='none'">
   </div>
 
   <nav class="navegacion-principal" *ngIf="!enPantallaAcceso">
@@ -28,7 +28,7 @@
        routerLinkActive="activo-link"
        class="btn-ajustes" 
        title="Mi Perfil / Ajustes">
-       <i class="icono-engrane"></i> ⚙️
+       <i class="icono-engrane">⚙️</i>
     </a>
   </div>
 </header>

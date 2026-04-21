@@ -3,15 +3,19 @@
   <app-encabezado [enPantallaAcceso]="mostrarSoloAcceso"></app-encabezado>
 
   <div class="contenedor-cuerpo-app">
+    
     <app-barra-lateral *ngIf="!mostrarSoloAcceso"></app-barra-lateral>
 
     <main class="contenido-principal">
+      
       <div class="zona-vistas-nudo">
         <div class="router-wrapper">
           <router-outlet></router-outlet>
         </div>
       </div>
+
       <app-pie-de-pagina [enPantallaAcceso]="mostrarSoloAcceso"></app-pie-de-pagina>
+      
     </main>
   </div>
 </div>
