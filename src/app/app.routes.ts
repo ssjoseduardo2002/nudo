@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+
 // Vistas principales
 import { AccesoComponent } from './componentes_de_vistas/acceso/acceso';
 import { InicioComponent } from './componentes_de_vistas/inicio/inicio';
@@ -73,7 +74,7 @@ export const routes: Routes = [
     title: 'NUDO - La Mente Detrás' 
   },
 
-  // 7. Comodín
+  // 7. Comodín: Cualquier ruta no definida manda a Acceso
   { 
     path: '**', 
     redirectTo: 'acceso' 
