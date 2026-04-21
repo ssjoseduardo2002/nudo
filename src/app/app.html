@@ -9,8 +9,13 @@
     <main class="contenido-principal">
       
       <div class="zona-vistas-nudo">
-        <app-acceso *ngIf="mostrarSoloAcceso"></app-acceso>
-        <router-outlet *ngIf="!mostrarSoloAcceso"></router-outlet>
+        <ng-container *ngIf="mostrarSoloAcceso; else vistaDashboard">
+          <app-acceso></app-acceso>
+        </ng-container>
+
+        <ng-template #vistaDashboard>
+          <router-outlet></router-outlet>
+        </ng-template>
       </div>
 
       <app-pie-de-pagina [enPantallaAcceso]="mostrarSoloAcceso"></app-pie-de-pagina>
