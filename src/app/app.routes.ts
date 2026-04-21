@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-
 // Vistas principales
 import { AccesoComponent } from './componentes_de_vistas/acceso/acceso';
 import { InicioComponent } from './componentes_de_vistas/inicio/inicio';
@@ -7,12 +6,13 @@ import { CatalogoComponent } from './componentes_de_vistas/catalogo/catalogo';
 import { GeneradorContratoComponent } from './componentes_de_vistas/generador-contrato/generador-contrato';
 import { EditorContratoComponent } from './componentes_de_vistas/editor-contrato/editor-contrato';
 import { CentroAyudaComponent } from './componentes_de_vistas/centro-ayuda/centro-ayuda';
-import { PerfilDeUsuarioComponent } from './componentes_de_vistas/perfil-de-usuario/perfil-de-usuario';
+// CORRECCIÓN AQUÍ: Cambiado de PerfilDeUsuarioComponent a PerfilUsuarioComponent
+import { PerfilUsuarioComponent } from './componentes_de_vistas/perfil-de-usuario/perfil-de-usuario';
 import { PasarelaPagoComponent } from './componentes_de_vistas/pasarela-pago/pasarela-pago';
 import { LaMenteDetrasDeNudoComponent } from './componentes_de_vistas/la-mente-detras-de-nudo/la-mente-detras-de-nudo';
 
 export const routes: Routes = [
-  // 1. Redirección inicial (Cuando la URL está vacía)
+  // 1. Redirección inicial
   { 
     path: '', 
     redirectTo: 'acceso', 
@@ -58,7 +58,8 @@ export const routes: Routes = [
   },
   { 
     path: 'perfil-usuario', 
-    component: PerfilDeUsuarioComponent, 
+    // CORRECCIÓN AQUÍ: Usando el componente correcto
+    component: PerfilUsuarioComponent, 
     title: 'NUDO - Mi Perfil' 
   },
   { 
@@ -67,15 +68,14 @@ export const routes: Routes = [
     title: 'NUDO - Pago Seguro' 
   },
 
-  // 6. Sección Especial del Autor (La que ya te jala)
+  // 6. Sección Especial del Autor
   { 
     path: 'mente-detras', 
     component: LaMenteDetrasDeNudoComponent, 
     title: 'NUDO - La Mente Detrás' 
   },
 
-  // 7. Comodín: Cualquier ruta no definida manda a Acceso
-  // IMPORTANTE: Siempre debe ser la última ruta
+  // 7. Comodín
   { 
     path: '**', 
     redirectTo: 'acceso' 
