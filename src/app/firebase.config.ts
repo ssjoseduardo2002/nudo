@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
-// Tu configuración de Firebase (según lo que te dio Google)
+// Tu configuración de Firebase (según lo que me dio Google)
 const firebaseConfig = {
   apiKey: "AIzaSyAa3IMbT_heAMJrBHj9GnT-U1A969tRqvA",
   authDomain: "nudo-contratos.firebaseapp.com",
