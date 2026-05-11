@@ -1,168 +1,207 @@
+@use "sass:color";
+
 /* ==========================================================================
-   VISTA: LA MENTE DETRÁS DE NUDO
-   Perfil Profesional del CEO & Fundador
+   VISTA: LA MENTE DETRÁS DE NUDO (EDICIÓN PREMIUM)
    ========================================================================== */
 
 .contenedor-vista-cuadro {
-  padding: 3rem;
+  padding: 3rem 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 100px); // Ajuste para centrar en el viewport
+  min-height: calc(100vh - 80px);
+  background: #f4f7f9; // Fondo sutil para que la tarjeta resalte
 }
 
 .tarjeta-autor {
   display: flex;
   background: white;
-  border-radius: 20px;
+  border-radius: 30px; // Un poco más redondeado para modernidad
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+  box-shadow: 0 30px 70px rgba(0, 51, 102, 0.08);
   max-width: 1200px;
   width: 100%;
-  min-height: 600px;
-  border: 1px solid #f0f4f8;
+  border: 1px solid rgba(207, 216, 220, 0.3);
+  animation: slideUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
 
   // --- Columna de Identidad Visual ---
   .columna-imagen {
     flex: 1;
-    background: #f8f9fa;
+    background: #fdfdfe;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: relative;
-    padding: 3rem;
+    padding: 4rem;
+    border-right: 1px solid #f1f5f9;
 
     .marco-foto {
       width: 100%;
-      height: 100%;
-      max-height: 450px; // Un poco más de aire para la foto
-      border-radius: 15px;
+      aspect-ratio: 1/1;
+      max-height: 400px;
+      border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      border: 5px solid white; // Efecto fotografía física
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      border: 6px solid white;
+      position: relative;
       
       .foto-autor {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        transition: transform 0.8s ease;
+      }
 
-        &:hover {
-          transform: scale(1.03);
-        }
+      &:hover .foto-autor {
+        transform: scale(1.05);
       }
     }
 
     .badge-ceo {
-      margin-top: 1.5rem;
-      background: #0d47a1;
+      margin-top: 2rem;
+      background: #003366;
       color: white;
-      padding: 10px 24px;
+      padding: 12px 28px;
       border-radius: 50px;
-      font-weight: bold;
-      font-size: 0.85rem;
-      letter-spacing: 0.5px;
       text-align: center;
-      box-shadow: 0 4px 12px rgba(13, 71, 161, 0.2);
+      
+      span {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+    }
+
+    .instituciones-vertical {
+      margin-top: 2rem;
+      text-align: center;
+      p {
+        font-size: 0.75rem;
+        color: #94a3b8;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
     }
   }
 
-  // --- Columna de Narrativa y Biografía ---
+  // --- Columna de Narrativa ---
   .columna-texto {
-    flex: 1.4; // Le damos un poco más de peso al texto para que no se sienta apretado
-    padding: 4rem;
+    flex: 1.6;
+    padding: 5rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 
     .header-autor {
-      margin-bottom: 2.5rem;
-
-      h1 { 
-        color: #0d3b66; 
-        font-size: 2.5rem; 
-        margin: 0; 
+      margin-bottom: 3rem;
+      .pre-titulo {
+        color: #00a8cc;
         font-weight: 800;
+        font-size: 0.8rem;
+        letter-spacing: 3px;
       }
-
-      .subtitulo { 
-        color: #0d47a1; 
-        font-weight: 600; 
+      h1 { 
+        color: #003366; 
+        font-size: 3rem; 
+        font-weight: 900;
+        line-height: 1.1;
+        margin: 10px 0;
+      }
+      .subtitulo-primario {
         font-size: 1.2rem;
-        margin-top: 8px; 
-      }
-
-      .otro-subtitulo {
-        color: #90a4ae;
-        font-size: 0.85rem;
-        margin-top: 5px;
-        font-weight: 500;
+        color: #475569;
+        strong { color: #003366; }
       }
     }
 
     .biografia-contenido {
       p {
-        color: #546e7a;
-        line-height: 1.8; // Mayor interlineado para lectura fluida
-        margin-bottom: 1.5rem;
-        font-size: 1.05rem;
-        text-align: justify;
+        color: #334155;
+        line-height: 1.8;
+        margin-bottom: 1.8rem;
+        font-size: 1.1rem;
+        text-align: left; // Más legible que justify en web moderna
 
-        strong {
-          color: #0d3b66;
-          font-weight: 700;
+        .cita-interna {
+          display: block;
+          margin: 10px 0;
+          color: #00a8cc;
+          font-style: italic;
+          padding-left: 15px;
+          border-left: 2px solid #00a8cc;
         }
+      }
+
+      .vision-box {
+        background: rgba(0, 168, 204, 0.05);
+        padding: 2rem;
+        border-radius: 16px;
+        margin: 2.5rem 0;
+        border: 1px solid rgba(0, 168, 204, 0.1);
+        p { margin: 0; color: #003366; font-weight: 500; }
+      }
+
+      .final-mensaje {
+        font-weight: 600;
+        color: #003366;
+        border-top: 1px solid #f1f5f9;
+        padding-top: 2rem;
       }
     }
 
     .footer-autor {
-      margin-top: 2rem;
+      margin-top: 3rem;
 
       .frase-inspiracional {
-        font-style: italic;
-        color: #78909c;
-        border-left: 4px solid #0d47a1; // El azul de NUDO en la cita
-        padding-left: 20px;
-        margin-bottom: 2.5rem;
-        font-size: 0.95rem;
-        line-height: 1.6;
-        background: #fcfdfe;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        background: #f8fafc;
+        padding: 2rem;
+        border-radius: 16px;
+        border-left: 5px solid #003366;
+        
+        p { 
+          font-style: italic; 
+          color: #475569; 
+          font-size: 1rem; 
+          margin-bottom: 15px;
+          line-height: 1.6;
+        }
+        
+        cite {
+          color: #003366;
+          font-weight: 700;
+          font-style: normal;
+          small { color: #94a3b8; font-weight: 400; }
+        }
       }
 
       .redes-autor {
-        display: flex;
-        flex-direction: column; // En columna para los dos mensajes de cierre
-        gap: 8px;
-
-        .placeholder-red {
-          font-size: 0.85rem;
-          color: #0d3b66;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          opacity: 0.8;
+        margin-top: 2rem;
+        .agradecimiento {
+          font-size: 0.9rem;
+          color: #94a3b8;
+          font-weight: 500;
         }
       }
     }
   }
 }
 
-// Adaptación para tablets y laptops pequeñas
+// --- Animaciones ---
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+// --- Responsive ---
 @media (max-width: 1024px) {
   .tarjeta-autor {
     flex-direction: column;
-    max-width: 700px;
-    
-    .columna-imagen {
-      padding: 2rem;
-      .marco-foto { max-height: 350px; }
+    .columna-imagen { 
+      padding: 3rem; 
+      border-right: none; 
+      border-bottom: 1px solid #f1f5f9;
     }
-
-    .columna-texto {
-      padding: 2.5rem;
-    }
+    .columna-texto { padding: 3rem; }
   }
 }
