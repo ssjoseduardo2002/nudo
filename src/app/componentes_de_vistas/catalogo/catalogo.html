@@ -2,36 +2,57 @@
   <header class="encabezado-seccion">
     <div class="titulos">
       <h2>📂 Mis NUDOS</h2>
-      <p>Gestiona, descarga y protege tus acuerdos legales.</p>
+      <p>Gestiona, descarga y protege tus acuerdos legales con un solo clic.</p>
     </div>
-    <button class="btn-nuevo" [routerLink]="['/generador-contrato']">
-      <span>+</span> Crear Nuevo
+    <button class="btn-nuevo-contrato" [routerLink]="['/generador-contrato']">
+      <span class="icono-plus">✨</span> Crear Nuevo Blindaje
     </button>
   </header>
 
+  <div class="filtros-bar">
+    <span class="filtro-item activo">Todos</span>
+    <span class="filtro-item">Completados ✅</span>
+    <span class="filtro-item">Pendientes ⏳</span>
+  </div>
+
   <div class="grid-contratos">
-    <div class="tarjeta-contrato" *ngFor="let contrato of misContratos">
+    
+    <div class="tarjeta-nudo" *ngFor="let contrato of misContratos">
       <div class="header-card">
-        <span class="badge" [class.pendiente]="contrato.estado === 'Pendiente'">
+        <div class="status-badge" [ngClass]="contrato.estado.toLowerCase()">
+          <span class="dot-status"></span>
           {{ contrato.estado }}
-        </span>
-        <span class="menu-opciones">...</span>
+        </div>
+        <button class="btn-opciones" title="Opciones">•••</button>
       </div>
       
       <div class="cuerpo-card">
-        <h3>{{ contrato.nombre }}</h3>
-        <p class="meta">Generado el: {{ contrato.fecha }}</p>
+        <div class="icono-tipo-doc">📜</div>
+        <div class="info-doc">
+          <h3>{{ contrato.nombre }}</h3>
+        <p class="meta">🆔 ID: {{ contrato.id.toString().substring(0,8) }} | 📅 {{ contrato.fecha }}</p>
+        </div>
       </div>
 
-      <div class="footer-card">
-        <button class="btn-accion secundario">Ver PDF</button>
-        <button class="btn-accion primario">Gestionar</button>
+      <div class="acciones-card">
+        <button class="btn-nudo-accion btn-pdf" title="Descargar PDF">
+          <span>📄</span> PDF
+        </button>
+        <button class="btn-nudo-accion btn-gestionar">
+          Gestionar 🛠️
+        </button>
       </div>
     </div>
 
-    <div class="tarjeta-vacia" [routerLink]="['/generador-contrato']">
-      <div class="circulo-plus">+</div>
-      <p>Crear un nuevo blindaje legal</p>
+    <div class="tarjeta-nudo tarjeta-vacia" [routerLink]="['/generador-contrato']">
+      <div class="contenido-vacio">
+        <div class="circulo-animado">
+          <span class="plus-icon">+</span>
+        </div>
+        <p>Asegurar nuevo proyecto</p>
+        <small>Crea un contrato en menos de 3 minutos</small>
+      </div>
     </div>
+
   </div>
 </div>

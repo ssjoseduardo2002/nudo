@@ -1,83 +1,181 @@
-.interfaz-editor {
+@use "sass:color";
+
+// VARIABLES DE ESTILO EDITOR
+$color-primario: #003366;
+$color-secundario: #00a8cc;
+$color-papel: #ffffff;
+$color-fondo-workspace: #e9eff5;
+$fuente-legal: 'Georgia', serif;
+$transicion: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+.contenedor-editor-nudo {
+  padding: 1.5rem;
+  background-color: $color-fondo-workspace;
+  min-height: 100vh;
   display: flex;
-  gap: 2rem;
-  background: #f0f4f8; // Fondo gris claro para que la "hoja" resalte
-  padding: 2rem;
-  border-radius: 20px;
-  min-height: 80vh;
-}
-
-.herramientas-editor {
-  flex: 0.3;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  .grupo-herramientas {
-    h3 { color: #0d3b66; margin-bottom: 1.5rem; font-size: 1.2rem; }
-    .btn-herramienta {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 1rem;
-      background: white;
-      border: 1px solid #cfd8dc;
-      border-radius: 10px;
-      text-align: left;
-      font-weight: 600;
-      color: #37474f;
-      cursor: pointer;
-      transition: 0.3s;
-      &:hover { background: #eef2f5; border-color: #0d47a1; color: #0d47a1; }
-    }
-  }
-
-  .ilustracion-editor {
-    img { width: 100%; opacity: 0.6; border-radius: 15px; }
-  }
-}
-
-.area-documento {
-  flex: 1;
-  display: flex;
+  align-items: center;
   justify-content: center;
-  overflow-y: auto;
-  max-height: 80vh;
-  padding-right: 10px;
 
-  .hoja-contrato {
+  .interfaz-editor {
+    display: flex;
+    gap: 2.5rem;
     width: 100%;
-    max-width: 800px;
-    background: white;
-    padding: 60px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-    min-height: 1000px;
+    max-width: 1400px;
+    height: 90vh;
+  }
+
+  // PANEL IZQUIERDO: HERRAMIENTAS
+  .panel-herramientas {
+    flex: 0.25;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
 
-    .logo-contrato {
-      text-align: right;
-      margin-bottom: 40px;
-      img { width: 80px; }
+    .header-herramientas {
+      margin-bottom: 2rem;
+      .badge-editor {
+        background: rgba($color-secundario, 0.1);
+        color: $color-secundario;
+        padding: 5px 12px;
+        border-radius: 50px;
+        font-size: 0.7rem;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+      h3 { color: $color-primario; margin-top: 10px; font-size: 1.5rem; font-weight: 800; }
     }
 
-    .cuerpo-documento {
-      flex: 1;
-      color: #333;
-      line-height: 1.6;
-      font-family: 'Georgia', serif; // Fuente más "legal"
-      outline: none;
-      h2 { text-align: center; margin-bottom: 30px; font-size: 1.5rem; }
+    .grupo-herramientas {
+      .btn-herramienta {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+        margin-bottom: 1.2rem;
+        background: white;
+        border: 1px solid #d1dce5;
+        border-radius: 16px;
+        cursor: pointer;
+        transition: $transicion;
+        text-align: left;
+
+        .icon { font-size: 1.4rem; }
+        .texto-btn {
+          strong { display: block; color: $color-primario; font-size: 0.9rem; }
+          small { color: #94a3b8; font-size: 0.75rem; }
+        }
+
+        &:hover {
+          transform: translateX(8px);
+          border-color: $color-secundario;
+          box-shadow: 0 10px 20px rgba($color-primario, 0.05);
+        }
+
+        &.destaque {
+          background: $color-primario;
+          border: none;
+          .texto-btn strong { color: white; }
+          .texto-btn small { color: rgba(white, 0.7); }
+          &:hover { background: $color-secundario; }
+        }
+      }
     }
 
-    .firmas-contrato {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 60px;
-      .espacio-firma {
-        text-align: center;
-        width: 200px;
-        .linea-firma { border-top: 1px solid #333; margin-bottom: 10px; }
-        p { font-size: 0.8rem; color: #666; }
+    .footer-ilustracion {
+      text-align: center;
+      .img-flotante { width: 80%; opacity: 0.5; filter: grayscale(1); margin-bottom: 1rem; }
+      p { font-size: 0.75rem; color: #94a3b8; line-height: 1.4; padding: 0 10px; }
+    }
+  }
+
+  // PANEL DERECHO: EL LIENZO (DOCUMENTO)
+  .lienzo-documento {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2rem;
+    background: darken($color-fondo-workspace, 3%);
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scroll-behavior: smooth;
+
+    // Personalización del scroll
+    &::-webkit-scrollbar { width: 8px; }
+    &::-webkit-scrollbar-track { background: transparent; }
+    &::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+    .hoja-contrato {
+      width: 100%;
+      max-width: 850px;
+      background: $color-papel;
+      padding: 80px 100px;
+      border-radius: 2px; // Bordes rectos para parecer papel
+      box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+      min-height: 1100px;
+      position: relative;
+
+      .encabezado-documento {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 60px;
+        border-bottom: 2px solid #f1f5f9;
+        padding-bottom: 20px;
+
+        .logo-nudo-doc {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          .emoji-nudo { font-size: 1.5rem; }
+          .texto-nudo { font-weight: 900; color: #334155; letter-spacing: 1px; }
+        }
+        .id-documento { font-family: monospace; color: #94a3b8; font-size: 0.8rem; }
+      }
+
+      .cuerpo-legal {
+        font-family: $fuente-legal;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #1e293b;
+        outline: none;
+        text-align: justify;
+
+        .titulo-contrato {
+          text-align: center;
+          font-size: 1.8rem;
+          margin-bottom: 40px;
+          text-decoration: underline;
+          text-underline-offset: 10px;
+        }
+
+        .placeholder {
+          color: $color-secundario;
+          background: rgba($color-secundario, 0.05);
+          padding: 2px 4px;
+          border-radius: 4px;
+          border-bottom: 1px dashed $color-secundario;
+          font-weight: 600;
+        }
+
+        p { margin-bottom: 20px; }
+      }
+
+      .seccion-firmas {
+        margin-top: 100px;
+        display: flex;
+        justify-content: space-between;
+        gap: 50px;
+
+        .bloque-firma {
+          flex: 1;
+          text-align: center;
+          .espacio-linea { border-top: 1px solid #475569; margin-bottom: 15px; width: 100%; }
+          .nombre-firma { font-weight: 700; color: #334155; margin-bottom: 5px; }
+          small { color: #94a3b8; font-family: monospace; font-size: 0.7rem; }
+        }
       }
     }
   }

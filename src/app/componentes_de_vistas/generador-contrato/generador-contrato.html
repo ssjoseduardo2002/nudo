@@ -1,50 +1,124 @@
 <div class="contenedor-generador">
+  
   <header class="header-generador">
-    <h2>⚡ Creador de Contratos Inteligentes</h2>
+    <div class="branding-mini">
+      <span class="emoji-nudo">🪢</span>
+      <h2>Creador de Blindajes</h2>
+    </div>
+    
     <div class="indicador-pasos">
-      <div class="paso" [class.activo]="pasoActual >= 1">1. Tipo</div>
-      <div class="paso" [class.activo]="pasoActual >= 2">2. Detalles</div>
-      <div class="paso" [class.activo]="pasoActual >= 3">3. Revisión</div>
+      <div class="paso" [class.activo]="pasoActual >= 1">
+        <span class="num">1</span>
+        <span class="etiqueta">Tipo</span>
+      </div>
+      <div class="linea-progreso" [class.llena]="pasoActual >= 2"></div>
+      <div class="paso" [class.activo]="pasoActual >= 2">
+        <span class="num">2</span>
+        <span class="etiqueta">Detalles</span>
+      </div>
+      <div class="linea-progreso" [class.llena]="pasoActual >= 3"></div>
+      <div class="paso" [class.activo]="pasoActual >= 3">
+        <span class="num">3</span>
+        <span class="etiqueta">Revisión</span>
+      </div>
     </div>
   </header>
 
-  <div class="card-formulario">
-    <div *ngIf="pasoActual === 1" class="seccion-paso">
-      <h3>¿Qué tipo de contrato necesitas?</h3>
-      <select [(ngModel)]="datosContrato.tipo" class="input-nudo">
-        <option value="">Selecciona una opción...</option>
-        <option value="servicios">Prestación de Servicios Web</option>
-        <option value="nda">Acuerdo de Confidencialidad (NDA)</option>
-        <option value="obra">Contrato por Obra Determinada</option>
-      </select>
-    </div>
-
-    <div *ngIf="pasoActual === 2" class="seccion-paso">
-      <h3>Detalles del acuerdo</h3>
-      <div class="grupo-input">
-        <label>Nombre del Cliente</label>
-        <input type="text" [(ngModel)]="datosContrato.cliente" placeholder="Ej. Juan Pérez" class="input-nudo">
-      </div>
-      <div class="grupo-input">
-        <label>Monto del Proyecto ($)</label>
-        <input type="number" [(ngModel)]="datosContrato.monto" class="input-nudo">
+  <div class="card-formulario shadow-premium">
+    
+    <div *ngIf="pasoActual === 1" class="seccion-paso animate-in">
+      <h3>¿Qué quieres proteger hoy?</h3>
+      <p class="instruccion">Selecciona la estructura legal que mejor se adapte a tu proyecto.</p>
+      
+      <div class="grid-opciones">
+        <select [(ngModel)]="datosContrato.tipo" class="select-nudo">
+          <option value="" disabled selected>Escoge una especialidad...</option>
+          <option value="servicios">🛠️ Prestación de Servicios Web</option>
+          <option value="nda">🤫 Acuerdo de Confidencialidad (NDA)</option>
+          <option value="obra">🏗️ Contrato por Obra Determinada</option>
+        </select>
       </div>
     </div>
 
-    <div *ngIf="pasoActual === 3" class="seccion-paso">
-      <h3>¡Todo listo para blindar!</h3>
-      <div class="resumen-nudo">
-        <p><strong>Tipo:</strong> {{ datosContrato.tipo }}</p>
-        <p><strong>Cliente:</strong> {{ datosContrato.cliente }}</p>
-        <p><strong>Monto:</strong> ${{ datosContrato.monto }}</p>
+    <div *ngIf="pasoActual === 2" class="seccion-paso animate-in">
+      <h3>Personaliza los términos</h3>
+      <div class="formulario-grid">
+        <div class="grupo-input">
+          <label for="cliente">Nombre del Cliente</label>
+          <div class="input-wrapper">
+            <span class="input-icon">👤</span>
+            <input 
+              id="cliente"
+              type="text" 
+              [(ngModel)]="datosContrato.cliente" 
+              placeholder="Ej. Juan Pérez o Empresa S.A." 
+              class="input-nudo">
+          </div>
+        </div>
+
+        <div class="grupo-input">
+          <label for="monto">Monto de Inversión ($)</label>
+          <div class="input-wrapper">
+            <span class="input-icon">💰</span>
+            <input 
+              id="monto"
+              type="number" 
+              [(ngModel)]="datosContrato.monto" 
+              placeholder="0.00"
+              class="input-nudo">
+          </div>
+          <small class="hint">Este monto se incluirá en la cláusula de pagos.</small>
+        </div>
       </div>
-      <p class="nota-seguridad">Al hacer clic en finalizar, se generará el sello digital de NUDO.</p>
+    </div>
+
+    <div *ngIf="pasoActual === 3" class="seccion-paso animate-in">
+      <div class="confirmacion-header">
+        <span class="icono-check">✅</span>
+        <h3>Revisión de Blindaje</h3>
+      </div>
+      
+      <div class="resumen-nudo glass">
+        <div class="item-resumen">
+          <span class="label">Tipo de Contrato</span>
+          <span class="valor">{{ datosContrato.tipo | uppercase }}</span>
+        </div>
+        <div class="item-resumen">
+          <span class="label">Contraparte</span>
+          <span class="valor">{{ datosContrato.cliente || 'No especificado' }}</span>
+        </div>
+        <div class="item-resumen">
+          <span class="label">Valuación</span>
+          <span class="valor destacado">${{ datosContrato.monto | number:'1.2-2' }}</span>
+        </div>
+      </div>
+
+      <div class="alerta-seguridad">
+        <p>🔒 <strong>Sello NUDO:</strong> Al finalizar, se integrará un hash criptográfico único para garantizar la integridad del documento.</p>
+      </div>
     </div>
 
     <footer class="controles">
-      <button (click)="anteriorPaso()" *ngIf="pasoActual > 1" class="btn-secundario">Atrás</button>
-      <button (click)="siguientePaso()" *ngIf="pasoActual < 3" class="btn-primario" [disabled]="!datosContrato.tipo">Continuar</button>
-      <button (click)="finalizarGeneracion()" *ngIf="pasoActual === 3" class="btn-exito">Generar NUDO</button>
+      <button (click)="anteriorPaso()" *ngIf="pasoActual > 1" class="btn-atras">
+        ← Volver
+      </button>
+      
+      <div class="spacer"></div>
+
+      <button 
+        (click)="siguientePaso()" 
+        *ngIf="pasoActual < 3" 
+        class="btn-continuar" 
+        [disabled]="!datosContrato.tipo">
+        Siguiente Paso
+      </button>
+
+      <button 
+        (click)="finalizarGeneracion()" 
+        *ngIf="pasoActual === 3" 
+        class="btn-finalizar">
+        Finalizar y Blindar 🚀
+      </button>
     </footer>
   </div>
 </div>

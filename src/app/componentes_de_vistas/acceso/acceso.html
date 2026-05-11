@@ -2,43 +2,66 @@
   <div class="tarjeta-acceso">
     
     <div class="lado-visual">
-      <img src="images/bloque_de_color2.png" alt="Seguridad NUDO" class="ilustracion">
+      <div class="capa-degradado"></div>
+      <div class="branding-flotante">
+        <span class="logo-emoji">🪢</span>
+        <span class="logo-texto">NUDO</span>
+      </div>
+      
       <div class="texto-soporte">
-        <h2>Protege tu talento.</h2>
-        <p>Seguridad legal inmediata para tus proyectos.</p>
+        <h2>Tu propiedad intelectual <br> <strong>bajo llave.</strong></h2>
+        <p>Entra al ecosistema legal diseñado para la nueva era de creadores digitales.</p>
+      </div>
+
+      <div class="badge-seguridad">
+        <span>🛡️</span> Conexión Cifrada de Extremo a Extremo
       </div>
     </div>
 
     <div class="lado-formulario">
       <div class="cabecera-interna">
-        <h1>Ingresar</h1>
-        <p>Introduce tus datos para acceder.</p>
+        <h1>¡Hola de nuevo, socio! 🚀</h1>
+        <p>Tu próximo gran contrato te espera.</p>
       </div>
 
       <form class="formulario-nudo" (submit)="onLogin(); $event.preventDefault()">
+        
         <div class="grupo-input">
-          <label>Correo Electrónico</label>
-          <input 
-            type="email" 
-            name="correo"
-            [(ngModel)]="correo" 
-            placeholder="tu@correo.com">
+          <label for="correo">Correo Electrónico</label>
+          <div class="input-contenedor">
+            <span class="input-icon">✉️</span>
+            <input 
+              id="correo"
+              type="email" 
+              name="correo"
+              [(ngModel)]="correo" 
+              placeholder="socio@nudo.com"
+              required>
+          </div>
         </div>
 
         <div class="grupo-input">
-          <label>Contraseña</label>
-          <input 
-            type="password" 
-            name="contrasena"
-            [(ngModel)]="contrasena" 
-            placeholder="••••••••">
+          <label for="contrasena">Contraseña</label>
+          <div class="input-contenedor">
+            <span class="input-icon">🔑</span>
+            <input 
+              id="contrasena"
+              type="password" 
+              name="contrasena"
+              [(ngModel)]="contrasena" 
+              placeholder="••••••••"
+              required>
+          </div>
+          <span class="link-olvido">¿Olvidaste tu contraseña?</span>
         </div>
 
-        <button type="submit" class="btn-ingresar">Iniciar Sesión</button>
+        <button type="submit" class="btn-ingresar">
+          Entrar al Panel de Control ⚡
+        </button>
       </form>
 
       <footer class="pie-registro">
-        <p>¿Aún no eres parte? <span class="link">Regístrate gratis</span></p>
+        <p>¿Eres nuevo en el gremio? <span class="link">Crea tu cuenta</span></p>
       </footer>
     </div>
     

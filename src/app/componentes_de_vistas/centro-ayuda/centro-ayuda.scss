@@ -1,98 +1,220 @@
-.contenedor-vista-cuadro {
-  padding: 2.5rem;
-  max-width: 1200px;
+@use "sass:color";
+
+// VARIABLES DE MARCA NUDO
+$color-primario: #003366;
+$color-secundario: #00a8cc;
+$color-fondo: #f9fbfd;
+$transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+.contenedor-ayuda {
+  padding: 3rem 1.5rem;
+  max-width: 1300px;
   margin: 0 auto;
+  background-color: $color-fondo;
 
   .encabezado-ayuda {
-    background: linear-gradient(135deg, #003366 0%, #001f3f 100%);
+    // Degradado con más profundidad y textura
+    background: linear-gradient(145deg, $color-primario 0%, #001a33 100%);
     color: white;
-    padding: 4rem 2rem;
-    border-radius: 24px;
-    margin-bottom: 3rem;
+    padding: 5rem 2rem;
+    border-radius: 32px;
+    margin-bottom: 4rem;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 51, 102, 0.2);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba($color-primario, 0.2);
 
-    h1 { font-size: 2.5rem; margin-bottom: 2rem; font-weight: 800; }
+    // Toque decorativo sutil
+    &::after {
+      content: '🪢';
+      position: absolute;
+      right: -20px;
+      bottom: -20px;
+      font-size: 15rem;
+      opacity: 0.05;
+      transform: rotate(-15deg);
+    }
+
+    h1 { 
+      font-size: 3rem; 
+      margin-bottom: 1.5rem; 
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 2.5rem;
+    }
     
     .barra-busqueda {
       display: flex;
-      max-width: 650px;
+      max-width: 700px;
       margin: 0 auto;
       background: white;
-      padding: 8px;
-      border-radius: 15px;
+      padding: 10px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 2;
       
       input {
         flex: 1;
-        padding: 12px 20px;
+        padding: 15px 25px;
         border: none;
         outline: none;
-        font-size: 1rem;
-        color: #333;
+        font-size: 1.1rem;
+        color: $color-primario;
+        background: transparent;
+
+        &::placeholder { color: #94a3b8; }
       }
       
       .btn-buscar {
-        background: #00a8cc;
+        background: $color-secundario;
         color: white;
         border: none;
-        padding: 0 30px;
-        border-radius: 12px;
+        padding: 0 35px;
+        border-radius: 15px;
         font-weight: 700;
-        transition: 0.3s;
+        font-size: 1rem;
+        transition: $transicion;
         cursor: pointer;
-        &:hover { background: #008eb0; }
+        
+        &:hover { 
+          background: color.adjust($color-secundario, $lightness: -10%);
+          transform: scale(1.02);
+          box-shadow: 0 5px 15px rgba($color-secundario, 0.3);
+        }
       }
     }
   }
 
   .grid-ayuda {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-bottom: 4rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 5rem;
 
     .tarjeta-ayuda {
       background: white;
-      border-radius: 20px;
-      padding: 2rem;
+      border-radius: 28px;
+      padding: 3rem 2rem;
       text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-      border: 1px solid #f0f0f0;
-      transition: all 0.3s ease;
-      &:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+      box-shadow: 0 10px 30px rgba($color-primario, 0.04);
+      border: 1px solid rgba($color-primario, 0.03);
+      transition: $transicion;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-      .ilustracion-ayuda {
-        margin-bottom: 1.5rem;
-        img { height: 120px; width: auto; }
+      &:hover { 
+        transform: translateY(-12px); 
+        box-shadow: 0 25px 50px rgba($color-primario, 0.1);
+        border-color: rgba($color-secundario, 0.2);
       }
 
-      h3 { color: #003366; font-size: 1.4rem; margin-bottom: 1rem; }
-      p { color: #576574; line-height: 1.6; margin-bottom: 1.5rem; }
-      .enlace-ayuda { color: #00a8cc; font-weight: 700; text-decoration: none; cursor: pointer; }
+      .ilustracion-ayuda {
+        margin-bottom: 2rem;
+        transition: transform 0.3s ease;
+        
+        img { 
+          height: 140px; 
+          width: auto; 
+          filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+        }
+      }
+
+      h3 { 
+        color: $color-primario; 
+        font-size: 1.5rem; 
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+
+      p { 
+        color: #64748b; 
+        line-height: 1.7; 
+        margin-bottom: 2rem;
+        font-size: 1rem;
+      }
+
+      .enlace-ayuda { 
+        color: $color-secundario; 
+        font-weight: 700; 
+        text-decoration: none; 
+        cursor: pointer;
+        padding: 8px 20px;
+        border-radius: 12px;
+        background: rgba($color-secundario, 0.05);
+        transition: $transicion;
+
+        &:hover {
+          background: $color-secundario;
+          color: white;
+        }
+      }
     }
   }
 
   .contacto-directo {
     .cuadro-contacto {
-      background: #f0faff;
-      padding: 4rem 2rem;
-      border-radius: 24px;
+      background: linear-gradient(rgba(white, 0.9), rgba(white, 0.9)), 
+                  url('/assets/images/pattern-dots.png'); // Si tienes un patron sutil
+      background-color: #f0faff;
+      padding: 5rem 2rem;
+      border-radius: 32px;
       text-align: center;
-      border: 2px dashed #00a8cc;
+      border: 2px dashed rgba($color-secundario, 0.4);
+      transition: $transicion;
 
-      h3 { color: #003366; font-size: 1.8rem; margin-bottom: 1rem; }
-      p { color: #576574; margin-bottom: 2rem; font-size: 1.1rem; }
-      .btn-secundario-nudo {
-        background: #003366;
+      &:hover { border-color: $color-secundario; }
+
+      h3 { 
+        color: $color-primario; 
+        font-size: 2.2rem; 
+        margin-bottom: 1rem;
+        font-weight: 800;
+      }
+
+      p { 
+        color: #64748b; 
+        margin-bottom: 2.5rem; 
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .btn-soporte {
+        background: $color-primario;
         color: white;
-        padding: 15px 40px;
-        border-radius: 12px;
+        padding: 18px 50px;
+        border-radius: 16px;
         border: none;
         font-weight: 700;
+        font-size: 1.1rem;
         cursor: pointer;
-        transition: 0.3s;
-        &:hover { background: #001f3f; transform: scale(1.05); }
+        transition: $transicion;
+        box-shadow: 0 10px 20px rgba($color-primario, 0.2);
+
+        &:hover { 
+          background: #001a33; 
+          transform: translateY(-3px) scale(1.02);
+          box-shadow: 0 15px 30px rgba($color-primario, 0.3);
+        }
       }
     }
+  }
+}
+
+// Adaptación para móviles
+@media (max-width: 768px) {
+  .contenedor-ayuda {
+    padding: 1.5rem;
+    .encabezado-ayuda h1 { font-size: 2.2rem; }
+    .barra-busqueda { flex-direction: column; gap: 10px; padding: 15px; }
+    .btn-buscar { width: 100%; padding: 15px; }
   }
 }

@@ -1,41 +1,81 @@
-<div class="contenedor-vista-cuadro">
+<div class="contenedor-editor-nudo">
   <div class="interfaz-editor">
     
-    <aside class="herramientas-editor">
+    <aside class="panel-herramientas">
+      <div class="header-herramientas">
+        <span class="badge-editor">Modo Edición</span>
+        <h3>Panel de Control</h3>
+      </div>
+
       <div class="grupo-herramientas">
-        <h3>Herramientas</h3>
-        <button class="btn-herramienta">💾 Guardar Borrador</button>
-        <button class="btn-herramienta">📄 Exportar PDF</button>
-        <button class="btn-herramienta">📧 Enviar a Firma</button>
+        <button class="btn-herramienta primario" (click)="guardarBorrador()">
+          <span class="icon">💾</span> 
+          <div class="texto-btn">
+            <strong>Guardar Borrador</strong>
+            <small>Sincronizado en la nube</small>
+          </div>
+        </button>
+
+        <button class="btn-herramienta" (click)="exportarPDF()">
+          <span class="icon">📄</span> 
+          <div class="texto-btn">
+            <strong>Exportar PDF</strong>
+            <small>Listo para imprimir</small>
+          </div>
+        </button>
+
+        <button class="btn-herramienta destaque" (click)="enviarAFirma()">
+          <span class="icon">📧</span> 
+          <div class="texto-btn">
+            <strong>Enviar a Firma</strong>
+            <small>Protocolo seguro NUDO</small>
+          </div>
+        </button>
       </div>
       
-      <div class="ilustracion-editor">
-        <img src="images/monocromo3.png" alt="Edición NUDO">
+      <div class="footer-ilustracion">
+        <img src="images/monocromo3.png" alt="Seguridad NUDO" class="img-flotante">
+        <p>Tu contrato está siendo protegido por cifrado de 256 bits.</p>
       </div>
     </aside>
 
-    <main class="area-documento">
-      <div class="hoja-contrato">
-        <header class="logo-contrato">
-          <img src="images/logotipo.png" alt="Logo NUDO">
+    <main class="lienzo-documento">
+      <div class="hoja-contrato shadow-premium">
+        
+        <header class="encabezado-documento">
+          <div class="logo-nudo-doc">
+            <span class="emoji-nudo">🪢</span>
+            <span class="texto-nudo">NUDO LEGAL</span>
+          </div>
+          <div class="id-documento">REF: ND-2026-{{idContrato || 'TEMP'}}</div>
         </header>
         
-        <section class="cuerpo-documento" contenteditable="true">
-          <h2>CONTRATO DE PRESTACIÓN DE SERVICIOS</h2>
-          <p>En la ciudad de [Ciudad], a los [Día] del mes de [Mes] de 2026...</p>
-          <p><strong>REUNIDOS:</strong> De una parte, [Nombre del Cliente] y de otra parte, <strong>José</strong>, en calidad de prestador de servicios...</p>
-          <br>
-          <p>[Aquí va el cuerpo legal del contrato generado...]</p>
-        </section>
+        <article class="cuerpo-legal" contenteditable="true" spellcheck="true">
+          <h1 class="titulo-contrato">CONTRATO DE PRESTACIÓN DE SERVICIOS</h1>
+          
+          <p class="clausula-intro">
+            En la ciudad de <span class="placeholder">[Ciudad]</span>, a los <span class="placeholder">[Día]</span> del mes de <span class="placeholder">[Mes]</span> de 2026...
+          </p>
 
-        <footer class="firmas-contrato">
-          <div class="espacio-firma">
-            <div class="linea-firma"></div>
-            <p>Firma del Cliente</p>
+          <p>
+            <strong>REUNIDOS:</strong> De una parte, <span class="placeholder">[Nombre del Cliente]</span> (en adelante, el "Cliente") y de otra parte, <strong>José</strong>, en calidad de prestador de servicios profesionales (en adelante, el "Colaborador")...
+          </p>
+
+          <div class="seccion-dinamica">
+            <p>[El motor de NUDO ha generado las cláusulas de propiedad intelectual y pagos aquí...]</p>
           </div>
-          <div class="espacio-firma">
-            <div class="linea-firma"></div>
-            <p>Firma del Prestador</p>
+        </article>
+
+        <footer class="seccion-firmas">
+          <div class="bloque-firma">
+            <div class="espacio-linea"></div>
+            <p class="nombre-firma">Firma del Cliente</p>
+            <small>ID Digital: No firmado</small>
+          </div>
+          <div class="bloque-firma">
+            <div class="espacio-linea"></div>
+            <p class="nombre-firma">José - Prestador</p>
+            <small>Verificado por NUDO</small>
           </div>
         </footer>
       </div>

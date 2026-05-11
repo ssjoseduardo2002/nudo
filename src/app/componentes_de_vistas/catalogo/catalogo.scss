@@ -1,103 +1,232 @@
+@use "sass:color";
+
+// VARIABLES DE DISEÑO NUDO
+$color-primario: #003366;
+$color-secundario: #00a8cc;
+$color-fondo: #f8fafc;
+$sombra-premium: 0 12px 30px rgba($color-primario, 0.08);
+$transicion-suave: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+
 .contenedor-catalogo {
-  padding: 2.5rem;
-  animation: fadeIn 0.4s ease-out;
+  padding: 3rem;
+  background-color: $color-fondo;
+  min-height: 100vh;
+  animation: fadeIn 0.6s ease-out;
 
   .encabezado-seccion {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     margin-bottom: 3rem;
 
-    h2 { color: #003366; font-size: 2rem; margin-bottom: 5px; }
-    p { color: #576574; font-size: 1rem; }
+    .titulos {
+      h2 { 
+        color: $color-primario; 
+        font-size: 2.2rem; 
+        font-weight: 800; 
+        margin-bottom: 8px; 
+        letter-spacing: -0.5px;
+      }
+      p { color: #64748b; font-size: 1.1rem; }
+    }
 
-    .btn-nuevo {
-      background: #00a8cc;
+    .btn-nuevo-contrato {
+      background: $color-primario;
       color: white;
       border: none;
-      padding: 12px 24px;
-      border-radius: 12px;
-      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 14px;
+      font-weight: 700;
       cursor: pointer;
-      transition: background 0.3s;
-      
-      &:hover { background: #008eb0; }
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: $transicion-suave;
+      box-shadow: 0 8px 20px rgba($color-primario, 0.15);
+
+      .icono-plus { font-size: 1.2rem; }
+
+      &:hover {
+        background: $color-secundario;
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 12px 25px rgba($color-secundario, 0.3);
+      }
     }
   }
 
+  // BARRA DE FILTROS (Creatividad Socio)
+  .filtros-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 2.5rem;
+
+    .filtro-item {
+      padding: 10px 20px;
+      background: white;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #64748b;
+      cursor: pointer;
+      border: 1px solid #e2e8f0;
+      transition: $transicion-suave;
+
+      &:hover, &.activo {
+        background: $color-primario;
+        color: white;
+        border-color: $color-primario;
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  // GRID DE TARJETAS
   .grid-contratos {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2.5rem;
+  }
 
-    .tarjeta-contrato {
-      background: white;
-      border-radius: 1.25rem;
-      padding: 1.5rem;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-      border: 1px solid #f0f0f0;
-      transition: transform 0.3s;
+  .tarjeta-nudo {
+    background: white;
+    border-radius: 24px;
+    padding: 1.8rem;
+    box-shadow: $sombra-premium;
+    border: 1px solid rgba($color-primario, 0.05);
+    transition: $transicion-suave;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 250px;
+    position: relative;
+    overflow: hidden;
 
-      &:hover { transform: translateY(-5px); border-color: #00a8cc; }
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba($color-primario, 0.12);
+      border-color: rgba($color-secundario, 0.3);
+    }
 
-      .header-card {
+    .header-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .status-badge {
+        font-size: 0.75rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        padding: 6px 14px;
+        border-radius: 50px;
         display: flex;
-        justify-content: space-between;
-        margin-bottom: 1.5rem;
-        
-        .badge {
-          background: #e3fcef;
-          color: #00875a;
-          padding: 4px 12px;
-          border-radius: 6px;
-          font-size: 0.75rem;
-          font-weight: 700;
-          &.pendiente { background: #fff4e5; color: #ff9900; }
+        align-items: center;
+        gap: 8px;
+
+        &.pendiente { background: #fff7ed; color: #ea580c; }
+        &.completado { background: #f0fdf4; color: #16a34a; }
+
+        .dot-status { 
+          width: 8px; 
+          height: 8px; 
+          border-radius: 50%; 
+          background: currentColor;
+          box-shadow: 0 0 8px currentColor;
         }
       }
 
-      h3 { color: #003366; font-size: 1.2rem; margin-bottom: 8px; }
-      .meta { color: #8395a7; font-size: 0.85rem; }
-
-      .footer-card {
-        margin-top: 1.5rem;
-        display: flex;
-        gap: 10px;
-        
-        .btn-accion {
-          flex: 1;
-          padding: 10px;
-          border-radius: 8px;
-          font-size: 0.85rem;
-          font-weight: 600;
-          cursor: pointer;
-          border: none;
-          
-          &.primario { background: #003366; color: white; }
-          &.secundario { background: #f4f7f6; color: #003366; }
-        }
+      .btn-opciones {
+        background: none; border: none; color: #cbd5e1; cursor: pointer; font-size: 1.4rem;
+        transition: color 0.3s;
+        &:hover { color: $color-primario; }
       }
     }
 
-    .tarjeta-vacia {
-      border: 2px dashed #d1d8e0;
-      border-radius: 1.25rem;
+    .cuerpo-card {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      cursor: pointer;
-      color: #a4b0be;
-      transition: all 0.3s;
+      gap: 1.2rem;
+      margin: 1rem 0;
 
-      &:hover { border-color: #00a8cc; color: #00a8cc; background: #f0faff; }
-      .circulo-plus { font-size: 2rem; margin-bottom: 10px; }
+      .icono-tipo-doc { 
+        font-size: 3rem; 
+        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+      }
+      
+      .info-doc {
+        h3 { font-size: 1.2rem; color: $color-primario; margin-bottom: 6px; font-weight: 800; }
+        .meta { font-size: 0.85rem; color: #94a3b8; font-family: monospace; }
+      }
+    }
+
+    .acciones-card {
+      display: flex;
+      gap: 12px;
+
+      .btn-nudo-accion {
+        flex: 1;
+        padding: 12px;
+        border-radius: 12px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: $transicion-suave;
+        border: 1px solid #e2e8f0;
+
+        &.btn-pdf {
+          background: white; color: $color-primario;
+          &:hover { background: #f8fafc; border-color: $color-primario; }
+        }
+
+        &.btn-gestionar {
+          background: $color-primario; color: white; border: none;
+          &:hover { background: $color-secundario; transform: scale(1.05); }
+        }
+      }
+    }
+  }
+
+  // TARJETA VACÍA: EL "CTA" PARA CREAR
+  .tarjeta-vacia {
+    border: 2px dashed #cbd5e1;
+    background: rgba($color-primario, 0.01);
+    box-shadow: none;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    .contenido-vacio {
+      text-align: center;
+      .circulo-animado {
+        width: 70px; height: 70px;
+        border-radius: 50%;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.2rem;
+        font-size: 1.8rem;
+        color: $color-secundario;
+        box-shadow: 0 8px 20px rgba($color-secundario, 0.2);
+        transition: $transicion-suave;
+      }
+      p { font-weight: 800; color: $color-primario; font-size: 1.1rem; margin-bottom: 6px; }
+      small { color: #94a3b8; font-weight: 500; }
+    }
+
+    &:hover {
+      background: white;
+      border-color: $color-secundario;
+      border-style: solid;
+      .circulo-animado { 
+        background: $color-secundario; 
+        color: white; 
+        transform: rotate(90deg) scale(1.1); 
+      }
     }
   }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

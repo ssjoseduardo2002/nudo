@@ -2,25 +2,34 @@
   
   <section class="banner-inicio">
     <div class="texto-bienvenida">
-      <h1>¡Qué gusto verte, {{nombreUsuario}}!</h1>
+      <h1>¡Qué gusto verte, <span class="nombre-ceo">{{nombreUsuario}}</span>! 🪢</h1>
       <p>Hoy es un gran día para asegurar nuevos proyectos en <strong>NUDO</strong>.</p>
     </div>
-  </section>
-
-  <div class="tablero-resumen">
-    <div class="tarjeta-stat">
-      <span class="cifra">12</span>
-      <p>Contratos Activos</p>
+  </section> <div class="tablero-resumen">
+    <div class="tarjeta-stat shadow-sm">
+      <div class="contenido-stat">
+        <span class="cifra">12</span>
+        <p>Contratos Activos</p>
+      </div>
+      <div class="decoracion-card">📂</div>
     </div>
     
-    <div class="tarjeta-stat">
-      <span class="cifra">05</span>
-      <p>Pendientes de Firma</p>
+    <div class="tarjeta-stat shadow-sm">
+      <div class="contenido-stat">
+        <span class="cifra">05</span>
+        <p>Pendientes de Firma</p>
+      </div>
+      <div class="decoracion-card alerta">⏳</div>
     </div>
 
-    <div class="tarjeta-stat especial">
-      <span class="pin-emoji">📌</span>
-      <p>Recuerda revisar el contrato de <strong>"Agencia Creativa"</strong>.</p>
+    <div class="tarjeta-stat especial animate-pulse">
+      <div class="pin-wrapper">
+        <span class="pin-emoji">📌</span>
+      </div>
+      <div class="texto-especial">
+        <p>Pendiente prioritario:</p>
+        <strong>Revisar contrato de "Agencia Creativa"</strong>
+      </div>
     </div>
   </div>
 
@@ -29,18 +38,27 @@
     
     <div class="grid-opciones">
       <a [routerLink]="['/generador-contrato']" class="opcion-card">
-        <i class="icono">⚡</i>
-        <span>Nuevo Contrato</span>
+        <div class="circulo-icono">⚡</div>
+        <div class="label-opcion">
+          <span class="titulo">Nuevo Contrato</span>
+          <span class="subtitulo">Generar blindaje</span>
+        </div>
       </a>
 
       <a [routerLink]="['/catalogo']" class="opcion-card">
-        <i class="icono">📂</i>
-        <span>Mis Documentos</span>
+        <div class="circulo-icono">📂</div>
+        <div class="label-opcion">
+          <span class="titulo">Mis Documentos</span>
+          <span class="subtitulo">Ver repositorio</span>
+        </div>
       </a>
 
       <a [routerLink]="['/perfil-usuario']" class="opcion-card">
-        <i class="icono">⚙️</i>
-        <span>Configuración</span>
+        <div class="circulo-icono">⚙️</div>
+        <div class="label-opcion">
+          <span class="titulo">Configuración</span>
+          <span class="subtitulo">Ajustes de cuenta</span>
+        </div>
       </a>
     </div>
   </section>
