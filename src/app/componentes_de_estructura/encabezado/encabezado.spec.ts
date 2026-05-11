@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing'; // Necesario para los [routerLink]
 import { Encabezado } from './encabezado';
 
 describe('Encabezado', () => {
@@ -7,7 +8,8 @@ describe('Encabezado', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Encabezado]
+      // Importamos RouterTestingModule porque nuestro encabezado tiene enlaces de navegación
+      imports: [Encabezado, RouterTestingModule]
     })
     .compileComponents();
 
@@ -16,30 +18,50 @@ describe('Encabezado', () => {
     fixture.detectChanges();
   });
 
-  it('debería crearse el componente de encabezado', () => {
+  it('✅ debería crearse el componente de encabezado', () => {
     expect(component).toBeTruthy();
   });
 
-  it('debería mostrar el título por defecto correctamente', () => {
+  it('✅ debería mostrar la identidad de marca (Emoji y Texto NUDO)', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    // Buscamos el h1 que tiene el [innerText]
-    const h1 = compiled.querySelector('h1');
-    expect(h1?.innerText).toContain('Bienvenido a NUDO');
+    const logoTexto = compiled.querySelector('.logo-texto');
+    const logoSimbolo = compiled.querySelector('.logo-simbolo');
+    
+    expect(logoTexto?.textContent).toContain('NUDO');
+    expect(logoSimbolo?.textContent).toBe('🪢');
   });
 
-  it('debería actualizar el subtítulo cuando cambia la propiedad', () => {
-    const nuevoSubtitulo = 'Nueva frase de seguridad legal';
-    component.subtitulo = nuevoSubtitulo;
-    fixture.detectChanges(); // Forzamos a Angular a renderizar el cambio
+  it('✅ debería ocultar la navegación cuando estamos en la pantalla de Acceso', () => {
+    // Simulamos que estamos en el login
+    component.enPantallaAcceso = true;
+    fixture.detectChanges();
 
     const compiled = fixture.nativeElement as HTMLElement;
-    const p = compiled.querySelector('p');
-    expect(p?.innerText).toBe(nuevoSubtitulo);
+    const nav = compiled.querySelector('.navegacion-principal');
+    
+    expect(nav).toBeFalsy(); // El nav no debería existir en el DOM
   });
 
-  it('debería tener la estructura visual necesaria (decoración)', () => {
+  it('✅ debería mostrar el botón destacado "La Mente Detrás"', () => {
+    // Aseguramos que no estamos en acceso para ver el nav
+    component.enPantallaAcceso = false;
+    fixture.detectChanges();
+
     const compiled = fixture.nativeElement as HTMLElement;
-    const decoracion = compiled.querySelector('.circulo-decorativo');
-    expect(decoracion).toBeTruthy();
+    const btnDestacado = compiled.querySelector('.btn-nav.destacado');
+    
+    expect(btnDestacado?.textContent).toContain('La Mente Detrás');
+    expect(btnDestacado?.textContent).toContain('💡');
+  });
+
+  it('✅ debería tener el botón de ajustes de perfil con el icono de engrane', () => {
+    component.enPantallaAcceso = false;
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    const btnAjustes = compiled.querySelector('.btn-ajustes');
+    
+    expect(btnAjustes).toBeTruthy();
+    expect(btnAjustes?.querySelector('.icono-animado')?.textContent).toBe('⚙️');
   });
 });

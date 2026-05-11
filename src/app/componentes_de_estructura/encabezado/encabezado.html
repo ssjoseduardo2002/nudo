@@ -1,25 +1,34 @@
 <header class="encabezado-nudo">
-  <div class="logo-contenedor">
-    <img src="assets/images/logotipo.png" alt="Logo NUDO" class="logo-img" (error)="$event.target.style.display='none'">
+  <div class="logo-contenedor" [routerLink]="['/inicio']" style="cursor: pointer;">
+    <span class="logo-simbolo">🪢</span>
+    <span class="logo-texto">NUDO</span>
   </div>
 
   <nav class="navegacion-principal" *ngIf="!enPantallaAcceso">
     
     <a [routerLink]="['/inicio']" 
        routerLinkActive="activo-link" 
-       class="btn-nav">Inicio</a>
+       class="btn-nav">
+       <span>🏠</span> Inicio
+    </a>
 
     <a [routerLink]="['/catalogo']" 
        routerLinkActive="activo-link" 
-       class="btn-nav">Contratos</a>
+       class="btn-nav">
+       <span>📜</span> Catálogo
+    </a>
 
     <a [routerLink]="['/generador-contrato']" 
        routerLinkActive="activo-link" 
-       class="btn-nav">Crear</a>
+       class="btn-nav">
+       <span>✍️</span> Crear Contrato
+    </a>
 
     <a [routerLink]="['/mente-detras']" 
        routerLinkActive="activo-link" 
-       class="btn-nav destacado">La mente detrás de NUDO</a>
+       class="btn-nav destacado">
+       <span>💡</span> La Mente Detrás
+    </a>
 
   </nav>
 
@@ -28,7 +37,7 @@
        routerLinkActive="activo-link"
        class="btn-ajustes" 
        title="Mi Perfil / Ajustes">
-       <i class="icono-engrane">⚙️</i>
+       <span class="icono-animado">⚙️</span>
     </a>
   </div>
 </header>

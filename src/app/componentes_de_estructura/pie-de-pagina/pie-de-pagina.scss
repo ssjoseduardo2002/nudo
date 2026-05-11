@@ -1,78 +1,163 @@
 @use "sass:color";
 
-// VARIABLES DE MARCA NUDO (Manteniendo la coherencia con el encabezado)
-$color-primario: #003366;    // Azul profundo
-$color-secundario: #00a8cc;  // Cian/Tranquilidad
-$color-texto-suave: #576574; // Gris azulado
-$transicion: all 0.3s ease;
+// VARIABLES DE MARCA NUDO
+$color-primario: #003366;
+$color-secundario: #00a8cc;
+$color-texto-principal: #2c3e50;
+$color-texto-suave: #576574;
+$color-fondo-nudo: #ffffff;
+$transicion: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-.footer-global {
+.footer-nudo {
   width: 100%;
-  padding: 2rem 1.5rem; // Más espacio para un look más profesional
-  background: white;
-  border-top: 1px solid rgba($color-secundario, 0.1); // Línea sutil con tu color de marca
-  
-  .contenido-footer {
+  background: $color-fondo-nudo;
+  padding: 3rem 1rem 1.5rem;
+  border-top: 1px solid rgba($color-secundario, 0.1);
+  color: $color-texto-principal;
+
+  .footer-container {
     max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap; // Por si lo vemos en celular
-    gap: 1rem;
-    
-    p { 
-      font-size: 0.85rem; 
-      color: $color-texto-suave;
-      margin: 0;
-      font-weight: 400;
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 1.5fr;
+    gap: 2rem;
+    align-items: start;
+  }
 
-      strong {
-        color: $color-primario;
-        font-weight: 600;
-      }
-    }
-
-    .links-legales {
+  // BLOQUE 1: MARCA
+  .footer-brand {
+    .brand-header {
       display: flex;
       align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
 
-      a {
-        font-size: 0.85rem;
-        color: $color-texto-suave;
-        margin-left: 1.5rem;
+      .brand-emoji { font-size: 1.5rem; }
+      .brand-name {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: $color-primario;
+        letter-spacing: -0.5px;
+      }
+    }
+    .brand-tagline {
+      font-size: 0.9rem;
+      color: $color-texto-suave;
+      line-height: 1.5;
+      max-width: 250px;
+    }
+  }
+
+  // BLOQUE 2: NAVEGACIÓN
+  .footer-nav {
+    display: flex;
+    justify-content: space-around;
+
+    .nav-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+
+      .group-title {
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: $color-primario;
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-link {
         text-decoration: none;
+        font-size: 0.9rem;
+        color: $color-texto-suave;
         transition: $transicion;
-        font-weight: 500;
 
         &:hover {
           color: $color-secundario;
-          transform: translateY(-1px);
-        }
-
-        // Estilo para cuando la ruta legal esté activa
-        &.activo {
-          color: $color-primario;
-          font-weight: 700;
+          transform: translateX(3px);
         }
       }
     }
   }
-}
 
-// Media query para que en móviles se vea ordenado
-@media (max-width: 768px) {
-  .footer-global {
-    .contenido-footer {
-      flex-direction: column;
-      text-align: center;
-      
-      .links-legales {
-        margin-top: 0.5rem;
-        a {
-          margin: 0 0.75rem;
+  // BLOQUE 3: STATUS Y SEGURIDAD
+  .footer-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+
+    .security-card {
+      background: rgba($color-secundario, 0.04);
+      padding: 1rem;
+      border-radius: 15px;
+      border: 1px solid rgba($color-secundario, 0.1);
+      margin-bottom: 1.5rem;
+
+      .status-indicator {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        justify-content: flex-end;
+        margin-bottom: 0.3rem;
+
+        .status-text {
+          font-size: 0.85rem;
+          font-weight: 600;
+          color: #27ae60; // Verde éxito
+        }
+
+        .pulse-dot {
+          width: 8px;
+          height: 8px;
+          background-color: #27ae60;
+          border-radius: 50%;
+          box-shadow: 0 0 0 rgba(39, 174, 96, 0.4);
+          animation: pulse 2s infinite;
         }
       }
+
+      .security-info {
+        font-size: 0.75rem;
+        color: $color-texto-suave;
+        margin: 0;
+      }
+    }
+
+    .copyright {
+      font-size: 0.8rem;
+      color: color.adjust($color-texto-suave, $lightness: 15%);
+    }
+  }
+}
+
+// ANIMACIONES
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(39, 174, 96, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0); }
+}
+
+// RESPONSIVO
+@media (max-width: 900px) {
+  .footer-nudo .footer-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 3rem;
+
+    .footer-brand .brand-header, .footer-status .status-indicator {
+      justify-content: center;
+    }
+    .footer-brand .brand-tagline {
+      margin: 0 auto;
+    }
+    .footer-status {
+      align-items: center;
+    }
+    .footer-nav {
+      flex-direction: row;
+      gap: 2rem;
     }
   }
 }

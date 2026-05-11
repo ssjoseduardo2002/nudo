@@ -1,145 +1,159 @@
-// VARIABLES DE COLOR NUDO
-$color-primario: #003366;    // Azul profundo (Confianza)
-$color-secundario: #00a8cc;  // Verdecito/Cian (Tranquilidad)
-$color-fondo-puro: #f9fbfd;  // Gris azulado muy suave
-$color-blanco: #ffffff;
-$color-texto: #2c3e50;       // Gris oscuro legible
-$transicion: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+@use "sass:color";
 
-.navbar-horizontal {
-  width: 100%;
-  height: 90px; // Altura de la barra
-  background-color: $color-blanco;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 3rem;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.04);
+// VARIABLES DE DISEÑO NUDO
+$color-primario: #003366;    
+$color-secundario: #00a8cc;  
+$color-fondo-sidebar: rgba(255, 255, 255, 0.95);
+$color-texto: #2c3e50;
+$color-texto-suave: #576574;
+$sidebar-width: 280px;
+$transicion: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+.sidebar-nudo {
+  width: $sidebar-width;
+  height: 100vh;
+  background: $color-fondo-sidebar;
+  backdrop-filter: blur(15px);
   position: fixed;
-  top: 0;
   left: 0;
-  z-index: 1000;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba($color-secundario, 0.1);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.02);
+  z-index: 1100;
+  transition: $transicion;
 
-  // SECCIÓN IZQUIERDA: EL LOGO
-  .nav-seccion-izquierda {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    min-width: 180px;
-    overflow: hidden; // Evita que el logo se salga si crece mucho
-
-    .logo-horizontal {
-      // Ajuste para que el logo real se vea del tamaño de las letras
-      // compensando el margen blanco de la imagen original
-      height: 140px; 
-      width: auto;
-      object-fit: contain;
-      
-      // Ajuste de posición para centrar el contenido real del logo
-      margin-top: -5px; 
-      transform: scale(1.1); 
-      transition: $transicion;
-
-      &:hover {
-        transform: scale(1.15);
-      }
-    }
-  }
-
-  // SECCIÓN CENTRAL: MENÚ Y EFECTOS HOVER
-  .nav-links {
-    display: flex;
-    list-style: none;
-    gap: 15px;
-    margin: 0;
-    align-items: center;
-
-    a {
-      text-decoration: none;
-      color: $color-texto;
-      font-size: 1.25rem; // Tamaño de letra más grande para descanso visual
-      font-weight: 500;
-      padding: 10px 20px;
-      border-radius: 10px;
-      transition: $transicion;
-
-      // EFECTO: Letras verdecitas y recuadro azulito al pasar el mouse
-      &:hover {
-        color: $color-secundario; 
-        background-color: rgba($color-primario, 0.08); // Recuadro azulito sutil
-      }
-      
-      &.activo-link {
-        color: $color-primario;
-        background-color: rgba($color-secundario, 0.05);
-        font-weight: 600;
-      }
-    }
-
-    // Estilo especial para el botón del creador
-    .mente-nudo {
-      font-size: 1.1rem;
-      background-color: $color-fondo-puro;
-      border: 1px solid rgba($color-primario, 0.1);
-      
-      &:hover {
-        background-color: $color-primario;
-        color: $color-blanco !important; // Forzamos blanco en este caso
-      }
-    }
-  }
-
-  // SECCIÓN DERECHA: USUARIO Y CONFIG
-  .nav-seccion-derecha {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-
-    .usuario-pill {
+  // HEADER: Logo y Nombre
+  .sidebar-header {
+    padding: 2.5rem 2rem;
+    
+    .logo-wrapper {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 8px 15px;
-      border-radius: 30px;
-      background-color: $color-fondo-puro;
       
-      .nombre-user {
-        font-size: 1.15rem;
-        font-weight: 600;
-        color: $color-texto;
+      .logo-emoji {
+        font-size: 2.2rem;
+        filter: drop-shadow(0 4px 6px rgba($color-secundario, 0.2));
       }
-      
-      .avatar-mini {
-        width: 35px;
-        height: 35px;
-        background: $color-primario;
-        color: white;
-        border-radius: 50%;
+
+      .logo-nombre {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: $color-primario;
+        letter-spacing: -1px;
+      }
+    }
+  }
+
+  // CONTENIDO: Lista de navegación
+  .sidebar-content {
+    flex: 1;
+    padding: 0 1rem;
+    overflow-y: auto;
+
+    .menu-lista {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      .menu-divider {
+        padding: 1.5rem 1.2rem 0.5rem;
+        span {
+          font-size: 0.75rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          color: color.adjust($color-texto-suave, $lightness: 20%);
+          letter-spacing: 1.5px;
+        }
+      }
+
+      .menu-item {
+        margin-bottom: 8px;
+
+        .menu-link {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          padding: 12px 18px;
+          text-decoration: none;
+          color: $color-texto-suave;
+          font-weight: 500;
+          border-radius: 15px;
+          transition: $transicion;
+
+          .menu-icon { font-size: 1.4rem; }
+          .menu-label { font-size: 1.05rem; }
+
+          &:hover {
+            background: rgba($color-secundario, 0.08);
+            color: $color-primario;
+            transform: translateX(5px);
+          }
+
+          &.activo-item {
+            background: rgba($color-primario, 0.05);
+            color: $color-primario;
+            font-weight: 700;
+            box-shadow: inset 4px 0 0 $color-secundario;
+          }
+
+          &.destacado-mente {
+            background: rgba($color-primario, 0.03);
+            border: 1px dashed rgba($color-primario, 0.2);
+            margin-top: 10px;
+
+            &:hover {
+              background: $color-primario;
+              color: white;
+              border-style: solid;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // FOOTER: Acciones de salir/ajustes
+  .sidebar-footer {
+    padding: 2rem 1rem;
+    border-top: 1px solid rgba(0,0,0,0.05);
+
+    .footer-acciones {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .btn-footer {
         display: flex;
-        justify-content: center;
         align-items: center;
-        font-weight: bold;
-        font-size: 0.9rem;
-      }
-    }
+        gap: 12px;
+        padding: 12px 18px;
+        background: white;
+        border: 1px solid #edf2f7;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: $transicion;
+        width: 100%;
 
-    button {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 1.6rem;
-      color: $color-primario;
-      transition: $transicion;
-      
-      &:hover {
-        transform: scale(1.2) rotate(15deg);
-        color: $color-secundario;
-      }
-    }
+        .footer-icon { font-size: 1.2rem; }
+        .footer-text { font-weight: 600; color: $color-texto; }
 
-    .btn-salir-icon {
-      color: #d9534f;
-      &:hover { color: #c9302c; }
+        &:hover {
+          border-color: $color-secundario;
+          box-shadow: 0 4px 12px rgba($color-secundario, 0.1);
+          transform: translateY(-2px);
+        }
+
+        &.btn-salir {
+          &:hover {
+            background: #fff5f5;
+            border-color: #feb2b2;
+            .footer-text, .footer-icon { color: #e53e3e; }
+          }
+        }
+      }
     }
   }
 }

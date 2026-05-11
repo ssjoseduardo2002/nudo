@@ -1,70 +1,100 @@
-// IMPORTANTE: Agregar esto al inicio para usar las nuevas funciones de color
 @use "sass:color";
 
-// VARIABLES DE MARCA NUDO
-$color-primario: #003366;    // Azul profundo
-$color-secundario: #00a8cc;  // Verdecito/Cian
-$color-texto-suave: #576574; 
-$transicion: all 0.3s ease;
+// VARIABLES DE MARCA NUDO (Evolucionadas)
+$color-primario: #003366;    // Azul Legal Profundo
+$color-secundario: #00a8cc;  // Cian Tecnológico
+$color-fondo-glass: rgba(255, 255, 255, 0.9);
+$color-texto-suave: #576574;
+$sombra-suave: 0 4px 15px rgba(0, 0, 0, 0.05);
+$transicion: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); // Transición tipo "bounce" sutil
 
 .encabezado-nudo {
   width: 100%;
-  padding: 1rem 2.5rem;
+  padding: 0.8rem 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: white;
-  border-bottom: 1px solid rgba($color-secundario, 0.15); 
-  animation: fadeIn 0.8s ease-out;
+  background: $color-fondo-glass;
+  backdrop-filter: blur(10px); // Efecto esmerilado (Glassmorphism)
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 2px solid rgba($color-secundario, 0.1);
+  box-shadow: $sombra-suave;
+  animation: slideDown 0.6s ease-out;
 
   .logo-contenedor {
-    .logo-img {
-      height: 45px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+
+    .logo-simbolo {
+      font-size: 2rem;
+      filter: drop-shadow(0 2px 4px rgba($color-secundario, 0.3));
       transition: $transicion;
-      &:hover { transform: scale(1.05); }
+    }
+
+    .logo-texto {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: $color-primario;
+      font-family: 'Inter', 'Montserrat', sans-serif;
+    }
+
+    &:hover {
+      .logo-simbolo {
+        transform: rotate(15deg) scale(1.1);
+      }
+      .logo-texto {
+        color: $color-secundario;
+      }
     }
   }
 
   .navegacion-principal {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
     align-items: center;
 
     .btn-nav {
       text-decoration: none;
       color: $color-texto-suave;
-      font-weight: 500;
-      font-size: 1rem;
-      padding: 0.6rem 1rem;
-      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 12px;
       transition: $transicion;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+
+      span {
+        font-size: 1.1rem;
+      }
 
       &:hover {
         background: rgba($color-secundario, 0.08);
         color: $color-primario;
+        transform: translateY(-2px);
       }
 
       &.activo-link {
-        color: $color-primario;
-        background: rgba($color-secundario, 0.12);
-        font-weight: 700;
+        color: $color-secundario;
+        background: rgba($color-secundario, 0.05);
+        box-shadow: inset 0 0 0 1px rgba($color-secundario, 0.2);
       }
 
       &.destacado {
-        background: $color-primario;
+        background: linear-gradient(135deg, $color-primario, color.adjust($color-primario, $lightness: 10%));
         color: white;
-        font-weight: 600;
+        box-shadow: 0 4px 10px rgba($color-primario, 0.2);
 
         &:hover {
-          // CAMBIO: Usamos color.adjust en lugar de lighten
-          background: color.adjust($color-primario, $lightness: 10%);
-          box-shadow: 0 4px 12px rgba($color-primario, 0.2);
-        }
-
-        &.activo-link {
-          // CAMBIO: Usamos color.adjust en lugar de darken
-          background: color.adjust($color-primario, $lightness: -5%);
-          box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+          transform: translateY(-3px) scale(1.02);
+          box-shadow: 0 6px 15px rgba($color-primario, 0.3);
+          background: linear-gradient(135deg, color.adjust($color-primario, $lightness: 5%), $color-secundario);
         }
       }
     }
@@ -72,27 +102,38 @@ $transicion: all 0.3s ease;
 
   .usuario-acciones {
     .btn-ajustes {
-      background: none;
-      border: 1px solid #f0f4f8;
-      border-radius: 12px;
-      padding: 8px;
-      cursor: pointer;
-      font-size: 1.2rem;
-      transition: $transicion;
-      text-decoration: none;
+      background: white;
+      border: 1.5px solid #edf2f7;
+      border-radius: 50%; // Ahora es circular, se ve más moderno
+      width: 42px;
+      height: 42px;
       display: flex;
+      justify-content: center;
       align-items: center;
+      cursor: pointer;
+      transition: $transicion;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+
+      .icono-animado {
+        font-size: 1.3rem;
+        transition: transform 0.8s ease;
+      }
 
       &:hover {
-        background: #f8f9fa;
-        transform: rotate(45deg);
         border-color: $color-secundario;
+        background: #fdfdfd;
+        box-shadow: 0 4px 12px rgba($color-secundario, 0.15);
+        
+        .icono-animado {
+          transform: rotate(180deg); // Giro más dramático
+        }
       }
     }
   }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
+// ANIMACIONES PERRONAS
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-100%); }
   to { opacity: 1; transform: translateY(0); }
 }

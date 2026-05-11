@@ -1,17 +1,40 @@
-<footer class="footer-global" *ngIf="!enPantallaAcceso">
-  <div class="contenido-footer">
-    <div class="info-marca">
-      <p>© 2026 <strong>NUDO</strong> - Protegiendo el talento creativo.</p>
+<footer class="footer-nudo" *ngIf="!enPantallaAcceso">
+  <div class="footer-container">
+    
+    <div class="footer-brand">
+      <div class="brand-header">
+        <span class="brand-emoji">🪢</span>
+        <span class="brand-name">NUDO</span>
+      </div>
+      <p class="brand-tagline">
+        Blindaje legal automatizado para la nueva era de creadores.
+      </p>
     </div>
 
-    <nav class="links-legales">
-      <a [routerLink]="['/privacidad']" routerLinkActive="activo">Privacidad</a>
-      <a [routerLink]="['/terminos']" routerLinkActive="activo">Términos</a>
-      <a [routerLink]="['/centro-ayuda']" routerLinkActive="activo">Soporte</a>
+    <nav class="footer-nav">
+      <div class="nav-group">
+        <span class="group-title">Legal</span>
+        <a [routerLink]="['/privacidad']" class="footer-link">Privacidad</a>
+        <a [routerLink]="['/terminos']" class="footer-link">Términos de Servicio</a>
+      </div>
       
-      <div class="status-badge">
-        <span class="dot"></span> Sistema Protegido
+      <div class="nav-group">
+        <span class="group-title">Ayuda</span>
+        <a [routerLink]="['/centro-ayuda']" class="footer-link">Centro de Soporte</a>
+        <a href="mailto:soporte@nudo.com" class="footer-link">Contacto Directo</a>
       </div>
     </nav>
+
+    <div class="footer-status">
+      <div class="security-card">
+        <div class="status-indicator">
+          <span class="pulse-dot"></span>
+          <span class="status-text">Sistemas En Línea</span>
+        </div>
+        <p class="security-info">Protección de Datos End-to-End</p>
+      </div>
+      <p class="copyright">© 2026 NUDO. Todos los derechos reservados.</p>
+    </div>
+
   </div>
 </footer>

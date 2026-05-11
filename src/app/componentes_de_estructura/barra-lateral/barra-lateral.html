@@ -1,37 +1,46 @@
-<nav class="navbar-horizontal">
-  
-  <div class="nav-seccion-izquierda">
-    <img src="/images/NUDO.jpg" alt="Logotipo NUDO" class="logo-horizontal">
+<aside class="sidebar-nudo">
+  <div class="sidebar-header">
+    <div class="logo-wrapper">
+      <span class="logo-emoji">🪢</span>
+      <span class="logo-nombre">NUDO</span>
+    </div>
   </div>
 
-  <div class="nav-seccion-centro">
-    <ul class="nav-links">
-      <li *ngFor="let item of menuItems">
-        <a [routerLink]="item.route" routerLinkActive="activo-link">
-          {{ item.label }}
+  <div class="sidebar-content">
+    <ul class="menu-lista">
+      <li *ngFor="let item of menuItems" class="menu-item">
+        <a [routerLink]="item.route" 
+           routerLinkActive="activo-item" 
+           class="menu-link">
+          <span class="menu-icon">{{ item.icon || '📍' }}</span>
+          <span class="menu-label">{{ item.label }}</span>
         </a>
       </li>
-      
-      <li>
-        <a routerLink="/mente-detras" routerLinkActive="activo-link" class="mente-nudo">
-          La mente detrás de NUDO
+
+      <li class="menu-divider"><span>Explorar</span></li>
+
+      <li class="menu-item">
+        <a routerLink="/mente-detras" 
+           routerLinkActive="activo-item" 
+           class="menu-link destacado-mente">
+          <span class="menu-icon">💡</span>
+          <span class="menu-label">La mente detrás</span>
         </a>
       </li>
     </ul>
   </div>
 
-  <div class="nav-seccion-derecha">
-    <button class="btn-config" 
-            (click)="abrirConfiguracion()" 
-            title="Configuración">
-      ⚙️
-    </button>
-    
-    <button class="btn-salir-icon" 
-            (click)="cerrarSesion()" 
-            title="Cerrar Sesión">
-      🚪
-    </button>
-  </div>
+  <div class="sidebar-footer">
+    <div class="footer-acciones">
+      <button class="btn-footer" (click)="abrirConfiguracion()" title="Configuración">
+        <span class="footer-icon">⚙️</span>
+        <span class="footer-text">Ajustes</span>
+      </button>
 
-</nav>
+      <button class="btn-footer btn-salir" (click)="cerrarSesion()" title="Cerrar Sesión">
+        <span class="footer-icon">🚪</span>
+        <span class="footer-text">Salir</span>
+      </button>
+    </div>
+  </div>
+</aside>
