@@ -1,45 +1,97 @@
-<div class="contenedor-perfil">
+<div class="contenedor-perfil-nudo">
+  
   <header class="header-perfil">
-    <h2>👤 Mi Perfil Profesional</h2>
-    <p>Gestiona tu información para que tus contratos siempre tengan los datos correctos.</p>
+    <div class="indicador-ruta">Configuración > Identidad Corporativa</div>
+    <h2>Perfil Profesional & Negocios</h2>
+    <p>La información configurada aquí blindará tus contratos y aparecerá en tus sellos de Blockchain.</p>
   </header>
 
-  <div class="tarjeta-perfil">
+  <div class="tarjeta-perfil shadow-premium animate-fade-in">
+    
     <div class="avatar-seccion">
-      <div class="circulo-avatar">{{ usuario.nombre[0] }}</div>
-      <button class="btn-foto">Cambiar Foto</button>
+      <div class="wrapper-avatar">
+        <div class="circulo-avatar">{{ usuario.nombre[0] | uppercase }}</div>
+        <div class="badge-negocio" *ngIf="usuario.nombreNegocio">🏢</div>
+        <div class="efecto-brillo"></div>
+      </div>
+      
+      <button class="btn-foto-nudo">
+        <span class="icon">📷</span>
+        Actualizar Foto
+      </button>
+
+      <div class="estado-cuenta">
+        <span class="dot" [class.activo]="usuario.nombreNegocio"></span>
+        {{ usuario.nombreNegocio ? 'Cuenta Empresarial' : 'Cuenta Individual' }}
+      </div>
     </div>
 
     <form class="formulario-perfil" (ngSubmit)="guardarCambios()">
-      <div class="fila">
-        <div class="campo">
-          <label>Nombre</label>
-          <input type="text" [(ngModel)]="usuario.nombre" name="nombre" class="input-nudo">
+      
+      <div class="grid-campos">
+        
+        <div class="campo-nudo full-width destaque-negocio">
+          <label for="nombreNegocio">Nombre del Negocio / Empresa</label>
+          <div class="input-container">
+            <span class="prefix">🏢</span>
+            <input 
+              id="nombreNegocio" 
+              type="text" 
+              [(ngModel)]="usuario.nombreNegocio" 
+              name="nombreNegocio" 
+              class="input-nudo" 
+              placeholder="Ej. NUDO Software S.A.">
+          </div>
+          <small class="hint">Si lo completas, este nombre aparecerá como titular en tus blindajes.</small>
         </div>
-        <div class="campo">
-          <label>Apellido</label>
-          <input type="text" [(ngModel)]="usuario.apellido" name="apellido" class="input-nudo">
+
+        <div class="campo-nudo">
+          <label for="nombre">Nombre</label>
+          <div class="input-container">
+            <input id="nombre" type="text" [(ngModel)]="usuario.nombre" name="nombre" class="input-nudo" placeholder="Tu nombre">
+          </div>
+        </div>
+
+        <div class="campo-nudo">
+          <label for="apellido">Apellido</label>
+          <div class="input-container">
+            <input id="apellido" type="text" [(ngModel)]="usuario.apellido" name="apellido" class="input-nudo" placeholder="Tu apellido">
+          </div>
+        </div>
+
+        <div class="campo-nudo full-width">
+          <label for="email">Correo Electrónico</label>
+          <div class="input-container">
+            <span class="prefix">✉️</span>
+            <input id="email" type="email" [(ngModel)]="usuario.email" name="email" class="input-nudo" placeholder="correo@ejemplo.com">
+          </div>
+        </div>
+
+        <div class="campo-nudo full-width">
+          <label for="profesion">Especialidad / Cargo</label>
+          <div class="input-container">
+            <span class="prefix">💼</span>
+            <input id="profesion" type="text" [(ngModel)]="usuario.profesion" name="profesion" class="input-nudo" placeholder="Ej. CEO & Fundador">
+          </div>
+        </div>
+
+        <div class="campo-nudo full-width">
+          <label for="biografia">Descripción Profesional / Bio</label>
+          <div class="input-container">
+            <textarea id="biografia" [(ngModel)]="usuario.biografia" name="biografia" class="input-nudo" rows="4" placeholder="Cuéntale al mundo sobre tu trayectoria o tu negocio..."></textarea>
+          </div>
         </div>
       </div>
 
-      <div class="campo">
-        <label>Correo Electrónico</label>
-        <input type="email" [(ngModel)]="usuario.email" name="email" class="input-nudo">
-      </div>
-
-      <div class="campo">
-        <label>Especialidad / Profesión</label>
-        <input type="text" [(ngModel)]="usuario.profesion" name="profesion" class="input-nudo">
-      </div>
-
-      <div class="campo">
-        <label>Biografía corta</label>
-        <textarea [(ngModel)]="usuario.biografia" name="biografia" class="input-nudo" rows="3"></textarea>
-      </div>
-
-      <div class="acciones-perfil">
-        <button type="submit" class="btn-guardar">Guardar Cambios</button>
-      </div>
+      <footer class="acciones-perfil">
+        <div class="mensaje-seguridad">
+          🛡️ Identidad protegida con cifrado de extremo a extremo.
+        </div>
+        <button type="submit" class="btn-guardar-nudo">
+          Actualizar Perfil 🚀
+        </button>
+      </footer>
     </form>
+
   </div>
 </div>

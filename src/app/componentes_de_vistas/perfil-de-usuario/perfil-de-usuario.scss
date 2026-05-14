@@ -1,63 +1,184 @@
-.contenedor-perfil {
-  padding: 2rem;
-  max-width: 900px;
+$azul-nudo: #003366;
+$cian-nudo: #00a8cc;
+$azul-suave: #f0f4f8;
+
+.contenedor-perfil-nudo {
+  padding: 3rem 1.5rem;
+  max-width: 1000px;
   margin: 0 auto;
 
   .header-perfil {
-    margin-bottom: 2rem;
-    h2 { color: #003366; font-size: 2rem; }
-    p { color: #576574; }
+    margin-bottom: 3rem;
+    .indicador-ruta {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: $cian-nudo;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+    h2 { color: $azul-nudo; font-size: 2.5rem; font-weight: 900; margin: 0; }
+    p { color: #64748b; font-size: 1.1rem; }
   }
 
   .tarjeta-perfil {
     background: white;
-    border-radius: 20px;
-    padding: 3rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-radius: 28px;
+    padding: 3.5rem;
     display: flex;
-    gap: 3rem;
+    gap: 4rem;
+    align-items: flex-start;
+    border: 1px solid rgba($azul-nudo, 0.05);
 
+    // --- SECCIÓN IZQUIERDA: AVATAR ---
     .avatar-seccion {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1rem;
+      gap: 1.5rem;
+      min-width: 200px;
 
-      .circulo-avatar {
-        width: 120px;
-        height: 120px;
-        background: #00a8cc;
-        color: white;
-        font-size: 3rem;
+      .wrapper-avatar {
+        position: relative;
+        
+        .circulo-avatar {
+          width: 140px;
+          height: 140px;
+          background: linear-gradient(135deg, $azul-nudo, $cian-nudo);
+          color: white;
+          font-size: 3.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%; // Forma orgánica NUDO
+          font-weight: 800;
+          box-shadow: 0 15px 35px rgba($azul-nudo, 0.2);
+        }
+
+        .badge-negocio {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          background: white;
+          width: 45px;
+          height: 45px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.5rem;
+          box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+          animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+      }
+
+      .btn-foto-nudo {
+        background: $azul-suave;
+        color: $azul-nudo;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        &:hover { background: darken($azul-suave, 5%); }
+      }
+
+      .estado-cuenta {
         display: flex;
         align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        font-weight: bold;
+        gap: 8px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #94a3b8;
+        .dot {
+          width: 8px; height: 8px;
+          background: #cbd5e1;
+          border-radius: 50%;
+          &.activo { background: #22c55e; box-shadow: 0 0 10px #22c55e; }
+        }
       }
     }
 
+    // --- SECCIÓN DERECHA: FORMULARIO ---
     .formulario-perfil {
       flex: 1;
-      .fila { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
-      .campo { margin-bottom: 1.5rem; }
-      label { display: block; color: #003366; font-weight: 600; margin-bottom: 8px; }
-      .input-nudo {
-        width: 100%;
-        padding: 12px;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        &:focus { border-color: #00a8cc; outline: none; }
-      }
-      .btn-guardar {
-        background: #003366;
-        color: white;
-        border: none;
-        padding: 12px 30px;
-        border-radius: 10px;
-        cursor: pointer;
-        &:hover { background: #002244; }
+
+      .grid-campos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+
+        .full-width { grid-column: span 2; }
+
+        .destaque-negocio {
+          background: $azul-suave;
+          padding: 1.5rem;
+          border-radius: 18px;
+          margin-bottom: 1rem;
+          border: 1px dashed $cian-nudo;
+          
+          label { color: $cian-nudo; font-size: 0.8rem; letter-spacing: 1px; }
+          .input-nudo { background: white; border: none; font-size: 1.1rem; font-weight: 700; }
+        }
+
+        .campo-nudo {
+          label { display: block; color: $azul-nudo; font-weight: 700; margin-bottom: 8px; font-size: 0.9rem; }
+          
+          .input-container {
+            position: relative;
+            .prefix { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); opacity: 0.5; }
+            .input-nudo {
+              width: 100%;
+              padding: 14px 14px 14px 40px;
+              border: 1.5px solid #e2e8f0;
+              border-radius: 12px;
+              font-family: inherit;
+              transition: all 0.3s;
+              &:focus { border-color: $cian-nudo; box-shadow: 0 0 0 4px rgba($cian-nudo, 0.1); outline: none; }
+            }
+            textarea.input-nudo { padding-left: 15px; } // Bio no lleva prefix
+          }
+          .hint { font-size: 0.75rem; color: #94a3b8; margin-top: 5px; display: block; }
+        }
       }
     }
   }
+}
+
+.acciones-perfil {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid $azul-suave;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .mensaje-seguridad { font-size: 0.85rem; color: #94a3b8; font-weight: 500; }
+
+  .btn-guardar-nudo {
+    background: $azul-nudo;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 15px;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 10px 20px rgba($azul-nudo, 0.15);
+    &:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba($azul-nudo, 0.25); }
+  }
+}
+
+// Animaciones
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 850px) {
+  .tarjeta-perfil { flex-direction: column; align-items: center; padding: 2rem; }
+  .formulario-perfil .grid-campos { grid-template-columns: 1fr; .full-width { grid-column: span 1; } }
 }

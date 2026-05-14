@@ -1,0 +1,125 @@
+$azul-nudo: #003366;
+$cian-nudo: #00a8cc;
+$blanco: #ffffff;
+
+.contenedor-tarjeta-nudo {
+  background: $blanco;
+  border-radius: 24px;
+  padding: 1.5rem;
+  border: 1px solid rgba($azul-nudo, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: 400px; // Tamaño ideal para un grid
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba($azul-nudo, 0.12);
+    border-color: rgba($cian-nudo, 0.2);
+  }
+
+  .header-tarjeta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 1rem;
+
+    .icono-tipo-doc {
+      background: #f8fafc;
+      width: 45px; height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      font-size: 1.4rem;
+    }
+
+    .meta-contrato {
+      flex: 1;
+      .titulo-contrato {
+        margin: 0;
+        font-size: 1.05rem;
+        color: $azul-nudo;
+        font-weight: 800;
+      }
+      .folio-contrato {
+        color: #94a3b8;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .cuerpo-tarjeta {
+    .detalle {
+      margin-bottom: 0.8rem;
+      .label {
+        font-size: 0.75rem;
+        color: #94a3b8;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 700;
+      }
+      .valor {
+        margin: 2px 0 0;
+        color: #334155;
+        font-weight: 600;
+        &.monto { color: $azul-nudo; font-size: 1.1rem; }
+      }
+    }
+    .fila-doble {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .text-right { text-align: right; }
+  }
+
+  .footer-tarjeta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px dashed #e2e8f0;
+
+    .hash-blockchain {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba($cian-nudo, 0.05);
+      padding: 4px 8px;
+      border-radius: 6px;
+      .hash-text {
+        font-size: 0.65rem;
+        color: $cian-nudo;
+        font-family: monospace;
+      }
+    }
+
+    .acciones-btn {
+      display: flex;
+      gap: 8px;
+      .btn-icon {
+        background: #f1f5f9;
+        border: none;
+        width: 32px; height: 32px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s;
+        &:hover { background: #e2e8f0; }
+      }
+      .btn-primario-nudo {
+        background: $azul-nudo;
+        color: white;
+        border: none;
+        padding: 6px 15px;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        cursor: pointer;
+        &:hover { background: $cian-nudo; }
+      }
+    }
+  }
+}

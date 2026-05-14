@@ -1,1 +1,52 @@
-<p>visor-documento works!</p>
+<div class="contenedor-visor-nudo shadow-premium">
+  
+  <header class="toolbar-visor">
+    <div class="info-doc-visor">
+      <span class="icon-doc">📄</span>
+      <div class="meta">
+        <h4>{{ nombreDocumento }}</h4>
+        <small>Folio Seguridad: {{ folioDoc }}</small>
+      </div>
+    </div>
+
+    <div class="controles-lectura">
+      <button class="btn-tool" (click)="cambiarZoom(-10)">➖</button>
+      <span class="porcentaje-zoom">{{ nivelZoom }}%</span>
+      <button class="btn-tool" (click)="cambiarZoom(10)">➕</button>
+      <div class="divisor-v"></div>
+      <button class="btn-tool" (click)="imprimir()">🖨️</button>
+      <button class="btn-tool" (click)="descargar()">📥</button>
+    </div>
+
+    <button class="btn-cerrar-visor" (click)="cerrar()">✕</button>
+  </header>
+
+  <main class="escenario-documento">
+    <div class="hoja-digital" [style.width.%]="nivelZoom">
+      <div class="contenido-contrato-placeholder">
+        <header class="encabezado-legal">
+          <img src="assets/images/logo-nudo-black.png" alt="NUDO Logo" class="logo-contrato">
+          <p class="sello-blockchain-header">Sello Blockchain: {{ hashBlockchain }}</p>
+        </header>
+
+        <section class="texto-legal">
+          <ng-content></ng-content>
+          <p *ngIf="!cargado" class="cargando-texto">Sincronizando documento con la red...</p>
+        </section>
+
+        <footer class="firmas-contrato">
+          <div class="firma">
+            <div class="espacio-firma"></div>
+            <p>Firma del Prestador</p>
+          </div>
+          <div class="firma">
+            <div class="espacio-firma"></div>
+            <p>Firma del Cliente</p>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </main>
+
+  <div class="watermark-nudo">PROTEGIDO POR NUDO © 2026</div>
+</div>

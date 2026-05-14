@@ -1,0 +1,72 @@
+$verde-exito: #22c55e;
+$amarillo-alerta: #eab308;
+$azul-blockchain: #00a8cc;
+$rojo-error: #ef4444;
+$gris-neutral: #94a3b8;
+
+.contenedor-etiqueta {
+  display: inline-block;
+}
+
+.badge-nudo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+
+  .icono-estado {
+    font-size: 1rem;
+  }
+
+  // --- VARIANTES DE ESTADO ---
+
+  &.estado-firmado {
+    background: rgba($verde-exito, 0.1);
+    color: $verde-exito;
+    border-color: rgba($verde-exito, 0.2);
+  }
+
+  &.estado-pendiente {
+    background: rgba($amarillo-alerta, 0.1);
+    color: #854d0e;
+    border-color: rgba($amarillo-alerta, 0.2);
+  }
+
+  &.estado-blockchain {
+    background: linear-gradient(135deg, rgba($azul-blockchain, 0.1), rgba($azul-blockchain, 0.2));
+    color: $azul-blockchain;
+    border-color: rgba($azul-blockchain, 0.3);
+    box-shadow: 0 0 15px rgba($azul-blockchain, 0.1);
+  }
+
+  &.estado-rechazado {
+    background: rgba($rojo-error, 0.1);
+    color: $rojo-error;
+    border-color: rgba($rojo-error, 0.2);
+  }
+
+  // Animación de pulso para lo que está en la red
+  .pulso {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: $azul-blockchain;
+    border-radius: 50%;
+    right: -2px;
+    top: -2px;
+    animation: ripple 1.5s infinite;
+  }
+}
+
+@keyframes ripple {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(3); opacity: 0; }
+}

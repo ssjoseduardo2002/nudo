@@ -1,43 +1,158 @@
+// Variables de NUDO
+$azul-nudo: #003366;
+$cian-nudo: #00a8cc;
+$oro-oxxo: #eb1c24; // El rojo vibrante de OXXO
+$gris-fondo: #f8fafc;
+$sombra-premium: 0 15px 35px rgba(0, 51, 102, 0.1);
+
+.contenedor-pago-nudo {
+  padding: 2rem;
+  background: $gris-fondo;
+  min-height: 100vh;
+
+  .checkout-layout {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
 .grid-metodos {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin: 2rem 0;
+
+  .metodo-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 18px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+
+    input { display: none; } // Escondemos el radio original
+
+    .icono { font-size: 1.8rem; display: block; margin-bottom: 8px; }
+    .titulo { font-weight: 700; color: $azul-nudo; display: block; font-size: 0.95rem; }
+    small { color: #94a3b8; font-size: 0.75rem; }
+
+    &:hover:not(.bloqueado) {
+      transform: translateY(-5px);
+      box-shadow: $sombra-premium;
+    }
+
+    &.activo {
+      border-color: $cian-nudo;
+      background: rgba($cian-nudo, 0.02);
+      transform: scale(1.02);
+    }
+  }
 }
 
-.aviso-mantenimiento {
-  text-align: center;
-  padding: 2rem;
-  background: #fdfdfd;
-  border: 2px dashed #d1d8e0;
-  border-radius: 15px;
+// Estilo para Información de Transferencia y OXXO
+.info-pago-detaille {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
 
-  .badge-mantenimiento {
-    display: inline-block;
-    background: #ffe58f;
-    color: #856404;
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 0.7rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
+  .header-info {
+    margin-bottom: 1.5rem;
+    .logo-redes { color: $azul-nudo; font-weight: 800; font-size: 0.8rem; opacity: 0.5; }
+    .logo-oxxo { color: $oro-oxxo; font-weight: 900; }
   }
 
-  .info-bloqueada {
-    margin-top: 1.5rem;
-    padding: 1rem;
-    background: #f1f2f6;
+  .datos-bancarios, .ticket-oxxo {
+    margin-top: 2rem;
+    background: #f1f5f9;
+    padding: 1.5rem;
+    border-radius: 12px;
+    
+    .dato {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      font-size: 0.9rem;
+      &:last-child { border: none; }
+    }
+  }
+
+  .referencia-box {
+    background: white;
+    padding: 1.5rem;
+    text-align: center;
     border-radius: 10px;
-    color: #a4b0be;
-    font-style: italic;
+    border: 2px dashed $oro-oxxo;
+    
+    .referencia-num {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: $azul-nudo;
+      letter-spacing: 2px;
+    }
   }
 }
 
+// Resumen Estilo Ticket
+.ticket-nudo {
+  background: white;
+  padding: 2rem;
+  border-radius: 24px;
+  position: relative;
+  box-shadow: $sombra-premium;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10px; left: 0; right: 0;
+    height: 20px;
+    background-image: radial-gradient(circle at 10px -5px, transparent 12px, white 13px);
+    background-size: 20px 20px;
+  }
+
+  .fila-ticket {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    color: #64748b;
+  }
+
+  .fila-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #f1f5f9;
+    
+    .monto-final {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: $azul-nudo;
+    }
+  }
+}
+
+// Animaciones
 .form-animado {
-  animation: slideUp 0.3s ease-out;
+  animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+// Responsive
+@media (max-width: 992px) {
+  .contenedor-pago-nudo .checkout-layout {
+    grid-template-columns: 1fr;
+  }
 }

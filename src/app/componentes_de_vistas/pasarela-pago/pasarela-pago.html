@@ -1,36 +1,59 @@
-<div class="contenedor-pago">
+<div class="contenedor-pago-nudo">
   <div class="checkout-layout">
     
-    <section class="seccion-formulario">
-      <header>
-        <h2>🔒 Pasarela de Pago Seguro</h2>
-        <p>Selecciona tu método de preferencia y blinda tu proyecto en minutos.</p>
+    <section class="seccion-formulario shadow-premium">
+      <header class="header-pago">
+        <div class="indicador-seguridad">
+          <span class="lock-icon">🔒</span>
+          <span class="shield-text">Transacción Encriptada SSL</span>
+        </div>
+        <h2>Método de Pago</h2>
+        <p>Selecciona cómo deseas blindar tu talento creativo hoy.</p>
       </header>
 
       <div class="grid-metodos">
         <label class="metodo-card" [class.activo]="metodoSeleccionado === 'tarjeta'">
           <input type="radio" name="metodo" value="tarjeta" [(ngModel)]="metodoSeleccionado">
-          <span class="icono">💳</span>
-          <span class="titulo">Tarjeta</span>
-          <small>Visa, MC, AMEX</small>
+          <div class="metodo-contenido">
+            <span class="icono">💳</span>
+            <div class="texto">
+              <span class="titulo">Tarjeta</span>
+              <small>Crédito / Débito</small>
+            </div>
+          </div>
         </label>
 
         <label class="metodo-card" [class.activo]="metodoSeleccionado === 'paypal'">
           <input type="radio" name="metodo" value="paypal" [(ngModel)]="metodoSeleccionado">
-          <span class="icono">🅿️</span>
-          <span class="titulo">PayPal</span>
+          <div class="metodo-contenido">
+            <span class="icono">🅿️</span>
+            <div class="texto">
+              <span class="titulo">PayPal</span>
+              <small>Express Checkout</small>
+            </div>
+          </div>
         </label>
 
         <label class="metodo-card" [class.activo]="metodoSeleccionado === 'transferencia'">
           <input type="radio" name="metodo" value="transferencia" [(ngModel)]="metodoSeleccionado">
-          <span class="icono">🏛️</span>
-          <span class="titulo">Transferencia</span>
+          <div class="metodo-contenido">
+            <span class="icono">🏛️</span>
+            <div class="texto">
+              <span class="titulo">Transferencia</span>
+              <small>Visa / MC / AMEX</small>
+            </div>
+          </div>
         </label>
 
         <label class="metodo-card" [class.activo]="metodoSeleccionado === 'deposito'">
           <input type="radio" name="metodo" value="deposito" [(ngModel)]="metodoSeleccionado">
-          <span class="icono">💰</span>
-          <span class="titulo">Depósito</span>
+          <div class="metodo-contenido">
+            <span class="icono">🏪</span>
+            <div class="texto">
+              <span class="titulo">OXXO Pay</span>
+              <small>Efectivo</small>
+            </div>
+          </div>
         </label>
       </div>
 
@@ -39,43 +62,51 @@
         <form *ngIf="metodoSeleccionado === 'tarjeta'" class="form-animado">
           <div class="campo">
             <label>Número de Tarjeta</label>
-            <input type="text" placeholder="XXXX XXXX XXXX XXXX" class="input-nudo">
+            <input type="text" placeholder="0000 0000 0000 0000" class="input-nudo">
           </div>
-          <div class="fila">
+          <div class="fila-doble">
             <div class="campo">
               <label>Expiración</label>
-              <input type="text" placeholder="MM/AA" class="input-nudo">
+              <input type="text" placeholder="MM / AA" class="input-nudo">
             </div>
             <div class="campo">
               <label>CVC</label>
-              <input type="text" placeholder="123" class="input-nudo">
+              <input type="password" placeholder="***" class="input-nudo">
             </div>
           </div>
-          <button (click)="procesarPago()" class="btn-pagar">Blindar por ${{ total | number:'1.2-2' }}</button>
+          <button (click)="procesarPago()" class="btn-pagar-nudo">Finalizar Pago de ${{ total | number:'1.2-2' }}</button>
         </form>
 
-        <div *ngIf="metodoSeleccionado === 'paypal'" class="form-animado m-centro">
-          <p>Serás redirigido a la plataforma oficial de PayPal para completar la transacción.</p>
-          <button (click)="procesarPago()" class="btn-paypal">Continuar con PayPal</button>
+        <div *ngIf="metodoSeleccionado === 'paypal'" class="form-animado centro">
+          <p>Haz clic para conectar con tu cuenta de <strong>PayPal</strong> y autorizar el blindaje.</p>
+          <button (click)="procesarPago()" class="btn-paypal-nudo">Continuar a PayPal</button>
         </div>
 
-        <div *ngIf="metodoSeleccionado === 'transferencia'" class="aviso-mantenimiento form-animado">
-          <div class="badge-mantenimiento">EN MANTENIMIENTO</div>
-          <h3>Transferencia SPEI</h3>
-          <p>Aceptamos Visa, MasterCard y American Express vía banca en línea.</p>
-          <div class="info-bloqueada">
-            <p><strong>CLABE:</strong> [Información en mantenimiento]</p>
-            <p><strong>Banco:</strong> [Información en mantenimiento]</p>
+        <div *ngIf="metodoSeleccionado === 'transferencia'" class="info-pago-detalle form-animado">
+          <div class="header-info">
+            <span class="logo-redes">MasterCard | Visa | AMEX</span>
+          </div>
+          <h3>Instrucciones de Transferencia</h3>
+          <p>Realiza tu pago vía SPEI o banca móvil para una activación inmediata.</p>
+          <div class="datos-bancarios">
+            <div class="dato"><strong>CLABE Interbancaria:</strong> <span>[Esperando información...]</span></div>
+            <div class="dato"><strong>Banco:</strong> <span>[Esperando información...]</span></div>
+            <div class="dato"><strong>Concepto:</strong> <span>Blindaje NUDO - {{ (idContrato || '999') }}</span></div>
           </div>
         </div>
 
-        <div *ngIf="metodoSeleccionado === 'deposito'" class="aviso-mantenimiento form-animado">
-          <div class="badge-mantenimiento">EN MANTENIMIENTO</div>
-          <h3>Depósito en Sucursal</h3>
-          <p>Próximamente podrás realizar depósitos directamente en ventanilla.</p>
-          <div class="info-bloqueada">
-            <p><strong>Número de Cuenta:</strong> [En mantenimiento]</p>
-            <p><strong>Referencia:</strong> [En mantenimiento]</p>
+        <div *ngIf="metodoSeleccionado === 'deposito'" class="info-pago-detalle form-animado">
+          <div class="header-info">
+            <span class="logo-oxxo">OXXO Pay</span>
+          </div>
+          <h3>Pago en Efectivo</h3>
+          <p>Dicta el siguiente número al cajero de cualquier tienda OXXO para completar tu trámite.</p>
+          <div class="ticket-oxxo">
+            <div class="referencia-box">
+              <small>Número de Referencia</small>
+              <span class="referencia-num">[Esperando información...]</span>
+            </div>
+            <p class="nota">Recuerda que OXXO cobra una comisión adicional en caja.</p>
           </div>
         </div>
 
@@ -83,23 +114,24 @@
     </section>
 
     <aside class="resumen-pedido">
-      <h3>Resumen de NUDO</h3>
-      <div class="detalle">
-        <p>{{ plan.nombre }}</p>
-        <span>${{ plan.precio | number:'1.2-2' }}</span>
-      </div>
-      <div class="detalle">
-        <p>IVA aplicado</p>
-        <span>${{ plan.iva | number:'1.2-2' }}</span>
-      </div>
-      <hr>
-      <div class="total">
-        <p>Total Final</p>
-        <span>${{ total | number:'1.2-2' }}</span>
-      </div>
-      <div class="garantia-box">
-        <span class="check">🛡️</span>
-        <p><strong>Garantía NUDO:</strong> Tus datos están protegidos bajo cifrado SSL de grado bancario.</p>
+      <div class="ticket-nudo">
+        <h3>Resumen de Orden</h3>
+        <div class="fila-ticket">
+          <span>{{ plan.nombre }}</span>
+          <strong>${{ plan.precio | number:'1.2-2' }}</strong>
+        </div>
+        <div class="fila-ticket">
+          <span>IVA</span>
+          <strong>${{ plan.iva | number:'1.2-2' }}</strong>
+        </div>
+        <div class="divisor-punteado"></div>
+        <div class="fila-total">
+          <span>Total a Pagar</span>
+          <span class="monto-final">${{ total | number:'1.2-2' }}</span>
+        </div>
+        <div class="garantia-box">
+          <p>✅ Blindaje 100% Asegurado por NUDO</p>
+        </div>
       </div>
     </aside>
 

@@ -1,1 +1,37 @@
-<p>buscador works!</p>
+<div class="contenedor-buscador-nudo">
+  <div class="barra-busqueda-wrapper">
+    
+    <div class="input-group-nudo shadow-premium">
+      <span class="lupa-icon">🔍</span>
+      <input 
+        type="text" 
+        [(ngModel)]="terminoBusqueda" 
+        (input)="alBuscar()" 
+        placeholder="Buscar contratos, clientes o folios de seguridad..."
+        class="input-buscador">
+      
+      <button *ngIf="terminoBusqueda" (click)="limpiarBusqueda()" class="btn-clear">
+        ✕
+      </button>
+    </div>
+
+    <div class="filtros-rapidos">
+      <span class="label-filtros">Sugerencias:</span>
+      <button class="chip-filtro" (click)="setFiltro('Pendiente')">⏳ Pendientes</button>
+      <button class="chip-filtro" (click)="setFiltro('Firmado')">✍️ Firmados</button>
+      <button class="chip-filtro" (click)="setFiltro('Blockchain')">⛓️ En Blockchain</button>
+    </div>
+
+    <div class="resultados-sugeridos" *ngIf="resultadosPrevios.length > 0 && terminoBusqueda">
+      <div class="item-sugerido" *ngFor="let item of resultadosPrevios">
+        <span class="tipo-doc">📄</span>
+        <div class="info-item">
+          <p class="nombre-doc">{{ item.nombre }}</p>
+          <small class="folio-doc">Folio: {{ item.id }}</small>
+        </div>
+        <span class="estado-badge">{{ item.estado }}</span>
+      </div>
+    </div>
+
+  </div>
+</div>

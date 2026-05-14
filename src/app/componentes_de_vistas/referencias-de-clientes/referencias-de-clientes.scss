@@ -1,0 +1,187 @@
+// Variables de Marca NUDO
+$azul-nudo: #003366;
+$cian-nudo: #00a8cc;
+$blanco-puro: #ffffff;
+$gris-suave: #f8fafc;
+$sombra-premium: 0 20px 40px rgba(0, 51, 102, 0.08);
+
+.contenedor-referencias {
+  padding: 5rem 2rem;
+  background: radial-gradient(circle at top right, #fdfdfe, #f1f5f9);
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+
+  .header-seccion {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 5rem;
+    
+    .badge-nudo {
+      background: rgba($cian-nudo, 0.1);
+      color: $cian-nudo;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      color: $azul-nudo;
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    p {
+      color: #64748b;
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+  }
+}
+
+.grid-testimonios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card-testimonio {
+  background: rgba($blanco-puro, 0.8);
+  backdrop-filter: blur(10px); // Efecto Glassmorphism
+  border-radius: 30px;
+  padding: 3rem;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: $sombra-premium;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    font-size: 12rem;
+    color: rgba($cian-nudo, 0.05);
+    font-family: serif;
+  }
+
+  &:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 30px 60px rgba($azul-nudo, 0.15);
+    border-color: rgba($cian-nudo, 0.3);
+  }
+
+  .header-card {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+
+    .info-cliente {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+
+      .avatar-cliente {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, $azul-nudo, $cian-nudo);
+        color: white;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 900;
+        box-shadow: 0 10px 20px rgba($azul-nudo, 0.2);
+      }
+
+      .meta {
+        h4 { color: $azul-nudo; font-size: 1.2rem; margin: 0; font-weight: 800; }
+        small { color: #94a3b8; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; }
+      }
+    }
+
+    .sello-verificado {
+      font-size: 1.5rem;
+      filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+    }
+  }
+
+  .cuerpo-card {
+    flex: 1;
+    .estrellas { color: #ffb100; margin-bottom: 1rem; letter-spacing: 3px; }
+    .comentario {
+      color: #334155;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      font-style: italic;
+    }
+  }
+
+  .footer-card {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed #e2e8f0;
+
+    .badge-servicio {
+      display: inline-block;
+      color: $cian-nudo;
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+
+    .fecha-registro {
+      display: block;
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 0.7rem;
+      color: #94a3b8;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+.footer-seccion {
+  margin-top: 6rem;
+  text-align: center;
+  p { font-size: 1.3rem; color: $azul-nudo; font-weight: 600; margin-bottom: 2rem; }
+  
+  .btn-nudo-primario {
+    background: $azul-nudo;
+    color: white;
+    padding: 18px 45px;
+    border-radius: 50px;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 15px 30px rgba($azul-nudo, 0.2);
+    transition: all 0.3s;
+
+    &:hover {
+      background: $cian-nudo;
+      transform: scale(1.05);
+      box-shadow: 0 20px 40px rgba($cian-nudo, 0.3);
+    }
+  }
+}
+
+// Adaptabilidad para móviles
+@media (max-width: 768px) {
+  .contenedor-referencias {
+    padding: 3rem 1rem;
+    .header-seccion h2 { font-size: 2.2rem; }
+    .grid-testimonios { grid-template-columns: 1fr; }
+  }
+}

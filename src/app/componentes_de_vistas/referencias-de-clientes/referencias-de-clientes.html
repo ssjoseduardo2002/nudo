@@ -1,1 +1,40 @@
-<p>referencias-de-clientes works!</p>
+<div class="contenedor-referencias">
+  
+  <header class="header-seccion">
+    <span class="badge-nudo">Social Proof</span>
+    <h2>Voces que Confían en NUDO</h2>
+    <p>No lo decimos nosotros, lo dicen los creativos que ya blindaron su futuro.</p>
+  </header>
+
+  <div class="grid-testimonios">
+    <article class="card-testimonio" *ngFor="let ref of referencias">
+      <div class="header-card">
+        <div class="info-cliente">
+          <div class="avatar-cliente">
+            <span>{{ ref.cliente[0] }}</span>
+          </div>
+          <div class="meta">
+            <h4>{{ ref.cliente }}</h4>
+            <small>{{ ref.empresa }}</small>
+          </div>
+        </div>
+        <div class="sello-verificado">🛡️</div>
+      </div>
+
+      <div class="cuerpo-card">
+        <div class="estrellas">⭐⭐⭐⭐⭐</div>
+        <p class="comentario">"{{ ref.comentario }}"</p>
+      </div>
+
+      <footer class="footer-card">
+        <span class="badge-servicio">{{ ref.servicioAdquirido }}</span>
+        <span class="fecha-registro">Sello Blockchain: #{{ ref.idHash }}</span>
+      </footer>
+    </article>
+  </div>
+
+  <footer class="footer-seccion">
+    <p>¿Listo para ser nuestra próxima historia de éxito?</p>
+    <button class="btn-nudo-primario">Blindar mi primer proyecto</button>
+  </footer>
+</div>

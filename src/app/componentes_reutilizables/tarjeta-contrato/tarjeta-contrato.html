@@ -1,1 +1,43 @@
-<p>tarjeta-contrato works!</p>
+<div class="contenedor-tarjeta-nudo shadow-premium animate-fade-in">
+  
+  <header class="header-tarjeta">
+    <div class="icono-tipo-doc">
+      <span class="emoji-doc">📄</span>
+    </div>
+    <div class="meta-contrato">
+      <h3 class="titulo-contrato">{{ contrato.titulo }}</h3>
+      <small class="folio-contrato">ID: {{ contrato.folio }}</small>
+    </div>
+    <app-etiqueta-de-estado [estado]="contrato.estado"></app-etiqueta-de-estado>
+  </header>
+
+  <main class="cuerpo-tarjeta">
+    <div class="detalle">
+      <span class="label">Cliente / Negocio:</span>
+      <p class="valor">{{ contrato.cliente }}</p>
+    </div>
+    <div class="fila-doble">
+      <div class="detalle">
+        <span class="label">Fecha:</span>
+        <p class="valor">{{ contrato.fecha | date:'dd/MM/yyyy' }}</p>
+      </div>
+      <div class="detalle text-right">
+        <span class="label">Monto:</span>
+        <p class="valor monto">${{ contrato.monto | number:'1.2-2' }}</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-tarjeta">
+    <div class="hash-blockchain" *ngIf="contrato.estado === 'Blockchain'">
+      <span class="key-icon">🔑</span>
+      <span class="hash-text">{{ contrato.hashBlockchain | slice:0:12 }}...</span>
+    </div>
+    <div class="acciones-btn">
+      <button class="btn-icon" title="Ver Detalles">👁️</button>
+      <button class="btn-icon" title="Descargar PDF">📥</button>
+      <button class="btn-primario-nudo">Gestionar</button>
+    </div>
+  </footer>
+
+</div>

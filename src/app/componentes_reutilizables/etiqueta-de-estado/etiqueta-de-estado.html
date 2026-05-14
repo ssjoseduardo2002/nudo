@@ -1,1 +1,18 @@
-<p>etiqueta-de-estado works!</p>
+<div class="contenedor-etiqueta">
+  <span class="badge-nudo" [ngClass]="'estado-' + estado.toLowerCase().replace(' ', '-')">
+    
+    <span class="icono-estado">
+      <ng-container [ngSwitch]="estado.toLowerCase()">
+        <span *ngSwitchCase="'firmado'">✅</span>
+        <span *ngSwitchCase="'pendiente'">⏳</span>
+        <span *ngSwitchCase="'blockchain'">⛓️</span>
+        <span *ngSwitchCase="'rechazado'">❌</span>
+        <span *ngSwitchDefault>📄</span>
+      </ng-container>
+    </span>
+
+    <span class="texto-estado">{{ estado }}</span>
+    
+    <span class="pulso" *ngIf="estado.toLowerCase() === 'blockchain'"></span>
+  </span>
+</div><p>etiqueta-de-estado works!</p>
