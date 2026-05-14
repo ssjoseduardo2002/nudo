@@ -1,25 +1,39 @@
 <footer class="nudo-footer">
   <div class="contenedor-footer">
+    
     <div class="columna-footer">
-      <h3>NUDO</h3>
-      <p>Protección legal para mentes creativas.</p>
+      <div class="brand-footer">
+        <h3>NUDO</h3>
+        <div class="divisor-brillo"></div>
+      </div>
+      <p>Protección legal y tecnológica para mentes creativas. Blindamos tu talento con seguridad de grado ingeniería.</p>
     </div>
     
     <div class="columna-footer">
       <h3>Legal</h3>
-      <ul>
-        <li><a href="#">Términos de Servicio</a></li>
-        <li><a href="#">Privacidad</a></li>
-      </ul>
+      <nav>
+        <ul>
+          <li><a href="#" class="link-nudo">Términos de Servicio</a></li>
+          <li><a href="#" class="link-nudo">Política de Privacidad</a></li>
+          <li><a href="#" class="link-nudo">Cookies</a></li>
+        </ul>
+      </nav>
     </div>
 
     <div class="columna-footer">
       <h3>Ayuda</h3>
-      <a (click)="irAyuda()" class="enlace-soporte">Contactar Soporte</a>
+      <div class="soporte-container">
+        <p>¿Necesitas asesoría técnica o legal?</p>
+        <button (click)="irAyuda()" class="enlace-soporte">
+          <span class="icon">🎧</span> Contactar Soporte
+        </button>
+      </div>
     </div>
+
   </div>
   
   <div class="copyright">
-    <p>© 2026 NUDO - Todos los derechos reservados.</p>
+    <div class="divisor-final"></div>
+    <p>© {{ fechaActual }} NUDO — Desarrollado por y para socios creativos.</p>
   </div>
 </footer>

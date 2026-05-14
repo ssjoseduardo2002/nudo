@@ -1,11 +1,12 @@
 /* ==========================================================================
-   CONFIGURACIÓN GLOBAL: LAYOUT PRINCIPAL
+    CONFIGURACIÓN GLOBAL: EL ADN DE NUDO
    ========================================================================== */
 :host {
   display: block;
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
 .layout-principal {
@@ -13,33 +14,40 @@
   flex-direction: column;
   height: 100vh;
   width: 100%;
-  background-color: #f4f7f9;
+  background-color: #f8fafc; // Un gris azulado más moderno y limpio
   overflow: hidden;
+  transition: background-color 0.5s ease;
 
-  /* Contenedor que agrupa Barra Lateral y Contenido */
   .contenedor-cuerpo-app {
     display: flex;
     flex: 1;
-    overflow: hidden;
+    overflow: hidden; // Evita scroll doble entre sidebar y contenido
+    position: relative;
   }
 
-  /* --- MODO ACCESO (Login) --- */
+  /* --- MODO FOCO (Login / Pasarela) --- */
   &.modo-acceso-total {
-    justify-content: center;
-    align-items: center;
-    background-color: #eef2f5;
-
+    background: radial-gradient(circle at top right, #eef2f5 0%, #d1d9e6 100%);
+    
     .contenedor-cuerpo-app {
-      display: flex;
       justify-content: center;
       align-items: center;
-      width: 100%;
+    }
+
+    .contenido-principal {
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .zona-vistas-nudo {
+      max-width: 500px; // Centramos y acotamos el login para mejor UX
+      padding: 0;
     }
   }
 }
 
 /* ==========================================================================
-   CONTENIDO PRINCIPAL
+    CONTENIDO Y VIEWPORT
    ========================================================================== */
 .contenido-principal {
   flex: 1;
@@ -49,29 +57,44 @@
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
+  scroll-behavior: smooth;
+
+  /* Barra de scroll personalizada para NUDO */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+    &:hover { background: #00a8cc; }
+  }
 }
 
 .zona-vistas-nudo {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1300px; // Un poco más de aire para pantallas grandes
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2.5rem 1.5rem;
   flex-grow: 1;
   box-sizing: border-box;
   
-  /* Asegura que el contenedor del router no rompa el layout */
   .router-wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100%;
+    animation: fadeInView 0.4s ease-out;
   }
 }
 
-/* -----------------------------------------------------------------------
-   CORRECCIÓN DE SELECTOR: Sincronizado con tu app.html
-   ----------------------------------------------------------------------- */
-app-pie-de-pagina {
+/* Sincronización con el componente que blindamos */
+app-footer {
   margin-top: auto;
   width: 100%;
   flex-shrink: 0;
+}
+
+/* --- ANIMACIONES --- */
+@keyframes fadeInView {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

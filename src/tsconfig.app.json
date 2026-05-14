@@ -2,10 +2,21 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../dist/out-tsc/app",
-    "types": []
+    "types": [],
+    // ⚡ BLINDAJE EXTRA: Asegura que el compilador no ignore decoradores
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
-  "files": [ "main.ts" ],
-  "include": [ "**/*.d.ts", "**/*.ts" ],
-  "exclude": [ "**/*.spec.ts" ]
+  "files": [
+    "main.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts",
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/test.ts"
+  ]
 }
   

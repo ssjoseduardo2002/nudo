@@ -10,24 +10,35 @@ import { CommonModule } from '@angular/common';
 })
 export class LaMenteDetrasDeNUDO implements OnInit {
 
-  // Modelo de datos para redes sociales (listo para expandir)
+  // ⚡ ANIKILACIÓN DE ERRORES: Sincronización de Identidad NUDO
   public redesSociales = {
     instagram: 'https://instagram.com/tu_usuario',
     linkedin: 'https://linkedin.com/in/tu_perfil',
     github: 'https://github.com/tu_repo'
   };
 
+  // Datos biográficos para el "About"
+  public nombreFundador: string = 'José';
+  public cargo: string = 'CEO de NUDO';
+
   constructor() {}
 
   ngOnInit(): void {
+    /**
+     * 🕵️ Registro de Auditoría:
+     * El manifiesto se carga solo cuando el socio busca conocer el origen de la protección.
+     */
     console.log('--- Manifiesto de NUDO cargado ---');
-    console.log('CEO: José | Misión: Blindar el talento creativo.');
+    console.log(`${this.cargo}: ${this.nombreFundador} | Misión: Blindar el talento creativo.`);
   }
 
   /**
-   * Método para navegación externa a redes sociales
+   * Método de navegación segura hacia perfiles externos.
+   * "Operar sin emociones": Un clic, una ventana nueva, conexión total.
    */
   public irARed(url: string): void {
-    window.open(url, '_blank');
+    if (url) {
+      window.open(url, '_blank', 'noopener noreferrer');
+    }
   }
 }

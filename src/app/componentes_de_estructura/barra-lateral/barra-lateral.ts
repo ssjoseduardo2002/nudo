@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-// Definimos una interfaz sencilla para que el menú sea ordenado
+// Estructura de datos para un menú de grado ingeniería
 interface MenuItem {
   label: string;
   route: string;
@@ -16,15 +16,14 @@ interface MenuItem {
   templateUrl: './barra-lateral.html',
   styleUrl: './barra-lateral.scss'
 })
-// IMPORTANTE: El nombre de la clase debe ser exactamente 'BarraLateral'
-export class BarraLateral implements OnInit {
+export class BarraLateral implements OnInit { // ⚡ CLAVE: Nombre unificado sin "Component"
   
-  // Aquí definimos los items que se dibujarán en tu Sidebar
+  // Definición del ecosistema de navegación de NUDO
   public menuItems: MenuItem[] = [
-    { label: 'Inicio', route: '/inicio', icon: '🏠' },
-    { label: 'Catálogo', route: '/catalogo', icon: '📜' },
-    { label: 'Crear Contrato', route: '/generador-contrato', icon: '✍️' },
-    { label: 'Mis Documentos', route: '/perfil-usuario', icon: '📂' }
+    { label: 'Inicio', route: '/inicio', icon: 'grid_view' },
+    { label: 'Catálogo', route: '/catalogo', icon: 'description' },
+    { label: 'Crear Contrato', route: '/generador-contrato', icon: 'border_color' },
+    { label: 'Mis Documentos', route: '/perfil-usuario', icon: 'folder_shared' }
   ];
 
   constructor() {}
@@ -34,18 +33,17 @@ export class BarraLateral implements OnInit {
   }
 
   /**
-   * Navega a la configuración (Lógica creativa)
+   * Abre el panel de control técnico.
    */
   public abrirConfiguracion(): void {
-    console.log('⚙️ Abriendo panel de ajustes...');
-    // Aquí podrías disparar un modal o navegar a una ruta de ajustes
+    console.log('⚙️ NUDO: Accediendo a configuración del sistema...');
   }
 
   /**
-   * Cierra la sesión del usuario (Preparado para Firebase)
+   * Cierra el acceso al búnker (Preparado para la lógica de Firebase).
    */
   public cerrarSesion(): void {
-    console.log('🚪 El socio ha decidido salir. Cerrando sesión...');
-    // Próximamente: this.authService.logout();
+    console.log('🚪 Sesión finalizada por el socio.');
+    // Aquí conectarás con tu authService de Firebase más adelante
   }
 }

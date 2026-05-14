@@ -1,8 +1,12 @@
-// Importa las funciones necesarias del SDK de Firebase
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
-// La configuración de Firebase (según lo que me dio Google)
+/**
+ * ADN de Conexión NUDO
+ * Estos tokens son las llaves de acceso a nuestro búnker de datos.
+ */
 const firebaseConfig = {
   apiKey: "AIzaSyAa3IMbT_heAMJrBHj9GnT-U1A969tRqvA",
   authDomain: "nudo-contratos.firebaseapp.com",
@@ -12,8 +16,14 @@ const firebaseConfig = {
   appId: "1:1055302143890:web:5c204354ccbf96b5917b4b"
 };
 
-// Inicializa Firebase
+// 1. Inicializamos la chispa del motor
 export const app = initializeApp(firebaseConfig);
 
-// Inicializa el servicio de autenticación y lo exporta para usarlo en otros componentes
+// 2. Exportamos el servicio de Autenticación (Llaves de los socios)
 export const auth = getAuth(app);
+
+// 3. Exportamos la Base de Datos (El archivo de contratos)
+export const db = getFirestore(app);
+
+// 4. Exportamos el Almacenamiento (La bóveda de archivos blindados)
+export const storage = getStorage(app);

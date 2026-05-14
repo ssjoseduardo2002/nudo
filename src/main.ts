@@ -1,6 +1,14 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { AppComponent } from './app/app';
 import { appConfig } from './app/app.config';
+import { App } from './app/app'; // ⚡ SINCRONIZADO: Importamos 'App' en lugar de 'AppComponent'
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+/**
+ * 🛰️ LANZAMIENTO DE NUDO
+ * bootstrapApplication es el comando que eleva nuestra arquitectura Standalone
+ * al navegador, inyectando la configuración global (appConfig).
+ */
+bootstrapApplication(App, appConfig)
+  .catch((err) => {
+    console.error('--- 🚨 ERROR CRÍTICO EN EL ARRANQUE DE NUDO ---');
+    console.error(err);
+  });

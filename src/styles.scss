@@ -1,1 +1,85 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files *//* ==========================================================================
+   NUDO - SISTEMA DE DISEÑO GLOBAL
+   Misión: Claridad, Seguridad y Profesionalismo.
+   ========================================================================== */
+
+// 1. Reset Moderno: Adiós a los márgenes extraños y scrolls dobles
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  // Tipografía Inter (que configuramos en el index.html)
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f8fafc; // El fondo limpio de NUDO
+  color: #1e293b; // Azul pizarra oscuro para lectura perfecta
+  overflow: hidden; // El scroll se maneja dentro del layout principal
+}
+
+/* 2. Variables de Identidad (Design Tokens) */
+:root {
+  --nudo-primario: #003366;    // Azul Marino (Seguridad)
+  --nudo-secundario: #00a8cc;  // Cian (Tecnología)
+  --nudo-exito: #10b981;       // Verde (Contrato Firmado)
+  --nudo-error: #ef4444;       // Rojo (Alerta)
+  --nudo-fondo: #f8fafc;
+  --nudo-blanco: #ffffff;
+}
+
+/* 3. Estilos de Scrollbar (Para que no se vea el feo de Windows) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+  &:hover {
+    background: var(--nudo-secundario);
+  }
+}
+
+/* 4. Clases de Utilidad para NUDO */
+.text-gradient {
+  background: linear-gradient(90deg, var(--nudo-primario), var(--nudo-secundario));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+// Estilo para el Shimmer Overlay que corregimos en el app.html
+.shimmer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &::after {
+    content: "Cargando NUDO...";
+    font-weight: 600;
+    color: var(--nudo-primario);
+    animation: pulse 1.5s infinite;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

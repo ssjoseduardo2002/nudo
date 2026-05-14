@@ -4,8 +4,13 @@
     "outDir": "../dist/out-tsc/spec",
     "types": [
       "jasmine"
-    ]
+    ],
+    // ⚡ SOLUCIÓN FINAL: Obligamos a TS a mirar solo la carpeta src como origen
+    "rootDir": "src"
   },
+  "files": [
+    "test.ts"
+  ],
   "include": [
     "**/*.spec.ts",
     "**/*.d.ts"

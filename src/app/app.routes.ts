@@ -1,80 +1,73 @@
 import { Routes } from '@angular/router';
 
-// Vistas principales
-import { AccesoComponent } from './componentes_de_vistas/acceso/acceso';
-import { InicioComponent } from './componentes_de_vistas/inicio/inicio';
-import { CatalogoComponent } from './componentes_de_vistas/catalogo/catalogo';
-import { GeneradorContratoComponent } from './componentes_de_vistas/generador-contrato/generador-contrato';
-import { EditorContratoComponent } from './componentes_de_vistas/editor-contrato/editor-contrato';
-import { CentroAyudaComponent } from './componentes_de_vistas/centro-ayuda/centro-ayuda';
-import { PerfilUsuarioComponent } from './componentes_de_vistas/perfil-de-usuario/perfil-de-usuario';
-import { PasarelaPagoComponent } from './componentes_de_vistas/pasarela-pago/pasarela-pago';
-import { LaMenteDetrasDeNudoComponent } from './componentes_de_vistas/la-mente-detras-de-nudo/la-mente-detras-de-nudo';
-
+/**
+ * Definición de Rutas NUDO - Grado Ingeniería
+ * Centralizamos la navegación para asegurar que el "Blindaje" sea accesible desde cualquier punto.
+ */
 export const routes: Routes = [
-  // 1. Redirección inicial
+  // --- 1. Entrada al Sistema ---
   { 
     path: '', 
     redirectTo: 'acceso', 
     pathMatch: 'full' 
   },
   
-  // 2. Rutas de Autenticación
   { 
     path: 'acceso', 
-    component: AccesoComponent, 
-    title: 'NUDO - Acceso' 
+    loadComponent: () => import('./componentes_de_vistas/acceso/acceso').then(m => m.Acceso), 
+    title: 'NUDO - Acceso Blindado' 
   },
 
-  // 3. Dashboard Principal
+  // --- 2. Centro de Operaciones (Dashboard) ---
   { 
     path: 'inicio', 
-    component: InicioComponent, 
-    title: 'NUDO - Inicio' 
+    loadComponent: () => import('./componentes_de_vistas/inicio/inicio').then(m => m.Inicio), 
+    title: 'NUDO - Panel de Control' 
   },
 
-  // 4. Operatividad de Contratos
+  // --- 3. Gestión Documental y Legal-Tech ---
   { 
     path: 'catalogo', 
-    component: CatalogoComponent, 
-    title: 'NUDO - Catálogo' 
+    loadComponent: () => import('./componentes_de_vistas/catalogo/catalogo').then(m => m.Catalogo), 
+    title: 'NUDO - Catálogo de Contratos' 
   },
   { 
     path: 'generador-contrato', 
-    component: GeneradorContratoComponent, 
-    title: 'NUDO - Generador' 
+    loadComponent: () => import('./componentes_de_vistas/generador-contrato/generador-contrato').then(m => m.GeneradorContrato), 
+    title: 'NUDO - Generador Inteligente' 
   },
   { 
     path: 'editor-contrato', 
-    component: EditorContratoComponent, 
-    title: 'NUDO - Editor' 
+    loadComponent: () => import('./componentes_de_vistas/editor-contrato/editor-contrato').then(m => m.EditorContrato), 
+    title: 'NUDO - Editor de Cláusulas' 
   },
 
-  // 5. Soporte y Usuario
-  { 
-    path: 'centro-ayuda', 
-    component: CentroAyudaComponent, 
-    title: 'NUDO - Ayuda' 
-  },
+  // --- 4. Identidad y Finanzas del Socio ---
   { 
     path: 'perfil-usuario', 
-    component: PerfilUsuarioComponent, 
-    title: 'NUDO - Mi Perfil' 
+    loadComponent: () => import('./componentes_de_vistas/perfil-de-usuario/perfil-de-usuario').then(m => m.PerfilDeUsuario), // Ajustado al nombre de clase que blindamos
+    title: 'NUDO - Mi Perfil de Socio' 
   },
   { 
     path: 'pago-seguro', 
-    component: PasarelaPagoComponent, 
-    title: 'NUDO - Pago Seguro' 
+    loadComponent: () => import('./componentes_de_vistas/pasarela-pago/pasarela-pago').then(m => m.PasarelaPago), 
+    title: 'NUDO - Pasarela de Pago Seguro' 
   },
 
-  // 6. Sección Especial del Autor
+  // --- 5. Soporte y Cultura NUDO ---
+  { 
+    path: 'centro-ayuda', 
+    loadComponent: () => import('./componentes_de_vistas/centro-ayuda/centro-ayuda').then(m => m.CentroAyuda), 
+    title: 'NUDO - Centro de Soporte' 
+  },
   { 
     path: 'mente-detras', 
-    component: LaMenteDetrasDeNudoComponent, 
+    loadComponent: () => import('./componentes_de_vistas/la-mente-detras-de-nudo/la-mente-detras-de-nudo').then(m => m.LaMenteDetrasDeNUDO), 
     title: 'NUDO - La Mente Detrás' 
   },
 
-  // 7. Comodín: Cualquier ruta no definida manda a Acceso
+  // --- 6. Seguridad (Wildcard) ---
+  // Si el usuario se pierde, lo regresamos al búnker (Acceso)
   { 
     path: '**', 
     redirectTo: 'acceso' 
