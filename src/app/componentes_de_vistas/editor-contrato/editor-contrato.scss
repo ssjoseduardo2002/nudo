@@ -73,7 +73,8 @@ $transicion: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
           box-shadow: 0 10px 20px rgba($color-primario, 0.05);
         }
 
-        .destaque {
+        // ⚡ OPTIMIZACIÓN: Aseguramos el correcto acoplamiento del modificador
+        &.destaque {
           background: $color-primario;
           border: none;
           .texto-btn strong { color: white; }
@@ -96,7 +97,7 @@ $transicion: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     overflow-y: auto;
     padding: 2rem;
     
-    // ⚡ SOLUCIÓN MODERNA SASS: Cambiamos darken() obsoleto por color.adjust()
+    // ⚡ SOLUCIÓN MODERNA SASS: color.adjust() aplicado perfectamente
     background: color.adjust($color-fondo-workspace, $lightness: -3%);
     
     border-radius: 24px;
@@ -115,7 +116,7 @@ $transicion: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
       max-width: 850px;
       background: $color-papel;
       padding: 80px 100px;
-      border-radius: 2px; // Bordes rectos para parecer papel
+      border-radius: 2px;
       box-shadow: 0 30px 60px rgba(0,0,0,0.12);
       min-height: 1100px;
       position: relative;
