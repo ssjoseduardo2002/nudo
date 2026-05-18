@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $azul-nudo: #003366;
 $cian-nudo: #00a8cc;
 $azul-suave: #f0f4f8;
@@ -82,7 +84,9 @@ $azul-suave: #f0f4f8;
         font-size: 0.85rem;
         cursor: pointer;
         transition: all 0.3s;
-        &:hover { background: darken($azul-suave, 5%); }
+        
+        // ⚡ SOLUCIÓN MODERNA SASS: Cambiamos darken() obsoleto por color.adjust()
+        &:hover { background: color.adjust($azul-suave, $lightness: -5%); }
       }
 
       .estado-cuenta {
