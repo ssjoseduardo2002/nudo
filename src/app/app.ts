@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
-import { CommonModule } from '@angular/common'; 
 import { filter } from 'rxjs/operators';
 
-// --- ESTRUCTURA (Importaciones Unificadas) ---
-// Aseguramos que estos archivos existan en estas rutas para aniquilar errores de compilación
+// --- ESTRUCTURA (Importaciones Unificadas NUDO) ---
 import { Encabezado } from './componentes_de_estructura/encabezado/encabezado'; 
 import { Footer } from './componentes_de_estructura/pie-de-pagina/pie-de-pagina'; 
 import { BarraLateral } from './componentes_de_estructura/barra-lateral/barra-lateral'; 
@@ -14,7 +12,6 @@ import { BarraLateral } from './componentes_de_estructura/barra-lateral/barra-la
   standalone: true,
   imports: [
     RouterOutlet, 
-    CommonModule, 
     Encabezado, 
     Footer, 
     BarraLateral
@@ -24,13 +21,10 @@ import { BarraLateral } from './componentes_de_estructura/barra-lateral/barra-la
 })
 export class App implements OnInit {
   
-  // Control de interfaz para ocultar elementos en Login/Pagos
-  public mostrarSoloAcceso: boolean = true; 
+  // 🛡️ CONTROL DE INTERFAZ: Cambiamos por defecto a false para forzar el renderizado del ecosistema
+  public mostrarSoloAcceso: boolean = false; 
 
-  /**
-   * ⚡ DESTRUCCIÓN DE ERROR (image_6aab19.png):
-   * Declaramos oficialmente esta variable para que el *ngIf del HTML funcione.
-   */
+  // ⏳ UX: Estado de carga global del búnker
   public cargandoSistema: boolean = false; 
 
   constructor(private router: Router) {}
@@ -45,12 +39,13 @@ export class App implements OnInit {
     ).subscribe((event: NavigationEnd) => {
       const urlActual = event.urlAfterRedirects || event.url;
       
-      // Definimos qué rutas activan el "Modo Foco" (sin sidebar)
-      const rutasAcceso = ['/acceso', '/', '', '/pago-seguro']; 
+      // 📝 Rutas de Modo Foco (Login, Registro, Pasarela de Pagos)
+      // Agregamos '/login' o '/registro' si los usas, quitamos la raíz si queremos forzar el menú inicial.
+      const rutasAcceso = ['/acceso', '/pago-seguro']; 
       
       this.mostrarSoloAcceso = rutasAcceso.includes(urlActual);
 
-      // UX: Scroll suave al inicio en cada cambio de vista
+      // ⚡ UX PREMIUM: Reset de scroll suave al cambiar de vista
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }

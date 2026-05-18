@@ -4,7 +4,9 @@
 
   <div class="contenedor-cuerpo-app">
     
-    <app-barra-lateral *ngIf="!mostrarSoloAcceso"></app-barra-lateral>
+    @if (!mostrarSoloAcceso) {
+      <app-barra-lateral></app-barra-lateral>
+    }
 
     <main class="contenido-principal">
       <div class="zona-vistas-nudo">
@@ -14,9 +16,11 @@
       </div>
 
       <app-footer [enPantallaAcceso]="mostrarSoloAcceso"></app-footer>
-      
     </main>
+
   </div>
 
-  <div class="shimmer-overlay" *ngIf="cargandoSistema"></div>
+  @if (cargandoSistema) {
+    <div class="shimmer-overlay"></div>
+  }
 </div>
