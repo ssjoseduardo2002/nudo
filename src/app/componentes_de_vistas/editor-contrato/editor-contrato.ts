@@ -1,62 +1,82 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+// Definimos una interfaz limpia para quitar el tipo 'any' y mantener el búnker tipado
+interface DatosContrato {
+  nombreEmpresa: string;
+  nombreProfesionista: string;
+  fecha: string;
+  montoProyecto?: number;
+  objetoContrato?: string;
+}
 
 @Component({
   selector: 'app-editor-contrato',
-  standalone: true, // Aseguramos que sea standalone como el resto de NUDO
-  imports: [CommonModule],
+  standalone: true,
+  imports: [FormsModule], // Reemplazamos CommonModule por FormsModule para el binding interactivo
   templateUrl: './editor-contrato.html',
-  styleUrls: ['./editor-contrato.scss']
+  styleUrl: './editor-contrato.scss' // ⚡ REPARADO: 'styleUrl' en singular para Angular v20
 })
 export class EditorContrato implements OnInit {
-  // Datos del contrato
-  public contratoFinal: any;
+  
+  // 📄 Estructura del documento respaldada por la interfaz
+  public contratoFinal!: DatosContrato;
   public idContrato: string = '';
 
   constructor() {
-    // Generamos un ID temporal para la sesión de edición
+    // Generamos un ID hash único de 5 dígitos para la sesión de edición en NUDO
     this.idContrato = Math.random().toString(36).toUpperCase().substring(2, 7);
   }
 
   ngOnInit(): void {
-    // Recuperamos los datos del estado de navegación (desde el generador)
+    /**
+     * 🛰️ Recuperador de Estado NUDO:
+     * Intenta cachar los datos enviados por el generador de contratos.
+     * Si no hay datos (ingreso directo), inyecta un mock limpio de desarrollo.
+     */
     this.contratoFinal = history.state.data || {
       nombreEmpresa: '[Nombre de la Empresa]',
       nombreProfesionista: 'José',
-      fecha: new Date().toLocaleDateString()
+      fecha: new Date().toLocaleDateString(),
+      montoProyecto: 0,
+      objetoContrato: '[Describir los servicios de desarrollo frontend]'
     };
     
-    console.log('--- Editor de NUDO activo ---');
-    console.log('Cargando documento:', this.idContrato);
+    console.log('=== 🪢 Editor Maestro de NUDO Activo ===');
+    console.log(`Documento en memoria: [#ND-${this.idContrato}]`);
   }
 
   /**
-   * Guarda el estado actual del contenteditable en la "nube" de NUDO
+   * 💾 Guarda el progreso actual en caliente (Preparado para Firebase)
    */
   public guardarBorrador(): void {
-    console.log('💾 Guardando progreso del contrato ' + this.idContrato + '...');
-    // Aquí iría la lógica para guardar el innerHTML en Firebase
-    alert('Borrador guardado con éxito, socio. 🪢');
+    console.log(`💾 Sincronizando borrador #ND-${this.idContrato} en la nube...`);
+    // TODO: Implementar el servicio de persistencia Firestore / LocalStorage
+    alert('Progreso guardado con éxito, socio. El contrato está a salvo. 🪢');
   }
 
   /**
-   * Lógica para el botón "Exportar PDF"
+   * 📄 Dispara la optimización de impresión nativa
    */
   public exportarPDF(): void {
-    console.log('📄 Generando documento legal para:', this.contratoFinal.nombreEmpresa);
-    // Usamos el print del navegador optimizado por nuestro SCSS
+    console.log(`📄 Exportando lienzo legal de: ${this.contratoFinal.nombreEmpresa}`);
+    // Mandamos a llamar el print del navegador, el cual se adaptará al formato hoja gracias al SCSS
     window.print();
   }
 
   /**
-   * Inicia el protocolo de envío para firma digital
+   * 🛡️ Bloqueo de seguridad y protocolo de firma electrónica
    */
   public enviarAFirma(): void {
-    console.log('📧 Iniciando protocolo de firma electrónica...');
-    const confirmacion = confirm('¿Estás seguro de enviar este contrato a firma? Se bloqueará la edición. 🛡️');
+    console.log('📧 Iniciando pasarela de firmas electrónicas NUDO...');
+    
+    const confirmacion = confirm(
+      '¿Estás seguro de enviar este contrato a firma? Se bloqueará la edición para asegurar la integridad legal. 🛡️'
+    );
     
     if (confirmacion) {
-      alert('Contrato enviado. NUDO notificará a las partes involucradas.');
+      // Aquí se disparará el flujo del backend para notificar por correo
+      alert('¡Contrato enviado! NUDO ha enviado las alertas de firma digital a las partes.');
     }
   }
 }

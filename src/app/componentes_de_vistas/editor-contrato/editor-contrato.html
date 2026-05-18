@@ -8,7 +8,12 @@
       </div>
 
       <div class="grupo-herramientas">
-        <button class="btn-herramienta primario" (click)="guardarBorrador()">
+        <div class="control-rapido-input" style="margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 5px;">
+          <label style="font-size: 0.75rem; font-weight: 700; color: var(--nudo-primario); text-transform: uppercase;">Empresa / Cliente</label>
+          <input type="text" [(ngModel)]="contratoFinal.nombreEmpresa" style="padding: 10px; border-radius: 8px; border: 1px solid #d1dce5; font-family: 'Inter', sans-serif; font-size: 0.85rem; outline: none;" />
+        </div>
+
+        <button class="btn-herramienta" (click)="guardarBorrador()">
           <span class="icon">💾</span> 
           <div class="texto-btn">
             <strong>Guardar Borrador</strong>
@@ -47,34 +52,43 @@
             <span class="emoji-nudo">🪢</span>
             <span class="texto-nudo">NUDO LEGAL</span>
           </div>
-          <div class="id-documento">REF: ND-2026-{{idContrato || 'TEMP'}}</div>
+          <div class="id-documento">REF: ND-2026-{{ idContrato || 'TEMP' }}</div>
         </header>
         
         <article class="cuerpo-legal" contenteditable="true" spellcheck="true">
           <h1 class="titulo-contrato">CONTRATO DE PRESTACIÓN DE SERVICIOS</h1>
           
           <p class="clausula-intro">
-            En la ciudad de <span class="placeholder">[Ciudad]</span>, a los <span class="placeholder">[Día]</span> del mes de <span class="placeholder">[Mes]</span> de 2026...
+            En la ciudad de <span class="placeholder" contenteditable="true">[Ciudad]</span>, a los <span class="placeholder" contenteditable="true">[Día]</span> del mes de <span class="placeholder" contenteditable="true">[Mes]</span> de 2026...
           </p>
 
           <p>
-            <strong>REUNIDOS:</strong> De una parte, <span class="placeholder">[Nombre del Cliente]</span> (en adelante, el "Cliente") y de otra parte, <strong>José</strong>, en calidad de prestador de servicios profesionales (en adelante, el "Colaborador")...
+            <strong>REUNIDOS:</strong> De una parte, 
+            <span class="placeholder" contenteditable="true">{{ contratoFinal.nombreEmpresa }}</span> 
+            (en adelante, el "Cliente") y de otra parte, 
+            <strong>{{ contratoFinal.nombreProfesionista }}</strong>, en calidad de prestador de servicios profesionales (en adelante, el "Colaborador")...
           </p>
 
           <div class="seccion-dinamica">
-            <p>[El motor de NUDO ha generado las cláusulas de propiedad intelectual y pagos aquí...]</p>
+            <p><strong>PRIMERA. OBJETO DEL CONTRATO.</strong> El Colaborador se compromete a realizar los servicios de: <span class="placeholder" contenteditable="true">{{ contratoFinal.objetoContrato }}</span> de acuerdo con los requerimientos acordados entre ambas partes.</p>
+            
+            @if (contratoFinal.montoProyecto && contratoFinal.montoProyecto > 0) {
+              <p><strong>SEGUNDA. COMPENSACIÓN ECONÓMICA.</strong> Como contraprestación por los servicios descritos, el Cliente abonará la cantidad fija de <strong>${{ contratoFinal.montoProyecto }} MXN</strong> al término del proyecto.</p>
+            } @else {
+              <p><strong>SEGUNDA. COMPENSACIÓN ECONÓMICA.</strong> Las tarifas y condiciones de pago se estipularán de mutuo acuerdo mediante anexos comerciales firmados por ambas partes.</p>
+            }
           </div>
         </article>
 
         <footer class="seccion-firmas">
           <div class="bloque-firma">
             <div class="espacio-linea"></div>
-            <p class="nombre-firma">Firma del Cliente</p>
+            <p class="nombre-firma">Por: {{ contratoFinal.nombreEmpresa }}</p>
             <small>ID Digital: No firmado</small>
           </div>
           <div class="bloque-firma">
             <div class="espacio-linea"></div>
-            <p class="nombre-firma">José - Prestador</p>
+            <p class="nombre-firma">{{ contratoFinal.nombreProfesionista }}</p>
             <small>Verificado por NUDO</small>
           </div>
         </footer>
