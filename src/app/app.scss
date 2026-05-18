@@ -4,7 +4,7 @@
 :host {
   display: block;
   height: 100vh;
-  width: 100vw;
+  width: 100%; // ⚡ OPTIMIZACIÓN: Cambiado 100vw por 100% para evitar saltos con barras de scroll
   overflow: hidden;
   font-family: 'Inter', system-ui, sans-serif;
 }
@@ -32,15 +32,19 @@
     .contenedor-cuerpo-app {
       justify-content: center;
       align-items: center;
+      width: 100%;
     }
 
     .contenido-principal {
       align-items: center;
       justify-content: center;
+      width: 100%;
     }
     
+    // 🛡️ SOLUCIÓN: Quitamos el candado de los 500px para que el layout se coma toda la pantalla de Chrome
     .zona-vistas-nudo {
-      max-width: 500px; // Centramos y acotamos el login para mejor UX
+      max-width: 100%; 
+      height: 100%;
       padding: 0;
     }
   }
@@ -72,15 +76,18 @@
 
 .zona-vistas-nudo {
   width: 100%;
-  max-width: 1300px; // Un poco más de aire para pantallas grandes
+  max-width: 1400px; // Le damos un poquito más de holgura para el editor de contratos
   margin: 0 auto;
   padding: 2.5rem 1.5rem;
   flex-grow: 1;
   box-sizing: border-box;
+  display: flex; // Asegura herencia de altura a hijos
+  flex-direction: column;
   
   .router-wrapper {
     display: flex;
     flex-direction: column;
+    flex: 1; // Forza a que el contenedor de rutas use todo el alto disponible
     min-height: 100%;
     animation: fadeInView 0.4s ease-out;
   }

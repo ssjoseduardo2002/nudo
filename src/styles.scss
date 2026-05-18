@@ -1,4 +1,5 @@
-/* You can add global styles to this file, and also import other style files *//* ==========================================================================
+/* You can add global styles to this file, and also import other style files */
+/* ==========================================================================
    NUDO - SISTEMA DE DISEÑO GLOBAL
    Misión: Claridad, Seguridad y Profesionalismo.
    ========================================================================== */
@@ -13,7 +14,7 @@
 html, body {
   height: 100%;
   width: 100%;
-  // Tipografía Inter (que configuramos en el index.html)
+  // Tipografía Inter
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -58,6 +59,13 @@ html, body {
   font-weight: 800;
 }
 
+// ⚡ EXTRA ADICIONADO: Forzador de Full-Viewport para layouts de pantalla completa
+.full-viewport {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
 // Estilo para el Shimmer Overlay que corregimos en el app.html
 .shimmer-overlay {
   position: fixed;
@@ -71,6 +79,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
+  
   &::after {
     content: "Cargando NUDO...";
     font-weight: 600;
