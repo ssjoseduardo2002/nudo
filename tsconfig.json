@@ -9,12 +9,21 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
-    "isolatedModules": true,
+    
+    // ⚡ DESTRUCCIÓN DE ADVERTENCIA: Ponemos en false para que conviva con los decoradores de Angular
+    "isolatedModules": false, 
+    
+    // 🛡️ BLINDAJE DE INYECCIÓN: Activamos metadatos para servicios de Firebase y componentes
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true, 
+    
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
-    "lib": ["ES2022", "dom"],
+    "lib": [
+      "ES2022",
+      "dom"
+    ],
     "moduleResolution": "bundler",
     "useDefineForClassFields": false
   },
