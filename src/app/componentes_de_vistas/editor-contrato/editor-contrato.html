@@ -4,20 +4,31 @@
     <aside class="panel-herramientas">
       <div class="header-herramientas">
         <span class="badge-editor">Modo Edición</span>
-        <h3>Panel de Control</h3>
+        <h3>Estructura NUDO</h3>
       </div>
 
-      <div class="grupo-herramientas">
-        <div class="control-rapido-input" style="margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 5px;">
-          <label style="font-size: 0.75rem; font-weight: 700; color: var(--nudo-primario); text-transform: uppercase;">Empresa / Cliente</label>
+      <div class="grupo-herramientas" style="display: flex; flex-direction: column; gap: 1rem;">
+        
+        <div class="control-rapido-input" style="display: flex; flex-direction: column; gap: 5px;">
+          <label style="font-size: 0.7rem; font-weight: 800; color: var(--nudo-primario); text-transform: uppercase;">Empresa / Cliente</label>
           <input type="text" [(ngModel)]="contratoFinal.nombreEmpresa" style="padding: 10px; border-radius: 8px; border: 1px solid #d1dce5; font-family: 'Inter', sans-serif; font-size: 0.85rem; outline: none;" />
+        </div>
+
+        <div class="control-rapido-input" style="display: flex; flex-direction: column; gap: 5px;">
+          <label style="font-size: 0.7rem; font-weight: 800; color: var(--nudo-primario); text-transform: uppercase;">Monto del Proyecto (MXN)</label>
+          <input type="number" [(ngModel)]="contratoFinal.montoProyecto" style="padding: 10px; border-radius: 8px; border: 1px solid #d1dce5; font-family: 'Inter', sans-serif; font-size: 0.85rem; outline: none;" />
+        </div>
+
+        <div class="control-rapido-input" style="display: flex; flex-direction: column; gap: 5px;">
+          <label style="font-size: 0.7rem; font-weight: 800; color: var(--nudo-primario); text-transform: uppercase;">Objeto del Servicio</label>
+          <textarea [(ngModel)]="contratoFinal.objetoContrato" rows="3" style="padding: 10px; border-radius: 8px; border: 1px solid #d1dce5; font-family: 'Inter', sans-serif; font-size: 0.85rem; outline: none; resize: none;"></textarea>
         </div>
 
         <button class="btn-herramienta" (click)="guardarBorrador()">
           <span class="icon">💾</span> 
           <div class="texto-btn">
-            <strong>Guardar Borrador</strong>
-            <small>Sincronizado en la nube</small>
+            <strong>Guardar en Nube</strong>
+            <small>Sincronizado en Firebase</small>
           </div>
         </button>
 
@@ -40,7 +51,7 @@
       
       <div class="footer-ilustracion">
         <img src="images/monocromo3.png" alt="Seguridad NUDO" class="img-flotante">
-        <p>Tu contrato está siendo protegido por cifrado de 256 bits.</p>
+        <p>Protección legal bajo los Artículos 2606 al 2615 del Código Civil.</p>
       </div>
     </aside>
 
@@ -56,40 +67,54 @@
         </header>
         
         <article class="cuerpo-legal" contenteditable="true" spellcheck="true">
-          <h1 class="titulo-contrato">CONTRATO DE PRESTACIÓN DE SERVICIOS</h1>
+          <h1 class="titulo-contrato">CONTRATO DE PRESTACIÓN DE SERVICIOS PROFESIONALES</h1>
           
           <p class="clausula-intro">
-            En la ciudad de <span class="placeholder" contenteditable="true">[Ciudad]</span>, a los <span class="placeholder" contenteditable="true">[Día]</span> del mes de <span class="placeholder" contenteditable="true">[Mes]</span> de 2026...
+            CONTRATO DE PRESTACIÓN DE SERVICIOS PROFESIONALES QUE CELEBRAN, POR UNA PARTE, 
+            <span class="placeholder">{{ contratoFinal.nombreEmpresa }}</span>, A LA QUE EN LO SUCESIVO SE LE DENOMINARÁ <strong>"LA EMPRESA"</strong>; Y POR LA OTRA, 
+            <strong>{{ contratoFinal.nombreProfesionista }}</strong>, A QUIEN EN LO SUCESIVO SE LE DENOMINARÁ COMO <strong>"EL PROFESIONISTA"</strong>, AL TENOR DE LAS SIGUIENTES DECLARACIONES Y CLÁUSULAS:
           </p>
 
-          <p>
-            <strong>REUNIDOS:</strong> De una parte, 
-            <span class="placeholder" contenteditable="true">{{ contratoFinal.nombreEmpresa }}</span> 
-            (en adelante, el "Cliente") y de otra parte, 
-            <strong>{{ contratoFinal.nombreProfesionista }}</strong>, en calidad de prestador de servicios profesionales (en adelante, el "Colaborador")...
+          <h3 style="margin: 25px 0 15px 0; text-align: center; font-size: 1.1rem; letter-spacing: 1px;">DECLARACIONES</h3>
+          
+          <p><strong>I. DECLARA "LA EMPRESA":</strong><br>
+            A. Que es una entidad legalmente constituida de conformidad con las leyes mexicanas, bajo la Escritura Pública Número <span class="placeholder" contenteditable="true">[No. Escritura]</span>, otorgada ante la fe del Notario Público Número <span class="placeholder" contenteditable="true">[No. Notario]</span>.<br>
+            B. Que requiere de los servicios de "EL PROFESIONISTA" para llevar a cabo el desarrollo, optimización e implementación de soluciones digitales y maquetación frontend.
           </p>
 
-          <div class="seccion-dinamica">
-            <p><strong>PRIMERA. OBJETO DEL CONTRATO.</strong> El Colaborador se compromete a realizar los servicios de: <span class="placeholder" contenteditable="true">{{ contratoFinal.objetoContrato }}</span> de acuerdo con los requerimientos acordados entre ambas partes.</p>
-            
-            @if (contratoFinal.montoProyecto && contratoFinal.montoProyecto > 0) {
-              <p><strong>SEGUNDA. COMPENSACIÓN ECONÓMICA.</strong> Como contraprestación por los servicios descritos, el Cliente abonará la cantidad fija de <strong>${{ contratoFinal.montoProyecto }} MXN</strong> al término del proyecto.</p>
-            } @else {
-              <p><strong>SEGUNDA. COMPENSACIÓN ECONÓMICA.</strong> Las tarifas y condiciones de pago se estipularán de mutuo acuerdo mediante anexos comerciales firmados por ambas partes.</p>
-            }
-          </div>
+          <p><strong>II. DECLARA "EL PROFESIONISTA":</strong><br>
+            A. Que es persona física, con plena capacidad legal para obligarse en los términos de este instrumento, contando con los conocimientos técnicos, experiencia y elementos propios necesarios para la prestación de los servicios requeridos.
+          </p>
+
+          <h3 style="margin: 25px 0 15px 0; text-align: center; font-size: 1.1rem; letter-spacing: 1px;">CLÁUSULAS</h3>
+          
+          <p><strong>PRIMERA. OBJETO DEL CONTRATO.</strong> "EL PROFESIONISTA" se obliga a prestar sus servicios profesionales consistentes en: <span class="placeholder">{{ contratoFinal.objetoContrato }}</span> de acuerdo con los requerimientos técnicos y buenas prácticas acordadas.</p>
+
+          @if (contratoFinal.montoProyecto && contratoFinal.montoProyecto > 0) {
+            <p><strong>SEGUNDA. RETRIBUCIÓN / COMPENSACIÓN.</strong> "LA EMPRESA" se obliga a pagar a "EL PROFESIONISTA" por concepto de honorarios profesionales la cantidad fija de <strong>${{ contratoFinal.montoProyecto }} MXN</strong>, suma que se liquidará conforme al cumplimiento de los entregables establecidos.</p>
+          } @else {
+            <p><strong>SEGUNDA. RETRIBUCIÓN / COMPENSACIÓN.</strong> Las partes acordarán los honorarios y condiciones de pago de forma independiente por cada requerimiento o proyecto asignado, emitiendo el comprobante fiscal digital (CFDI) correspondiente.</p>
+          }
+
+          <p><strong>DÉCIMA SEXTA. PROPIEDAD INTELECTUAL.</strong> "EL PROFESIONISTA" se obliga a celebrar un contrato referente a sus derechos patrimoniales como autor con "LA EMPRESA", si con motivo de la realización de sus servicios se originan obras de interés cultural o desarrollo tecnológico, autorizando la tramitación del registro correspondiente ante las autoridades competentes.</p>
+
+          <p><strong>DÉCIMA SÉPTIMA. JURISDICCIÓN Y COMPETENCIA.</strong> Para la interpretación y cumplimiento del presente contrato, las partes se someten expresamente a la jurisdicción y competencia de los tribunales de la <strong>Ciudad de México</strong>, renunciando de forma explícita a cualquier otro fuero que pudiera corresponderles en razón de sus domicilios presentes o futuros.</p>
+
+          <p style="margin-top: 40px;">Leído el presente instrumento y enteradas las partes de su contenido y alcances legales, lo firman de conformidad en la Ciudad de México, con fecha de efectividad al <span class="placeholder">{{ contratoFinal.fecha }}</span>.</p>
         </article>
 
         <footer class="seccion-firmas">
           <div class="bloque-firma">
             <div class="espacio-linea"></div>
-            <p class="nombre-firma">Por: {{ contratoFinal.nombreEmpresa }}</p>
-            <small>ID Digital: No firmado</small>
+            <p class="nombre-firma">"LA EMPRESA"</p>
+            <small>Representante Legal / Cliente</small>
+            <br><small style="color: #94a3b8; font-size: 0.65rem;">ID: No firmado</small>
           </div>
           <div class="bloque-firma">
             <div class="espacio-linea"></div>
             <p class="nombre-firma">{{ contratoFinal.nombreProfesionista }}</p>
-            <small>Verificado por NUDO</small>
+            <small>"EL PROFESIONISTA"</small>
+            <br><small style="color: #10b981; font-size: 0.65rem; font-weight: bold;">Verificado por NUDO</small>
           </div>
         </footer>
       </div>
