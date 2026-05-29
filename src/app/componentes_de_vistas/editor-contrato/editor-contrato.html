@@ -7,41 +7,39 @@
         <h3>Estructura NUDO</h3>
       </div>
 
-      <div class="grupo-herramientas" style="display: flex; flex-direction: column; gap: 1rem;">
+      <div class="grupo-herramientas">
         
-        <div class="control-rapido-input" style="display: flex; flex-direction: column; gap: 5px;">
-          <label style="font-size: 0.7rem; font-weight: 800; color: var(--nudo-primario); text-transform: uppercase;">Empresa / Cliente</label>
-          <input type="text" [(ngModel)]="contratoFinal.nombreEmpresa" style="padding: 10px; border-radius: 8px; border: 1px solid #d1dce5; font-family: 'Inter', sans-serif; font-size: 0.85rem; outline: none;" />
+        <div class="control-rapido-input">
+          <label>Empresa / Cliente</label>
+          <input type="text" [(ngModel)]="contratoFinal.nombreEmpresa" />
         </div>
 
-        <div style="display: flex; gap: 10px;">
-          <div class="control-rapido-input" style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
-            <label style="font-size: 0.65rem; font-weight: 800; color: var(--nudo-primario); text-transform: uppercase;">No. Escritura</label>
-            <input type="text" [(ngModel)]="contratoFinal.noEscritura" style="padding: 10px; border-radius: 8px; border: 1px solid #d1dce5; font-family: 'Inter', sans-serif; font-size: 0.85rem; outline: none;" />
-          </div>
+        <div class="control-rapido-input">
+          <label>No. Escritura Pública</label>
+          <input type="text" [(ngModel)]="contratoFinal.noEscritura" />
+        </div>
           
-          <div class="control-rapido-input" style="display: flex; flex-direction: column; gap: 5px; flex: 1;">
-            <label style="font-size: 0.65rem; font-weight: 800; color: var(--nudo-primario); text-transform: uppercase;">No. Notario</label>
-            <input type="text" [(ngModel)]="contratoFinal.noNotario" style="padding: 10px; border-radius: 8px; border: 1px solid #d1dce5; font-family: 'Inter', sans-serif; font-size: 0.85rem; outline: none;" />
-          </div>
+        <div class="control-rapido-input">
+          <label>No. Notario Público</label>
+          <input type="text" [(ngModel)]="contratoFinal.noNotario" />
         </div>
 
-        <div class="control-rapido-input" style="display: flex; flex-direction: column; gap: 5px;">
-          <label style="font-size: 0.7rem; font-weight: 800; color: var(--nudo-primario); text-transform: uppercase;">Tribunales / Jurisdicción (Ciudad)</label>
-          <input type="text" [(ngModel)]="contratoFinal.ciudadJurisdiccion" style="padding: 10px; border-radius: 8px; border: 1px solid #d1dce5; font-family: 'Inter', sans-serif; font-size: 0.85rem; outline: none;" />
+        <div class="control-rapido-input">
+          <label>Tribunales / Jurisdicción (Ciudad)</label>
+          <input type="text" [(ngModel)]="contratoFinal.ciudadJurisdiccion" />
         </div>
 
-        <div class="control-rapido-input" style="display: flex; flex-direction: column; gap: 5px;">
-          <label style="font-size: 0.7rem; font-weight: 800; color: var(--nudo-primario); text-transform: uppercase;">Monto del Proyecto (MXN)</label>
-          <input type="number" [(ngModel)]="contratoFinal.montoProyecto" style="padding: 10px; border-radius: 8px; border: 1px solid #d1dce5; font-family: 'Inter', sans-serif; font-size: 0.85rem; outline: none;" />
+        <div class="control-rapido-input">
+          <label>Monto del Proyecto (MXN)</label>
+          <input type="number" [(ngModel)]="contratoFinal.montoProyecto" />
         </div>
 
-        <div class="control-rapido-input" style="display: flex; flex-direction: column; gap: 5px;">
-          <label style="font-size: 0.7rem; font-weight: 800; color: var(--nudo-primario); text-transform: uppercase;">Objeto del Servicio</label>
-          <textarea [(ngModel)]="contratoFinal.objetoContrato" rows="3" style="padding: 10px; border-radius: 8px; border: 1px solid #d1dce5; font-family: 'Inter', sans-serif; font-size: 0.85rem; outline: none; resize: none;"></textarea>
+        <div class="control-rapido-input">
+          <label>Objeto del Servicio</label>
+          <textarea [(ngModel)]="contratoFinal.objetoContrato" rows="3"></textarea>
         </div>
 
-        <hr style="border: 0; border-top: 1px solid #f1f5f9; margin: 0.5rem 0;" />
+        <hr />
 
         <button class="btn-herramienta" (click)="guardarBorrador()">
           <span class="icon">💾</span> 
@@ -91,10 +89,10 @@
           <p class="clausula-intro">
             CONTRATO DE PRESTACIÓN DE SERVICIOS PROFESIONALES QUE CELEBRAN, POR UNA PARTE, 
             <span class="placeholder">{{ contratoFinal.nombreEmpresa }}</span>, A LA QUE EN LO SUCESIVO SE LE DENOMINARÁ <strong>"LA EMPRESA"</strong>; Y POR LA OTRA, 
-            <strong>{{ contratoFinal.nombreProfesionista }}</strong>, A QUIEN EN LO SUCESIVO SE LE DENOMINARÁ COMO <strong>"EL PROFESIONISTA"</strong>, AL TENOR DE LAS SIGUIENTES DECLARACIONES Y CLÁUSULAS:
+            <strong>{{ contratoFinal.nombreProfesionista }}</strong>, A QUIEN EN LO SUCESIVO SE LE DENOMINARÁ COMO <strong>"EL PROFESIONISTA"</strong>, AL TENOR DE LAS SIGUIENTES DECLARACIONES INTERNAS:
           </p>
 
-          <h3 style="margin: 25px 0 15px 0; text-align: center; font-size: 1.1rem; letter-spacing: 1px;">DECLARACIONES</h3>
+          <h3>DECLARACIONES</h3>
           
           <p><strong>I. DECLARA "LA EMPRESA":</strong><br>
             A. Que es una entidad legalmente constituida de conformidad con las leyes mexicanas, bajo la Escritura Pública Número <span class="placeholder">{{ contratoFinal.noEscritura }}</span>, otorgada ante la fe del Notario Público Número <span class="placeholder">{{ contratoFinal.noNotario }}</span>.<br>
@@ -102,10 +100,10 @@
           </p>
 
           <p><strong>II. DECLARA "EL PROFESIONISTA":</strong><br>
-            A. Que es persona física, con plena capacidad legal para obligarse en los términos de este instrumento, contando con los conocimientos técnicos, experience y elementos propios necesarios para la prestación de los servicios requeridos.
+            A. Que es persona física, con plena capacidad legal para obligarse en los términos de este instrumento, contando con los conocimientos técnicos, experiencia y elementos propios necesarios para la prestación de los servicios requeridos.
           </p>
 
-          <h3 style="margin: 25px 0 15px 0; text-align: center; font-size: 1.1rem; letter-spacing: 1px;">CLÁUSULAS</h3>
+          <h3>CLÁUSULAS</h3>
           
           <p><strong>PRIMERA. OBJETO DEL CONTRATO.</strong> "EL PROFESIONISTA" se obliga a prestar sus servicios profesionales consistentes en: <span class="placeholder">{{ contratoFinal.objetoContrato }}</span> de acuerdo con los requerimientos técnicos y buenas prácticas acordadas.</p>
 
@@ -119,7 +117,7 @@
 
           <p><strong>DÉCIMA SÉPTIMA. JURISDICCIÓN Y COMPETENCIA.</strong> Para la interpretación y cumplimiento del presente contrato, las partes se someten expresamente a la jurisdicción y competencia de los tribunales de la <strong>{{ contratoFinal.ciudadJurisdiccion }}</strong>, renunciando de forma explícita a cualquier otro fuero que pudiera corresponderles en razón de sus domicilios presentes o futuros.</p>
 
-          <p style="margin-top: 40px;">Leído el presente instrumento y enteradas las partes de su contenido y alcances legales, lo firman de conformidad en la {{ contratoFinal.ciudadJurisdiccion }}, con fecha de efectividad al <span class="placeholder">{{ contratoFinal.fecha }}</span>.</p>
+          <p class="fecha-firma-pie">Leído el presente instrumento y enteradas las partes de su contenido y alcances legales, lo firman de conformidad en la {{ contratoFinal.ciudadJurisdiccion }}, con fecha de efectividad al <span class="placeholder">{{ contratoFinal.fecha }}</span>.</p>
         </article>
 
         <footer class="seccion-firmas">
@@ -127,13 +125,13 @@
             <div class="espacio-linea"></div>
             <p class="nombre-firma">"LA EMPRESA"</p>
             <small>Representante Legal / Cliente</small>
-            <br><small style="color: #94a3b8; font-size: 0.65rem;">ID: No firmado</small>
+            <br><small class="id-firma">ID: No firmado</small>
           </div>
           <div class="bloque-firma">
             <div class="espacio-linea"></div>
             <p class="nombre-firma">{{ contratoFinal.nombreProfesionista }}</p>
             <small>"EL PROFESIONISTA"</small>
-            <br><small style="color: #10b981; font-size: 0.65rem; font-weight: bold;">Verificado por NUDO</small>
+            <br><small class="status-firma">Verificado por NUDO</small>
           </div>
         </footer>
       </div>
