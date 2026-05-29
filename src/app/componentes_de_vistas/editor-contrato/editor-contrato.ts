@@ -8,6 +8,12 @@ interface DatosContrato {
   fecha: string;
   montoProyecto?: number;
   objetoContrato?: string;
+  // ⚖️ Nuevas propiedades para el blindaje legal mexicano
+  noEscritura?: string;
+  noNotario?: string;
+  nombreNotario?: string;
+  estadoNotario?: string;
+  ciudadJurisdiccion?: string;
 }
 
 @Component({
@@ -22,37 +28,74 @@ export class EditorContrato implements OnInit {
   // 📄 Estructura del documento respaldada por la interfaz
   public contratoFinal!: DatosContrato;
   public idContrato: string = '';
+  
+  // Clave única para identificar el almacenamiento en LocalStorage
+  private readonly STORAGE_KEY = 'nudo_borrador_actual';
 
   constructor() {
-    // Generamos un ID hash único de 5 dígitos para la sesión de edición en NUDO
-    this.idContrato = Math.random().toString(36).toUpperCase().substring(2, 7);
+    // 🛰️ Intentamos recuperar primero si ya había un ID de contrato guardado en la sesión local
+    const idGuardado = localStorage.getItem(`${this.STORAGE_KEY}_id`);
+    
+    if (idGuardado) {
+      this.idContrato = idGuardado;
+    } else {
+      // Si es un contrato complemente nuevo, generamos un hash de 5 dígitos único
+      this.idContrato = Math.random().toString(36).toUpperCase().substring(2, 7);
+    }
   }
 
   ngOnInit(): void {
     /**
-     * 🛰️ Recuperador de Estado NUDO:
-     * Intenta cachar los datos enviados por el generador de contratos.
-     * Si no hay datos (ingreso directo), inyecta un mock limpio de desarrollo.
+     * 🛰️ Recuperador de Estado Avanzado NUDO:
+     * 1. Primero intenta cachar los datos frescos que vengan del ruteo/navegación.
+     * 2. Si no hay datos de navegación (como un F5), busca si hay un borrador previo en LocalStorage.
+     * 3. Si el búnker local está vacío, inyecta el mock limpio de desarrollo.
      */
-    this.contratoFinal = history.state.data || {
-      nombreEmpresa: '[Nombre de la Empresa]',
-      nombreProfesionista: 'José',
-      fecha: new Date().toLocaleDateString(),
-      montoProyecto: 0,
-      objetoContrato: '[Describir los servicios de desarrollo frontend]'
-    };
+    const datosNavegacion = history.state.data;
+    const datosLocales = localStorage.getItem(this.STORAGE_KEY);
+
+    if (datosNavegacion) {
+      this.contratoFinal = datosNavegacion;
+    } else if (datosLocales) {
+      this.contratoFinal = JSON.parse(datosLocales);
+      console.log('📦 Borrador local recuperado exitosamente tras recarga.');
+    } else {
+      this.contratoFinal = {
+        nombreEmpresa: '[Nombre de la Empresa]',
+        nombreProfesionista: 'José',
+        fecha: new Date().toLocaleDateString(),
+        montoProyecto: 0,
+        objetoContrato: '[Describir los servicios de desarrollo frontend]',
+        // ⚖️ Inicializadores por defecto para el panel inteligente
+        noEscritura: '[No. Escritura]',
+        noNotario: '[No. Notario]',
+        nombreNotario: '[Nombre del Notario]',
+        estadoNotario: '[Estado del Notario]',
+        ciudadJurisdiccion: 'Ciudad de México'
+      };
+    }
     
     console.log('=== 🪢 Editor Maestro de NUDO Activo ===');
     console.log(`Documento en memoria: [#ND-${this.idContrato}]`);
   }
 
   /**
-   * 💾 Guarda el progreso actual en caliente (Preparado para Firebase)
+   * 💾 Guarda el progreso actual en caliente (Persistencia Local -> Listo para Firebase)
    */
   public guardarBorrador(): void {
-    console.log(`💾 Sincronizando borrador #ND-${this.idContrato} en la nube...`);
-    // TODO: Implementar el servicio de persistencia Firestore / LocalStorage
-    alert('Progreso guardado con éxito, socio. El contrato está a salvo. 🪢');
+    console.log(`💾 Sincronizando borrador #ND-${this.idContrato} en el búnker local...`);
+    
+    try {
+      // Serializamos el objeto y lo mandamos a congelar de forma segura
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.contratoFinal));
+      localStorage.setItem(`${this.STORAGE_KEY}_id`, this.idContrato);
+      
+      console.log('✅ Sincronización local exitosa.');
+      alert('Progreso guardado con éxito, socio. El contrato está a salvo localmente. 🪢');
+    } catch (error) {
+      console.error('❌ Error al salvar en el búnker local:', error);
+      alert('Hubo un problema al guardar, revisa la consola socio.');
+    }
   }
 
   /**
@@ -60,7 +103,6 @@ export class EditorContrato implements OnInit {
    */
   public exportarPDF(): void {
     console.log(`📄 Exportando lienzo legal de: ${this.contratoFinal.nombreEmpresa}`);
-    // Mandamos a llamar el print del navegador, el cual se adaptará al formato hoja gracias al SCSS
     window.print();
   }
 
@@ -75,7 +117,6 @@ export class EditorContrato implements OnInit {
     );
     
     if (confirmacion) {
-      // Aquí se disparará el flujo del backend para notificar por correo
       alert('¡Contrato enviado! NUDO ha enviado las alertas de firma digital a las partes.');
     }
   }
