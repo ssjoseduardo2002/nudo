@@ -1,12 +1,15 @@
 @use "sass:color";
 
-// VARIABLES DE ESTILO EDITOR
+// VARIABLES DE ESTILO EDITOR (ADN DE NUDO)
 $color-primario: #003366;
 $color-secundario: #00a8cc;
 $color-papel: #ffffff;
 $color-fondo-workspace: #e9eff5;
+$color-texto-legal: #1e293b;
+$color-borde-input: #d1dce5;
 $fuente-legal: 'Georgia', serif;
-$transicion: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+$fuente-interfaz: 'Inter', sans-serif;
+$transicion: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
 
 .contenedor-editor-nudo {
   width: 100%;
@@ -29,7 +32,7 @@ $transicion: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     width: 320px; // Ancho estricto y elegante para el panel
     height: 100%;
     background: white;
-    border-right: 1px solid #d1dce5;
+    border-right: 1px solid $color-borde-input;
     padding: 2rem 1.5rem;
     display: flex;
     flex-direction: column;
@@ -37,8 +40,12 @@ $transicion: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     box-sizing: border-box;
     overflow-y: auto; // Por si en el futuro expandes con más inputs rápidos
 
+    // Personalización sutil del scroll interno de las herramientas
+    &::-webkit-scrollbar { width: 4px; }
+    &::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
     .header-herramientas {
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       
       .badge-editor {
         background: rgba($color-secundario, 0.1);
@@ -48,37 +55,96 @@ $transicion: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
         font-size: 0.7rem;
         font-weight: 800;
         text-transform: uppercase;
+        font-family: $fuente-interfaz;
       }
-      h3 { color: $color-primario; margin-top: 10px; font-size: 1.5rem; font-weight: 800; }
+      h3 { color: $color-primario; margin-top: 10px; font-size: 1.5rem; font-weight: 800; font-family: $fuente-interfaz; }
     }
 
+    // CONTENEDOR PRINCIPAL DE INPUTS (Reemplaza los estilos en línea)
     .grupo-herramientas {
       flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
 
+      // Clase unificada para los layouts de inputs rápidos
+      .control-rapido-input {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        label {
+          font-size: 0.68rem;
+          font-weight: 800;
+          color: $color-primario;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          font-family: $fuente-interfaz;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea {
+          padding: 10px 12px;
+          border-radius: 8px;
+          border: 1px solid $color-borde-input;
+          font-family: $fuente-interfaz;
+          font-size: 0.85rem;
+          color: #334155;
+          background-color: #ffffff;
+          outline: none;
+          transition: $transicion;
+          box-sizing: border-box;
+
+          &:focus {
+            border-color: $color-secundario;
+            box-shadow: 0 0 0 3px rgba($color-secundario, 0.1);
+            background-color: #fff;
+          }
+
+          &::placeholder {
+            color: #94a3b8;
+          }
+        }
+
+        textarea {
+          resize: none;
+        }
+      }
+
+      // Separador estético interno
+      hr {
+        border: 0;
+        border-top: 1px solid #f1f5f9;
+        margin: 0.5rem 0;
+      }
+
+      // BOTONES DE ACCIÓN (NUDO COMPONENTES)
       .btn-herramienta {
         width: 100%;
         display: flex;
         align-items: center;
         gap: 15px;
-        padding: 15px;
-        margin-bottom: 1.2rem;
+        padding: 14px 16px;
         background: white;
-        border: 1px solid #d1dce5;
+        border: 1px solid $color-borde-input;
         border-radius: 16px;
         cursor: pointer;
         transition: $transicion;
         text-align: left;
+        box-sizing: border-box;
 
-        .icon { font-size: 1.4rem; }
+        .icon { font-size: 1.3rem; }
         .texto-btn {
-          strong { display: block; color: $color-primario; font-size: 0.9rem; }
-          small { color: #94a3b8; font-size: 0.75rem; }
+          font-family: $fuente-interfaz;
+          strong { display: block; color: $color-primario; font-size: 0.88rem; font-weight: 700; }
+          small { color: #94a3b8; font-size: 0.72rem; display: block; margin-top: 1px; }
         }
 
         &:hover {
           transform: translateX(6px);
           border-color: $color-secundario;
-          box-shadow: 0 10px 20px rgba($color-primario, 0.05);
+          box-shadow: 0 8px 16px rgba($color-primario, 0.04);
         }
 
         &.destaque {
@@ -86,7 +152,10 @@ $transicion: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
           border: none;
           .texto-btn strong { color: white; }
           .texto-btn small { color: rgba(white, 0.7); }
-          &:hover { background: $color-secundario; }
+          &:hover { 
+            background: $color-secundario; 
+            box-shadow: 0 8px 20px rgba($color-secundario, 0.2);
+          }
         }
       }
     }
@@ -94,8 +163,8 @@ $transicion: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     .footer-ilustracion {
       text-align: center;
       margin-top: 2rem;
-      .img-flotante { width: 70%; opacity: 0.5; filter: grayscale(1); margin-bottom: 1rem; }
-      p { font-size: 0.75rem; color: #94a3b8; line-height: 1.4; padding: 0 5px; }
+      .img-flotante { width: 65%; opacity: 0.5; filter: grayscale(1); margin-bottom: 0.8rem; }
+      p { font-size: 0.72rem; color: #94a3b8; line-height: 1.4; padding: 0 5px; font-family: $fuente-interfaz; }
     }
   }
 
@@ -145,21 +214,24 @@ $transicion: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
           align-items: center;
           gap: 10px;
           .emoji-nudo { font-size: 1.5rem; }
-          .texto-nudo { font-weight: 900; color: #334155; letter-spacing: 1px; font-family: 'Inter', sans-serif; }
+          .texto-nudo { font-weight: 900; color: #334155; letter-spacing: 1px; font-family: $fuente-interfaz; }
         }
         .id-documento { font-family: monospace; color: #94a3b8; font-size: 0.8rem; }
       }
 
+      // ========================================================================
+      // BÚNKER DE CONTROL DE TEXTO LEGAL (contenteditable blindado)
+      // ========================================================================
       .cuerpo-legal {
         font-family: $fuente-legal;
         font-size: 1.05rem;
         line-height: 1.75;
-        color: #1e293b;
-        outline: none;
+        color: $color-texto-legal;
+        outline: none; // 🔥 SOLUCIÓN: Mata el borde tosco por defecto del navegador
         text-align: justify;
 
         .titulo-contrato {
-          font-family: 'Inter', sans-serif;
+          font-family: $fuente-interfaz;
           font-weight: 800;
           text-align: center;
           font-size: 1.5rem;
@@ -169,15 +241,33 @@ $transicion: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
           color: #0f172a;
         }
 
+        h3 {
+          font-family: $fuente-interfaz;
+          font-weight: 700;
+          color: #334155;
+        }
+
+        // Estilización fina de los placeholders interactivos dentro de la hoja
         .placeholder {
           color: $color-secundario;
           background: rgba($color-secundario, 0.04);
-          padding: 2px 6px;
+          padding: 1px 4px;
           border-radius: 4px;
           border-bottom: 1px dashed $color-secundario;
           font-weight: 600;
-          font-family: 'Inter', sans-serif;
+          font-family: $fuente-interfaz;
+          font-size: 0.95rem;
           display: inline-block;
+          transition: $transicion;
+          cursor: text;
+
+          // Resplandor limpio cuando el usuario da clic directo en el texto de la hoja
+          &:focus {
+            outline: none;
+            background: rgba($color-secundario, 0.1);
+            color: color.adjust($color-secundario, $lightness: -10%);
+            border-bottom-style: solid;
+          }
         }
 
         p { margin-bottom: 22px; }
@@ -194,7 +284,7 @@ $transicion: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
           flex: 1;
           text-align: center;
           .espacio-linea { border-top: 1px solid #94a3b8; margin-bottom: 15px; width: 100%; }
-          .nombre-firma { font-family: 'Inter', sans-serif; font-weight: 700; color: #334155; margin-bottom: 5px; font-size: 0.95rem; }
+          .nombre-firma { font-family: $fuente-interfaz; font-weight: 700; color: #334155; margin-bottom: 5px; font-size: 0.95rem; }
           small { color: #94a3b8; font-family: monospace; font-size: 0.7rem; display: block; }
         }
       }
@@ -206,9 +296,9 @@ $transicion: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 // PROTOCOLO DE IMPRESIÓN: BLINDAJE DE EXPORTACIÓN A PDF
 // ==========================================================================
 @media print {
-  // Ocultamos todos los elementos de la interfaz de la web app
   .panel-herramientas, 
   .control-rapido-input,
+  hr,
   app-sidebar, 
   app-navbar, 
   .navbar { 
@@ -233,5 +323,15 @@ $transicion: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     margin: 0 !important;
     border: none !important;
     background: white !important;
+    
+    // Al imprimir, los placeholders pierden el fondo azul para verse 100% legales
+    .cuerpo-legal .placeholder {
+      background: transparent !important;
+      border-bottom: none !important;
+      color: #1e293b !important;
+      font-family: 'Georgia', serif !important;
+      font-weight: normal !important;
+      padding: 0 !important;
+    }
   }
 }
