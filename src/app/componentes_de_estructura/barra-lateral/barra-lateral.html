@@ -1,4 +1,4 @@
-<aside class="sidebar-nudo">
+<nav class="sidebar-nudo">
   <div class="sidebar-header">
     <div class="logo-wrapper">
       <span class="logo-emoji">🪢</span>
@@ -8,39 +8,29 @@
 
   <div class="sidebar-content">
     <ul class="menu-lista">
-      <li *ngFor="let item of menuItems" class="menu-item">
-        <a [routerLink]="item.route" 
-           routerLinkActive="activo-item" 
-           class="menu-link">
-          <span class="menu-icon">{{ item.icon || '📍' }}</span>
-          <span class="menu-label">{{ item.label }}</span>
-        </a>
-      </li>
+      
+      @for (item of menuItems; track item.route) {
+        <li class="menu-item">
+          <a [routerLink]="item.route" 
+             routerLinkActive="activo-item" 
+             class="menu-link"
+             [class.destacado-mente]="item.label === 'La mente detrás'">
+            <span class="menu-label">{{ item.label }}</span>
+          </a>
+        </li>
+      }
 
-      <li class="menu-divider"><span>Explorar</span></li>
-
-      <li class="menu-item">
-        <a routerLink="/mente-detras" 
-           routerLinkActive="activo-item" 
-           class="menu-link destacado-mente">
-          <span class="menu-icon">💡</span>
-          <span class="menu-label">La mente detrás</span>
-        </a>
-      </li>
     </ul>
   </div>
 
   <div class="sidebar-footer">
     <div class="footer-acciones">
-      <button class="btn-footer" (click)="abrirConfiguracion()" title="Configuración">
-        <span class="footer-icon">⚙️</span>
-        <span class="footer-text">Ajustes</span>
-      </button>
-
-      <button class="btn-footer btn-salir" (click)="cerrarSesion()" title="Cerrar Sesión">
+      
+      <button class="btn-footer btn-salir" (click)="cerrarSesion()">
         <span class="footer-icon">🚪</span>
         <span class="footer-text">Salir</span>
       </button>
+
     </div>
   </div>
-</aside>
+</nav>

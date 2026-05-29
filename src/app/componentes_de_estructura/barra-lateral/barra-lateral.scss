@@ -3,106 +3,129 @@
 // VARIABLES DE DISEÑO NUDO
 $color-primario: #003366;    
 $color-secundario: #00a8cc;  
-$color-fondo-sidebar: rgba(255, 255, 255, 0.95);
+$color-fondo-navbar: rgba(255, 255, 255, 0.95);
 $color-texto: #2c3e50;
 $color-texto-suave: #576574;
-$sidebar-width: 280px;
+$navbar-height: 75px; // Altura fija y elegante que no estorba
 $transicion: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
+// Puedes cambiar esta clase en tu HTML a .barra-superior-nudo si gustas
 .sidebar-nudo {
-  width: $sidebar-width;
-  height: 100vh;
-  background: $color-fondo-sidebar;
+  width: 100%;
+  height: $navbar-height;
+  background: $color-fondo-navbar;
   backdrop-filter: blur(15px);
   position: fixed;
   left: 0;
   top: 0;
+  
+  // ¡MAGIA! Convertimos el contenedor de vertical a horizontal
   display: flex;
-  flex-direction: column;
-  border-right: 1px solid rgba($color-secundario, 0.1);
-  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.02);
+  flex-direction: row; 
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  
+  border-bottom: 1px solid rgba($color-secundario, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
   z-index: 1100;
   transition: $transicion;
+  box-sizing: border-box;
 
-  // HEADER: Logo y Nombre
+  // ==========================================
+  // HEADER: Logo y Nombre (Izquierda)
+  // ==========================================
   .sidebar-header {
-    padding: 2.5rem 2rem;
-    
+    display: flex;
+    align-items: center;
+    padding: 0; // Limpiamos el padding viejo
+
     .logo-wrapper {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
+      cursor: pointer;
       
       .logo-emoji {
-        font-size: 2.2rem;
-        filter: drop-shadow(0 4px 6px rgba($color-secundario, 0.2));
+        font-size: 1.8rem; // Tamaño ajustado para navbar
+        filter: drop-shadow(0 2px 4px rgba($color-secundario, 0.2));
       }
 
       .logo-nombre {
-        font-size: 1.8rem;
+        font-size: 1.4rem;
         font-weight: 800;
         color: $color-primario;
-        letter-spacing: -1px;
+        letter-spacing: -0.5px;
+        font-family: 'Inter', sans-serif;
       }
     }
   }
 
-  // CONTENIDO: Lista de navegación
+  // ==========================================
+  // CONTENIDO: Lista de navegación (Centro)
+  // ==========================================
   .sidebar-content {
     flex: 1;
-    padding: 0 1rem;
-    overflow-y: auto;
+    display: flex;
+    justify-content: center; // Centramos las opciones en medio de la pantalla
+    padding: 0;
+    overflow: visible;
 
     .menu-lista {
       list-style: none;
       padding: 0;
       margin: 0;
+      display: flex;
+      flex-direction: row; // Links alineados en horizontal
+      align-items: center;
+      gap: 8px;
 
+      // Ocultamos divisores de texto porque en una navbar ensucian el diseño
       .menu-divider {
-        padding: 1.5rem 1.2rem 0.5rem;
-        span {
-          font-size: 0.75rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          color: color.adjust($color-texto-suave, $lightness: 20%);
-          letter-spacing: 1.5px;
-        }
+        display: none; 
       }
 
       .menu-item {
-        margin-bottom: 8px;
+        margin-bottom: 0; // Limpiamos el margen vertical
 
         .menu-link {
           display: flex;
           align-items: center;
-          gap: 15px;
-          padding: 12px 18px;
+          gap: 8px;
+          padding: 8px 16px;
           text-decoration: none;
           color: $color-texto-suave;
-          font-weight: 500;
-          border-radius: 15px;
+          font-weight: 600;
+          border-radius: 12px;
           transition: $transicion;
+          font-family: 'Inter', sans-serif;
 
-          .menu-icon { font-size: 1.4rem; }
-          .menu-label { font-size: 1.05rem; }
+          // 🔥 SOLUCIÓN: Apagamos por completo los íconos rotos para que no estorben
+          .menu-icon { 
+            display: none; 
+          }
+          
+          .menu-label { font-size: 0.95rem; }
 
           &:hover {
             background: rgba($color-secundario, 0.08);
             color: $color-primario;
-            transform: translateX(5px);
+            transform: translateY(-2px);
           }
 
           &.activo-item {
-            background: rgba($color-primario, 0.05);
+            background: rgba($color-primario, 0.04);
             color: $color-primario;
-            font-weight: 700;
-            box-shadow: inset 4px 0 0 $color-secundario;
+            font-weight: 800;
+            box-shadow: inset 0 -3px 0 $color-secundario; 
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
           }
 
           &.destacado-mente {
             background: rgba($color-primario, 0.03);
             border: 1px dashed rgba($color-primario, 0.2);
-            margin-top: 10px;
+            margin-top: 0;
 
             &:hover {
               background: $color-primario;
@@ -115,30 +138,35 @@ $transicion: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
   }
 
-  // FOOTER: Acciones de salir/ajustes
+  // ==========================================
+  // FOOTER: Acciones / Salir (Derecha)
+  // ==========================================
   .sidebar-footer {
-    padding: 2rem 1rem;
-    border-top: 1px solid rgba(0,0,0,0.05);
+    padding: 0;
+    border-top: none;
+    border-left: 1px solid rgba(0,0,0,0.06); // Separador vertical a la izquierda
+    padding-left: 1.5rem;
+    margin-left: 1rem;
 
     .footer-acciones {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
+      flex-direction: row; // Botones en horizontal
+      gap: 12px;
 
       .btn-footer {
         display: flex;
         align-items: center;
-        gap: 12px;
-        padding: 12px 18px;
+        gap: 8px;
+        padding: 8px 16px;
         background: white;
         border: 1px solid #edf2f7;
-        border-radius: 12px;
+        border-radius: 10px;
         cursor: pointer;
         transition: $transicion;
-        width: 100%;
+        font-family: 'Inter', sans-serif;
 
-        .footer-icon { font-size: 1.2rem; }
-        .footer-text { font-weight: 600; color: $color-texto; }
+        .footer-icon { font-size: 1.1rem; }
+        .footer-text { font-weight: 600; color: $color-texto; font-size: 0.85rem; }
 
         &:hover {
           border-color: $color-secundario;

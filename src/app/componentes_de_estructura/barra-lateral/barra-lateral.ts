@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router'; 
 
-// Estructura de datos para un menú de grado ingeniería
 interface MenuItem {
   label: string;
   route: string;
@@ -16,34 +15,30 @@ interface MenuItem {
   templateUrl: './barra-lateral.html',
   styleUrl: './barra-lateral.scss'
 })
-export class BarraLateral implements OnInit { // ⚡ CLAVE: Nombre unificado sin "Component"
+export class BarraLateral implements OnInit { 
   
-  // Definición del ecosistema de navegación de NUDO
+  // 🔥 CORRECCIÓN: "La mente detrás" ahora apunta a su ruta real /la-mente-detras
   public menuItems: MenuItem[] = [
-    { label: 'Inicio', route: '/inicio', icon: 'grid_view' },
-    { label: 'Catálogo', route: '/catalogo', icon: 'description' },
-    { label: 'Crear Contrato', route: '/generador-contrato', icon: 'border_color' },
-    { label: 'Mis Documentos', route: '/perfil-usuario', icon: 'folder_shared' }
+    { label: 'Inicio', route: '/inicio', icon: '' },
+    { label: 'Catálogo', route: '/catalogo', icon: '' },
+    { label: 'Crear Contrato', route: '/generador-contrato', icon: '' }, 
+    { label: 'La mente detrás', route: '/la-mente-detras', icon: '' } // ✨ Reparado
   ];
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     console.log('--- Sidebar de NUDO Inicializada ---');
   }
 
   /**
-   * Abre el panel de control técnico.
-   */
-  public abrirConfiguracion(): void {
-    console.log('⚙️ NUDO: Accediendo a configuración del sistema...');
-  }
-
-  /**
-   * Cierra el acceso al búnker (Preparado para la lógica de Firebase).
+   * Cierra el acceso al búnker, limpia y expulsa al login.
    */
   public cerrarSesion(): void {
     console.log('🚪 Sesión finalizada por el socio.');
-    // Aquí conectarás con tu authService de Firebase más adelante
+    
+    this.router.navigate(['/acceso']).then(() => {
+      console.log('🔒 Redirigido con éxito a la pantalla de acceso.');
+    });
   }
 }

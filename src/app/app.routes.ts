@@ -45,7 +45,7 @@ export const routes: Routes = [
   // --- 4. Identidad y Finanzas del Socio ---
   { 
     path: 'perfil-usuario', 
-    loadComponent: () => import('./componentes_de_vistas/perfil-de-usuario/perfil-de-usuario').then(m => m.PerfilDeUsuario), // Ajustado al nombre de clase que blindamos
+    loadComponent: () => import('./componentes_de_vistas/perfil-de-usuario/perfil-de-usuario').then(m => m.PerfilDeUsuario), 
     title: 'NUDO - Mi Perfil de Socio' 
   },
   { 
@@ -61,7 +61,7 @@ export const routes: Routes = [
     title: 'NUDO - Centro de Soporte' 
   },
   { 
-    path: 'mente-detras', 
+    path: 'la-mente-detras', // 🔥 ¡AQUÍ ESTABA EL DETALLE! Ajustado para que coincida con la barra lateral
     loadComponent: () => import('./componentes_de_vistas/la-mente-detras-de-nudo/la-mente-detras-de-nudo').then(m => m.LaMenteDetrasDeNUDO), 
     title: 'NUDO - La Mente Detrás' 
   },
