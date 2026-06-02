@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 /**
  * Definición de Rutas NUDO - Grado Ingeniería
- * Centralizamos la navegación para asegurar que el "Blindaje Legal" sea accesible desde cualquier punto.
+ * Centralizamos la navegación para asegurar que el "Blindaje" sea accesible desde cualquier punto.
  * Implementa Lazy Loading (carga perezosa) para optimizar el rendimiento y la velocidad de carga inicial.
  */
 export const routes: Routes = [
@@ -62,7 +62,7 @@ export const routes: Routes = [
     title: 'NUDO - Centro de Soporte' 
   },
   { 
-    path: 'la-mente-detras', // 🪢 Sincronizado con Barra Lateral y Encabezado
+    path: 'la-mente-detras', 
     loadComponent: () => import('./componentes_de_vistas/la-mente-detras-de-nudo/la-mente-detras-de-nudo').then(m => m.LaMenteDetrasDeNUDO), 
     title: 'NUDO - La Mente Detrás' 
   },
@@ -80,8 +80,6 @@ export const routes: Routes = [
   },
 
   // --- 6. Seguridad (Wildcard / Comodín) ---
-  // Si el usuario escribe una ruta rota o intenta forzar un path inexistente, 
-  // el búnker lo redirige automáticamente a la pantalla de acceso seguro.
   { 
     path: '**', 
     redirectTo: 'acceso' 

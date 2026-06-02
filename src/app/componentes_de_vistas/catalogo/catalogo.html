@@ -1,4 +1,5 @@
 <div class="contenedor-catalogo">
+  
   <header class="encabezado-seccion">
     <div class="titulos">
       <h2>📂 Mis NUDOS</h2>
@@ -10,39 +11,51 @@
   </header>
 
   <div class="filtros-bar">
-    <span class="filtro-item activo">Todos</span>
-    <span class="filtro-item">Completados ✅</span>
-    <span class="filtro-item">Pendientes ⏳</span>
+    <span class="filtro-item" 
+          [class.activo]="filtroActivo === 'todos'" 
+          (click)="cambiarFiltro('todos')">Todos</span>
+          
+    <span class="filtro-item" 
+          [class.activo]="filtroActivo === 'completado'" 
+          (click)="cambiarFiltro('completado')">Completados ✅</span>
+          
+    <span class="filtro-item" 
+          [class.activo]="filtroActivo === 'pendiente'" 
+          (click)="cambiarFiltro('pendiente')">Pendientes ⏳</span>
   </div>
 
   <div class="grid-contratos">
     
-    <div class="tarjeta-nudo" *ngFor="let contrato of misContratos">
-      <div class="header-card">
-        <div class="status-badge" [ngClass]="contrato.estado.toLowerCase()">
-          <span class="dot-status"></span>
-          {{ contrato.estado }}
+    @for (contrato of contratosFiltrados; track contrato.id) {
+      <div class="tarjeta-nudo">
+        
+        <div class="header-card">
+          <div class="status-badge" [ngClass]="contrato.estado.toLowerCase()">
+            <span class="dot-status"></span>
+            {{ contrato.estado }}
+          </div>
+          <button class="btn-opciones" title="Opciones" (click)="abrirOpciones(contrato)">•••</button>
         </div>
-        <button class="btn-opciones" title="Opciones">•••</button>
-      </div>
-      
-      <div class="cuerpo-card">
-        <div class="icono-tipo-doc">📜</div>
-        <div class="info-doc">
-          <h3>{{ contrato.nombre }}</h3>
-        <p class="meta">🆔 ID: {{ contrato.id.toString().substring(0,8) }} | 📅 {{ contrato.fecha }}</p>
+        
+        <div class="cuerpo-card">
+          <div class="icono-tipo-doc">📜</div>
+          <div class="info-doc">
+            <h3>{{ contrato.nombre }}</h3>
+            <p class="meta">🆔 ID: {{ contrato.id | slice:0:8 }} | 📅 {{ contrato.fecha }}</p>
+          </div>
         </div>
-      </div>
 
-      <div class="acciones-card">
-        <button class="btn-nudo-accion btn-pdf" title="Descargar PDF">
-          <span>📄</span> PDF
-        </button>
-        <button class="btn-nudo-accion btn-gestionar">
-          Gestionar 🛠️
-        </button>
+        <div class="acciones-card">
+          <button class="btn-nudo-accion btn-pdf" title="Descargar PDF" (click)="descargarPDF(contrato)">
+            <span>📄</span> PDF
+          </button>
+          <button class="btn-nudo-accion btn-gestionar" (click)="gestionarContrato(contrato)">
+            Gestionar 🛠️
+          </button>
+        </div>
+
       </div>
-    </div>
+    }
 
     <div class="tarjeta-nudo tarjeta-vacia" [routerLink]="['/generador-contrato']">
       <div class="contenido-vacio">
