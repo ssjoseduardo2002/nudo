@@ -13,11 +13,11 @@ import { RouterModule } from '@angular/router';
   styleUrl: './encabezado.scss'
 })
 export class Encabezado implements OnInit {
-  // Datos del usuario que vienen desde el componente principal
+  // Datos del usuario inyectados desde el componente principal
   @Input() usuario: string = 'Socio';
   @Input() seccion: string = '';
   
-  // Control de visibilidad para el flujo de autenticación
+  // Control de visibilidad del ecosistema de navegación
   @Input() enPantallaAcceso: boolean = false; 
 
   // Propiedad para el saludo dinámico (Creatividad NUDO)
@@ -30,8 +30,8 @@ export class Encabezado implements OnInit {
   }
 
   /**
-   * Genera un saludo personalizado basado en la hora del sistema.
-   * Porque un CEO siempre recibe a sus socios con propiedad. 👔
+   * Genera un saludo personalizado basado en la hora local.
+   * Listo en recámara para cuando decidas imprimirlo en la vista. 👔
    */
   private establecerSaludo(): void {
     const hora = new Date().getHours();
@@ -43,13 +43,5 @@ export class Encabezado implements OnInit {
     } else {
       this.saludoBienvenida = '¡Buenas noches';
     }
-  }
-
-  /**
-   * Lógica para cerrar sesión (Pensando en el futuro cercano de Firebase) 🚀
-   */
-  public onLogout(): void {
-    console.log('--- Cerrando sesión en NUDO ---');
-    // Aquí integraremos auth.signOut() de Firebase más adelante
   }
 }

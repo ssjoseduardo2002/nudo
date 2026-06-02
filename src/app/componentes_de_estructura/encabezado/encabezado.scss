@@ -3,42 +3,44 @@
 // VARIABLES DE MARCA NUDO (Evolucionadas)
 $color-primario: #003366;    // Azul Legal Profundo
 $color-secundario: #00a8cc;  // Cian Tecnológico
-$color-fondo-glass: rgba(255, 255, 255, 0.9);
+$color-fondo-glass: rgba(255, 255, 255, 0.85); // Ligeramente más transparente para que el blur resalte más
 $color-texto-suave: #576574;
-$sombra-suave: 0 4px 15px rgba(0, 0, 0, 0.05);
-$transicion: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); // Transición tipo "bounce" sutil
+$sombra-suave: 0 4px 20px rgba(0, 0, 0, 0.06); // Sombra un poco más difuminada y premium
+$transicion: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
 
 .encabezado-nudo {
   width: 100%;
+  box-sizing: border-box; // 🔥 CLAVE: Evita que el padding sume ancho y rompa la pantalla
   padding: 0.8rem 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: $color-fondo-glass;
-  backdrop-filter: blur(10px); // Efecto esmerilado (Glassmorphism)
+  backdrop-filter: blur(12px); // Un toque extra de esmerilado
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 2px solid rgba($color-secundario, 0.1);
+  border-bottom: 1px solid rgba($color-secundario, 0.15); // Borde más fino y elegante
   box-shadow: $sombra-suave;
   animation: slideDown 0.6s ease-out;
 
   .logo-contenedor {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.8rem;
     text-decoration: none;
+    cursor: pointer;
 
     .logo-simbolo {
-      font-size: 2rem;
-      filter: drop-shadow(0 2px 4px rgba($color-secundario, 0.3));
+      font-size: 2.2rem;
+      filter: drop-shadow(0 2px 6px rgba($color-secundario, 0.25));
       transition: $transicion;
     }
 
     .logo-texto {
       font-size: 1.6rem;
       font-weight: 800;
-      letter-spacing: -1px;
+      letter-spacing: -0.5px;
       color: $color-primario;
       font-family: 'Inter', 'Montserrat', sans-serif;
     }
@@ -55,7 +57,7 @@ $transicion: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); // Transición ti
 
   .navegacion-principal {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem; // Juntamos un poco los botones para que se vea más compacto
     align-items: center;
 
     .btn-nav {
@@ -69,9 +71,11 @@ $transicion: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); // Transición ti
       display: flex;
       align-items: center;
       gap: 0.4rem;
+      font-family: 'Inter', sans-serif;
 
-      span {
-        font-size: 1.1rem;
+      // 🔥 Si tienes íconos de Google rotos que muestran texto, esta clase los apaga
+      .icono-roto {
+        display: none;
       }
 
       &:hover {
@@ -83,13 +87,16 @@ $transicion: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); // Transición ti
       &.activo-link {
         color: $color-secundario;
         background: rgba($color-secundario, 0.05);
-        box-shadow: inset 0 0 0 1px rgba($color-secundario, 0.2);
+        box-shadow: inset 0 -3px 0 $color-secundario; // Línea inferior en lugar de cuadro completo
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
       }
 
       &.destacado {
         background: linear-gradient(135deg, $color-primario, color.adjust($color-primario, $lightness: 10%));
         color: white;
         box-shadow: 0 4px 10px rgba($color-primario, 0.2);
+        margin-left: 1rem; // Separamos un poco el botón destacado de los demás
 
         &:hover {
           transform: translateY(-3px) scale(1.02);
@@ -103,20 +110,20 @@ $transicion: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); // Transición ti
   .usuario-acciones {
     .btn-ajustes {
       background: white;
-      border: 1.5px solid #edf2f7;
-      border-radius: 50%; // Ahora es circular, se ve más moderno
-      width: 42px;
-      height: 42px;
+      border: 1px solid #edf2f7;
+      border-radius: 50%; 
+      width: 45px; // Un poquitito más grande para que sea más fácil darle clic
+      height: 45px;
       display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
       transition: $transicion;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 
       .icono-animado {
         font-size: 1.3rem;
-        transition: transform 0.8s ease;
+        transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55); // Giro con un pequeño rebote
       }
 
       &:hover {
@@ -125,7 +132,7 @@ $transicion: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); // Transición ti
         box-shadow: 0 4px 12px rgba($color-secundario, 0.15);
         
         .icono-animado {
-          transform: rotate(180deg); // Giro más dramático
+          transform: rotate(180deg) scale(1.1); 
         }
       }
     }

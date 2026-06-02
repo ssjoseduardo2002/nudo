@@ -1,43 +1,47 @@
 <header class="encabezado-nudo">
-  <div class="logo-contenedor" [routerLink]="['/inicio']" style="cursor: pointer;">
+  
+  <div class="logo-contenedor" [routerLink]="['/inicio']">
     <span class="logo-simbolo">🪢</span>
     <span class="logo-texto">NUDO</span>
   </div>
 
-  <nav class="navegacion-principal" *ngIf="!enPantallaAcceso">
+  @if (!enPantallaAcceso) {
     
-    <a [routerLink]="['/inicio']" 
-       routerLinkActive="activo-link" 
-       class="btn-nav">
-       <span>🏠</span> Inicio
-    </a>
+    <nav class="navegacion-principal">
+      <a [routerLink]="['/inicio']" 
+         routerLinkActive="activo-link" 
+         class="btn-nav">
+         <span>🏠</span> Inicio
+      </a>
 
-    <a [routerLink]="['/catalogo']" 
-       routerLinkActive="activo-link" 
-       class="btn-nav">
-       <span>📜</span> Catálogo
-    </a>
+      <a [routerLink]="['/catalogo']" 
+         routerLinkActive="activo-link" 
+         class="btn-nav">
+         <span>📜</span> Catálogo
+      </a>
 
-    <a [routerLink]="['/generador-contrato']" 
-       routerLinkActive="activo-link" 
-       class="btn-nav">
-       <span>✍️</span> Crear Contrato
-    </a>
+      <a [routerLink]="['/generador-contrato']" 
+         routerLinkActive="activo-link" 
+         class="btn-nav">
+         <span>✍️</span> Crear Contrato
+      </a>
 
-    <a [routerLink]="['/mente-detras']" 
-       routerLinkActive="activo-link" 
-       class="btn-nav destacado">
-       <span>💡</span> La Mente Detrás
-    </a>
+      <a [routerLink]="['/la-mente-detras']" 
+         routerLinkActive="activo-link" 
+         class="btn-nav destacado">
+         <span>💡</span> La Mente Detrás
+      </a>
+    </nav>
 
-  </nav>
+    <div class="usuario-acciones">
+      <a [routerLink]="['/perfil-usuario']" 
+         routerLinkActive="activo-link"
+         class="btn-ajustes" 
+         title="Mi Perfil / Ajustes">
+         <span class="icono-animado">⚙️</span>
+      </a>
+    </div>
 
-  <div class="usuario-acciones" *ngIf="!enPantallaAcceso">
-    <a [routerLink]="['/perfil-usuario']" 
-       routerLinkActive="activo-link"
-       class="btn-ajustes" 
-       title="Mi Perfil / Ajustes">
-       <span class="icono-animado">⚙️</span>
-    </a>
-  </div>
+  }
+
 </header>

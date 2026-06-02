@@ -61,13 +61,13 @@ export const routes: Routes = [
     title: 'NUDO - Centro de Soporte' 
   },
   { 
-    path: 'la-mente-detras', // 🔥 ¡AQUÍ ESTABA EL DETALLE! Ajustado para que coincida con la barra lateral
+    path: 'la-mente-detras', // ✨ Sincronizado con Barra Lateral y Encabezado
     loadComponent: () => import('./componentes_de_vistas/la-mente-detras-de-nudo/la-mente-detras-de-nudo').then(m => m.LaMenteDetrasDeNUDO), 
     title: 'NUDO - La Mente Detrás' 
   },
 
   // --- 6. Seguridad (Wildcard) ---
-  // Si el usuario se pierde, lo regresamos al búnker (Acceso)
+  // Si el usuario se pierde o escribe una ruta rota, el búnker lo protege redirigiéndolo al acceso
   { 
     path: '**', 
     redirectTo: 'acceso' 
