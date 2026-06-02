@@ -1,8 +1,8 @@
 @use "sass:color";
 
 // VARIABLES DE MARCA NUDO
-$color-primario: #003366;
-$color-secundario: #00a8cc;
+$color-primario: #003366;      // Azul Legal Profundo
+$color-secundario: #00a8cc;    // Cian Tecnológico
 $color-texto-principal: #2c3e50;
 $color-texto-suave: #576574;
 $color-fondo-nudo: #ffffff;
@@ -10,10 +10,12 @@ $transicion: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
 .footer-nudo {
   width: 100%;
+  box-sizing: border-box; // 🔥 CLAVE: Evita desbordamientos por paddings en pantallas chicas
   background: $color-fondo-nudo;
-  padding: 3rem 1rem 1.5rem;
-  border-top: 1px solid rgba($color-secundario, 0.1);
+  padding: 3.5rem 2rem 1.5rem; // Un poquito más de aire arriba y a los lados
+  border-top: 1px solid rgba($color-secundario, 0.12);
   color: $color-texto-principal;
+  font-family: 'Inter', sans-serif;
 
   .footer-container {
     max-width: 1200px;
@@ -29,22 +31,30 @@ $transicion: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     .brand-header {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
       margin-bottom: 1rem;
+      text-decoration: none;
 
-      .brand-emoji { font-size: 1.5rem; }
+      .brand-emoji { 
+        font-size: 1.6rem; 
+        filter: drop-shadow(0 2px 4px rgba($color-secundario, 0.2));
+      }
+      
       .brand-name {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
         font-weight: 800;
         color: $color-primario;
         letter-spacing: -0.5px;
+        font-family: 'Inter', 'Montserrat', sans-serif;
       }
     }
+    
     .brand-tagline {
       font-size: 0.9rem;
       color: $color-texto-suave;
-      line-height: 1.5;
-      max-width: 250px;
+      line-height: 1.6;
+      max-width: 260px;
+      margin: 0;
     }
   }
 
@@ -52,6 +62,7 @@ $transicion: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   .footer-nav {
     display: flex;
     justify-content: space-around;
+    gap: 1.5rem;
 
     .nav-group {
       display: flex;
@@ -71,11 +82,12 @@ $transicion: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         text-decoration: none;
         font-size: 0.9rem;
         color: $color-texto-suave;
+        display: inline-block; // 🔥 CRÍTICO: Permite que el transform funcione en elementos <a>
         transition: $transicion;
 
         &:hover {
           color: $color-secundario;
-          transform: translateX(3px);
+          transform: translateX(4px); // Un pixel extra para notar el dinamismo
         }
       }
     }
@@ -90,22 +102,28 @@ $transicion: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     .security-card {
       background: rgba($color-secundario, 0.04);
-      padding: 1rem;
-      border-radius: 15px;
-      border: 1px solid rgba($color-secundario, 0.1);
+      padding: 0.9rem 1.2rem;
+      border-radius: 14px;
+      border: 1px solid rgba($color-secundario, 0.12);
       margin-bottom: 1.5rem;
+      transition: $transicion;
+
+      &:hover {
+        background: rgba($color-secundario, 0.06);
+        border-color: rgba($color-secundario, 0.2);
+      }
 
       .status-indicator {
         display: flex;
         align-items: center;
         gap: 0.5rem;
         justify-content: flex-end;
-        margin-bottom: 0.3rem;
+        margin-bottom: 0.4rem;
 
         .status-text {
           font-size: 0.85rem;
-          font-weight: 600;
-          color: #27ae60; // Verde éxito
+          font-weight: 700;
+          color: #27ae60; 
         }
 
         .pulse-dot {
@@ -122,12 +140,13 @@ $transicion: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         font-size: 0.75rem;
         color: $color-texto-suave;
         margin: 0;
+        font-weight: 500;
       }
     }
 
     .copyright {
       font-size: 0.8rem;
-      color: color.adjust($color-texto-suave, $lightness: 15%);
+      color: color.adjust($color-texto-suave, $lightness: 12%);
     }
   }
 }
@@ -139,25 +158,36 @@ $transicion: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   100% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0); }
 }
 
-// RESPONSIVO
+// RESPONSIVO (Tabletas y móviles)
 @media (max-width: 900px) {
-  .footer-nudo .footer-container {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 3rem;
+  .footer-nudo {
+    padding: 3rem 1.5rem 1.5rem;
 
-    .footer-brand .brand-header, .footer-status .status-indicator {
-      justify-content: center;
-    }
-    .footer-brand .brand-tagline {
-      margin: 0 auto;
-    }
-    .footer-status {
-      align-items: center;
-    }
-    .footer-nav {
-      flex-direction: row;
-      gap: 2rem;
+    .footer-container {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 2.5rem;
+
+      .footer-brand .brand-header, 
+      .footer-status .status-indicator {
+        justify-content: center;
+      }
+      
+      .footer-brand .brand-tagline {
+        margin: 0 auto;
+      }
+      
+      .footer-status {
+        align-items: center;
+        text-align: center;
+      }
+      
+      .footer-nav {
+        flex-direction: row;
+        flex-wrap: wrap; // 🔥 Evita colisiones en teléfonos delgados
+        justify-content: center;
+        gap: 3rem;
+      }
     }
   }
 }

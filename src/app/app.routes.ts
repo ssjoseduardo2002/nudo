@@ -61,13 +61,24 @@ export const routes: Routes = [
     title: 'NUDO - Centro de Soporte' 
   },
   { 
-    path: 'la-mente-detras', // ✨ Sincronizado con Barra Lateral y Encabezado
+    path: 'la-mente-detras', 
     loadComponent: () => import('./componentes_de_vistas/la-mente-detras-de-nudo/la-mente-detras-de-nudo').then(m => m.LaMenteDetrasDeNUDO), 
     title: 'NUDO - La Mente Detrás' 
   },
 
+  // --- 5.1 Parches temporales para el Footer (Evitan redirección forzada a login) ---
+  {
+    path: 'privacidad',
+    loadComponent: () => import('./componentes_de_vistas/centro-ayuda/centro-ayuda').then(m => m.CentroAyuda),
+    title: 'NUDO - Aviso de Privacidad'
+  },
+  {
+    path: 'terminos',
+    loadComponent: () => import('./componentes_de_vistas/centro-ayuda/centro-ayuda').then(m => m.CentroAyuda),
+    title: 'NUDO - Términos de Servicio'
+  },
+
   // --- 6. Seguridad (Wildcard) ---
-  // Si el usuario se pierde o escribe una ruta rota, el búnker lo protege redirigiéndolo al acceso
   { 
     path: '**', 
     redirectTo: 'acceso' 

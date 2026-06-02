@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-footer', // Sincronizado con app.html y app.ts
+  selector: 'app-footer', // Sincronizado perfectamente con app.html y app.ts
   standalone: true,
   imports: [
     CommonModule, 
@@ -12,7 +12,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './pie-de-pagina.html',
   styleUrl: './pie-de-pagina.scss'
 })
-export class Footer implements OnInit { // Nombre unificado para los tests y app.ts
+export class Footer implements OnInit {
   
   /**
    * ⚡ ANIKILACIÓN DE ERROR (image_6afcaf.png):
@@ -20,7 +20,7 @@ export class Footer implements OnInit { // Nombre unificado para los tests y app
    */
   @Input() enPantallaAcceso: boolean = false; 
   
-  // Propiedades dinámicas para profesionalismo de NUDO
+  // Propiedades dinámicas para el profesionalismo de NUDO
   public fechaActual: number = new Date().getFullYear();
   public versionApp: string = 'v1.0.4-beta';
 
@@ -32,6 +32,7 @@ export class Footer implements OnInit { // Nombre unificado para los tests y app
 
   /**
    * Abre el canal de comunicación directa para el socio.
+   * Listo por si en el futuro decides cambiar el href directo por un (click)
    */
   public contactarSoporte(): void {
     const mensaje = "Hola NUDO, necesito asistencia técnica o legal.";
@@ -39,7 +40,7 @@ export class Footer implements OnInit { // Nombre unificado para los tests y app
   }
 
   /**
-   * Método irAyuda (llamado desde el HTML que vimos antes)
+   * Método de soporte alternativo
    */
   public irAyuda(): void {
     this.contactarSoporte();
