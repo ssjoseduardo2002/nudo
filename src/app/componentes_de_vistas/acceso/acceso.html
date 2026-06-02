@@ -3,6 +3,7 @@
     
     <div class="lado-visual">
       <div class="capa-degradado"></div>
+      
       <div class="branding-flotante">
         <span class="logo-emoji">🪢</span>
         <span class="logo-texto">NUDO</span>
@@ -24,7 +25,7 @@
         <p>Tu próximo gran contrato te espera.</p>
       </div>
 
-      <form class="formulario-nudo" (submit)="onLogin(); $event.preventDefault()">
+      <form class="formulario-nudo" #accesoForm="ngForm" (ngSubmit)="onLogin()">
         
         <div class="grupo-input">
           <label for="correo">Correo Electrónico</label>
@@ -36,8 +37,8 @@
               name="correo"
               [(ngModel)]="correo" 
               placeholder="socio@nudo.com"
-              required>
-          </div>
+              required
+              email> </div>
         </div>
 
         <div class="grupo-input">
@@ -52,16 +53,16 @@
               placeholder="••••••••"
               required>
           </div>
-          <span class="link-olvido">¿Olvidaste tu contraseña?</span>
+          <span class="link-olvido" (click)="onOlvidoContrasena()">¿Olvidaste tu contraseña?</span>
         </div>
 
-        <button type="submit" class="btn-ingresar">
+        <button type="submit" class="btn-ingresar" [disabled]="!accesoForm.valid">
           Entrar al Panel de Control ⚡
         </button>
       </form>
 
       <footer class="pie-registro">
-        <p>¿Eres nuevo en el gremio? <span class="link">Crea tu cuenta</span></p>
+        <p>¿Eres nuevo en el gremio? <span class="link" (click)="onIrARegistro()">Crea tu cuenta</span></p>
       </footer>
     </div>
     

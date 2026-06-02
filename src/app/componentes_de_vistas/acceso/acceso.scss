@@ -1,8 +1,8 @@
 @use "sass:color";
 
 // VARIABLES DE DISEÑO LOGIN
-$color-primario: #003366;
-$color-secundario: #00a8cc;
+$color-primario: #003366;       // Azul Legal Profundo
+$color-secundario: #00a8cc;     // Cian Tecnológico
 $color-fondo: #f4f7f9;
 $transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 
@@ -12,22 +12,26 @@ $transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   justify-content: center;
   min-height: 100vh;
   background: radial-gradient(circle at top right, #e0eafc, #f4f7f9);
-  padding: 20px;
+  padding: 24px;
+  box-sizing: border-box;
 }
 
 .tarjeta-acceso {
   display: flex;
-  width: 1050px;
-  height: 650px;
+  width: 100%;
+  max-width: 1050px;     // 🔥 FLUIDO: Máximo esto, pero se encoge si la pantalla es chica
+  min-height: 650px;     // Mantiene la proporción elegante en monitores grandes
   background: white;
   border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 25px 50px rgba(0, 51, 102, 0.15);
   animation: slideUp 0.8s ease-out;
 
-  // LADO IZQUIERDO: IMPACTO VISUAL
+  // ==========================================
+  // LADO IZQUIERDO: IMPACTO VISUAL (Oculto en móviles)
+  // ==========================================
   .lado-visual {
-    flex: 1.1; // Un poquito más ancho para la inmersión
+    flex: 1.1; 
     position: relative;
     background: $color-primario;
     display: flex;
@@ -38,7 +42,7 @@ $transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     .capa-degradado {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(135deg, rgba($color-primario, 0.8), rgba($color-secundario, 0.6));
+      background: linear-gradient(135deg, rgba($color-primario, 0.85), rgba($color-secundario, 0.65));
       z-index: 1;
     }
 
@@ -49,12 +53,16 @@ $transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
       align-items: center;
       gap: 10px;
 
-      .logo-emoji { font-size: 2.5rem; }
+      .logo-emoji { 
+        font-size: 2.5rem; 
+        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+      }
       .logo-texto { 
         font-size: 1.8rem; 
         font-weight: 800; 
         color: white; 
         letter-spacing: -1px;
+        font-family: 'Inter', sans-serif;
       }
     }
 
@@ -65,8 +73,9 @@ $transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
       
       h2 { 
         font-size: 2.4rem; 
-        line-height: 1.2;
+        line-height: 1.25;
         margin-bottom: 15px;
+        font-weight: 800;
         strong { color: $color-secundario; }
       }
       p { font-size: 1.1rem; opacity: 0.9; line-height: 1.6; }
@@ -77,18 +86,23 @@ $transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
       z-index: 2;
       display: inline-flex;
       align-items: center;
+      align-self: flex-start; // Evita que el badge se estire a lo ancho
       gap: 8px;
-      background: rgba(white, 0.1);
+      background: rgba(white, 0.08);
       padding: 10px 20px;
       border-radius: 50px;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       color: white;
       font-size: 0.85rem;
-      border: 1px solid rgba(white, 0.2);
+      border: 1px solid rgba(white, 0.15);
+      font-weight: 500;
     }
   }
 
-  // LADO DERECHO: INTERACCIÓN
+  // ==========================================
+  // LADO DERECHO: INTERACCIÓN Y FORMULARIO
+  // ==========================================
   .lado-formulario {
     flex: 0.9;
     display: flex;
@@ -97,9 +111,9 @@ $transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     background: white;
 
     .cabecera-interna {
-      margin-bottom: 40px;
-      h1 { color: $color-primario; font-size: 2.2rem; margin-bottom: 10px; font-weight: 800; }
-      p { color: #64748b; font-size: 1rem; }
+      margin-bottom: 35px;
+      h1 { color: $color-primario; font-size: 2.2rem; margin-bottom: 10px; font-weight: 800; letter-spacing: -0.5px; }
+      p { color: #64748b; font-size: 1rem; font-weight: 500; }
     }
 
     .formulario-nudo {
@@ -111,40 +125,61 @@ $transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
           position: relative;
           display: flex;
           align-items: center;
+          transition: $transicion;
 
           .input-icon {
             position: absolute;
-            left: 15px;
-            font-size: 1.2rem;
-            opacity: 0.5;
+            left: 16px;
+            font-size: 1.1rem;
+            opacity: 0.4;
+            transition: $transicion;
+            pointer-events: none; // Evita interferir con los clics en el input
           }
 
           input {
             width: 100%;
-            padding: 14px 14px 14px 45px; // Espacio para el icono
+            padding: 14px 16px 14px 48px; 
             border: 2px solid #e2e8f0;
-            border-radius: 12px;
+            border-radius: 14px;
             font-size: 1rem;
+            color: $color-primario;
             transition: $transicion;
             outline: none;
+            background: #f8fafc;
 
             &:focus {
               border-color: $color-secundario;
-              box-shadow: 0 0 0 4px rgba($color-secundario, 0.1);
+              box-shadow: 0 0 0 4px rgba($color-secundario, 0.12);
               background: white;
+            }
+            
+            // Corrige el molesto fondo amarillo de autocompletado en navegadores Chrome
+            &:-webkit-autofill {
+              -webkit-box-shadow: 0 0 0 100px white inset !important;
+              -webkit-text-fill-color: $color-primario !important;
+            }
+          }
+
+          // ✨ EFECTO SENIOR: Si el input está enfocado, ilumina su respectivo ícono
+          &:focus-within {
+            .input-icon {
+              opacity: 1;
+              filter: drop-shadow(0 0 4px rgba($color-secundario, 0.3));
             }
           }
         }
 
         .link-olvido {
-          display: block;
+          display: inline-block;
+          width: 100%;
           text-align: right;
-          margin-top: 8px;
+          margin-top: 10px;
           font-size: 0.85rem;
           color: $color-secundario;
           cursor: pointer;
-          font-weight: 600;
-          &:hover { text-decoration: underline; }
+          font-weight: 700;
+          transition: $transicion;
+          &:hover { color: color.adjust($color-secundario, $lightness: -10%); text-decoration: underline; }
         }
       }
 
@@ -155,16 +190,29 @@ $transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         color: white;
         border: none;
         border-radius: 14px;
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         font-weight: 700;
         cursor: pointer;
         transition: $transicion;
-        box-shadow: 0 10px 20px rgba($color-primario, 0.2);
+        box-shadow: 0 10px 20px rgba($color-primario, 0.15);
 
-        &:hover {
-          background: color.adjust($color-primario, $lightness: 10%);
+        &:hover:not(:disabled) {
+          background: color.adjust($color-primario, $lightness: 8%);
           transform: translateY(-2px);
-          box-shadow: 0 15px 30px rgba($color-primario, 0.3);
+          box-shadow: 0 15px 25px rgba($color-primario, 0.25);
+        }
+
+        &:active:not(:disabled) {
+          transform: translateY(0);
+        }
+
+        // ⚡ APAGADO VISUAL: Controla la estética de Angular cuando el form no es válido
+        &:disabled {
+          background: #cbd5e1 !important;
+          color: #94a3b8 !important;
+          cursor: not-allowed !important;
+          box-shadow: none !important;
+          transform: none !important;
         }
       }
     }
@@ -172,19 +220,41 @@ $transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     .pie-registro {
       margin-top: auto;
       text-align: center;
-      padding-top: 30px;
-      p { font-size: 0.95rem; color: #64748b; }
+      padding-top: 35px;
+      p { font-size: 0.95rem; color: #64748b; font-weight: 500; }
       .link { 
         color: $color-secundario; 
         font-weight: 700; 
         cursor: pointer;
-        &:hover { text-decoration: underline; }
+        transition: $transicion;
+        &:hover { color: color.adjust($color-secundario, $lightness: -10%); text-decoration: underline; }
       }
     }
   }
 }
 
+// ANIMACIONES NATIVAS
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px); }
+  from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+// ==========================================
+// RESPONSIVO EXTRA: RESPUESTA DE INFRAESTRUCTURA MÓVIL
+// ==========================================
+@media (max-width: 900px) {
+  .tarjeta-acceso {
+    flex-direction: column;
+    max-width: 480px; // Se transforma en una tarjeta vertical limpia y estética
+    min-height: auto;
+    
+    .lado-visual {
+      display: none; // Ocultamos el bloque visual en pantallas chicas para priorizar velocidad
+    }
+    
+    .lado-formulario {
+      flex: 1;
+      padding: 40px 24px; // Reducimos paddings para no apretar los inputs
+    }
+  }
 }
