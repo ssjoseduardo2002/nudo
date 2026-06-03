@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 /**
  * Definición de Rutas NUDO - Grado Ingeniería
- * Centralizamos la navegación para asegurar que el "Blindaje" sea accesible desde cualquier punto.
+ * Centralizamos la navegación para asegurar que el "Blindaje Legal" sea accesible.
  * Implementa Lazy Loading (carga perezosa) para optimizar el rendimiento y la velocidad de carga inicial.
  */
 export const routes: Routes = [
@@ -19,11 +19,12 @@ export const routes: Routes = [
     title: 'NUDO - Acceso Blindado' 
   },
 
-  // --- 2. Centro de Operaciones (Dashboard) ---
+  // --- 2. Centro de Operaciones (Dashboard - Requiere AuthGuard a futuro) ---
   { 
     path: 'inicio', 
     loadComponent: () => import('./componentes_de_vistas/inicio/inicio').then(m => m.Inicio), 
-    title: 'NUDO - Panel de Control' 
+    title: 'NUDO - Panel de Control'
+    // canActivate: [authGuard] <-- Compuerta de seguridad Firebase listoneada
   },
 
   // --- 3. Gestión Documental y Legal-Tech ---
@@ -67,7 +68,7 @@ export const routes: Routes = [
     title: 'NUDO - La Mente Detrás' 
   },
 
-  // --- 5.1 Parches dinámicos para el Footer (Consumen el mismo componente de soporte de forma inteligente) ---
+  // --- 5.1 Parches dinámicos para el Footer (Consumen el mismo búnker de soporte de forma inteligente) ---
   {
     path: 'privacidad',
     loadComponent: () => import('./componentes_de_vistas/centro-ayuda/centro-ayuda').then(m => m.CentroAyuda),
@@ -79,7 +80,7 @@ export const routes: Routes = [
     title: 'NUDO - Términos de Servicio'
   },
 
-  // --- 6. Seguridad (Wildcard / Comodín de Redirección) ---
+  // --- 6. Seguridad Extrema (Wildcard / Comodín de Redirección para URLs rotas) ---
   { 
     path: '**', 
     redirectTo: 'acceso' 
