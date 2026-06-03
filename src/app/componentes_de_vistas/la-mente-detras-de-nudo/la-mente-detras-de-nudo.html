@@ -13,8 +13,8 @@
       </div>
 
       <div class="instituciones-vertical">
-        <p>TecNM IT Durango</p>
-        <p>TecNM IT Iztapalapa III</p>
+        <p>TecNM Instituto Tecnológico de Durango</p>
+        <p>TecNM Instituto Tecnológico de Iztapalapa III</p>
       </div>
     </aside>
 
@@ -23,13 +23,13 @@
         <span class="pre-titulo">EL ORIGEN</span>
         <h1>La Mente Detrás de NUDO</h1>
         <div class="subtitulo-primario">
-          <strong>José</strong> | Estudiante de Ingeniería Informática
+          <strong>{{ perfil.nombre }}</strong> | Estudiante de Ingeniería Informática y desarrollador web freelancer.
         </div>
       </header>
 
       <article class="biografia-contenido">
         <p class="intro-personal">
-          ¡Hola! Me llamo José. Él es Ash, el gatito que me cuida desde el cielo. tengo 24 años y tengo algo que contarles:
+          ¡Hola! Me llamo {{ perfil.nombre }}. Él es Ash, el gatito que me cuida desde el cielo. Tengo {{ perfil.edad }} años y tengo algo que contarles:
         </p>
 
         <p>
@@ -59,8 +59,8 @@
 
       <footer class="footer-autor">
         <blockquote class="frase-inspiracional">
-          <p>"Para obtener algo, es necesario sacrificar algo de igual valor. Pero creo que no es la única verdad del mundo. Si te esfuerzas y trabajas duro, puedes llegar a algo más grande que ese sacrificio."</p>
-          <cite>— Alphonse Elric, <small>Fullmetal Alchemist: Brotherhood</small></cite>
+          <p>{{ perfil.inspiracion.cita }}</p>
+          <cite>— {{ perfil.inspiracion.autor }}, <small>{{ perfil.inspiracion.obra }}</small></cite>
         </blockquote>
         
         <div class="redes-autor">

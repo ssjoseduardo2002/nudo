@@ -10,13 +10,13 @@
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 80px);
-  background: #f4f7f9; // Fondo sutil para que la tarjeta resalte
+  background: #f4f7f9;
 }
 
 .tarjeta-autor {
   display: flex;
   background: white;
-  border-radius: 30px; // Un poco más redondeado para modernidad
+  border-radius: 30px;
   overflow: hidden;
   box-shadow: 0 30px 70px rgba(0, 51, 102, 0.08);
   max-width: 1200px;
@@ -121,7 +121,7 @@
         line-height: 1.8;
         margin-bottom: 1.8rem;
         font-size: 1.1rem;
-        text-align: left; // Más legible que justify en web moderna
+        text-align: left;
 
         .cita-interna {
           display: block;

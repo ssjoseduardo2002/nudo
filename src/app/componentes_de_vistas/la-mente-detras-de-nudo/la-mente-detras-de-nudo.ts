@@ -10,16 +10,22 @@ import { CommonModule } from '@angular/common';
 })
 export class LaMenteDetrasDeNUDO implements OnInit {
 
-  // ⚡ ANIKILACIÓN DE ERRORES: Sincronización de Identidad NUDO
+  // ⚡ Identidad y Perfil del Socio
+  public perfil = {
+    nombre: 'José',
+    edad: 24,
+    inspiracion: {
+      cita: '"Para obtener algo, es necesario sacrificar algo de igual valor. Pero creo que no es la única verdad del mundo. Si te esfuerzas y trabajas duro, puedes llegar a algo más grande que ese sacrificio."',
+      autor: 'Alphonse Elric',
+      obra: 'Fullmetal Alchemist: Brotherhood'
+    }
+  };
+
   public redesSociales = {
     instagram: 'https://instagram.com/tu_usuario',
     linkedin: 'https://linkedin.com/in/tu_perfil',
     github: 'https://github.com/tu_repo'
   };
-
-  // Datos biográficos para el "About"
-  public nombreFundador: string = 'José';
-  public cargo: string = 'CEO de NUDO';
 
   constructor() {}
 
@@ -29,12 +35,11 @@ export class LaMenteDetrasDeNUDO implements OnInit {
      * El manifiesto se carga solo cuando el socio busca conocer el origen de la protección.
      */
     console.log('--- Manifiesto de NUDO cargado ---');
-    console.log(`${this.cargo}: ${this.nombreFundador} | Misión: Blindar el talento creativo.`);
+    console.log(`CEO: ${this.perfil.nombre} | Misión: Blindar el talento creativo.`);
   }
 
   /**
    * Método de navegación segura hacia perfiles externos.
-   * "Operar sin emociones": Un clic, una ventana nueva, conexión total.
    */
   public irARed(url: string): void {
     if (url) {

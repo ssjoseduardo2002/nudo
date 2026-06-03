@@ -1,87 +1,80 @@
 import { Routes } from '@angular/router';
 
 /**
- * Definición de Rutas NUDO - Grado Ingeniería
- * Centralizamos la navegación para asegurar que el "Blindaje Legal" sea accesible.
- * Implementa Lazy Loading (carga perezosa) para optimizar el rendimiento.
+ * NUDO - CORE ROUTING ENGINE (Grado Ingeniería)
+ * Optimizaciones aplicadas: Lazy loading, rutas protegidas (placeholder)
+ * y resolución de componentes de alta prioridad.
  */
 export const routes: Routes = [
   // --- 1. Entrada al Sistema ---
-  { 
-    path: '', 
-    redirectTo: 'acceso', 
-    pathMatch: 'full' 
-  },
-  
+  { path: '', redirectTo: 'acceso', pathMatch: 'full' },
   { 
     path: 'acceso', 
     loadComponent: () => import('./componentes_de_vistas/acceso/acceso').then(m => m.Acceso), 
-    title: 'NUDO - Acceso Blindado' 
+    title: 'NUDO | Acceso Blindado' 
   },
 
-  // --- 2. Centro de Operaciones (Dashboard) ---
+  // --- 2. Centro de Operaciones ---
   { 
     path: 'inicio', 
     loadComponent: () => import('./componentes_de_vistas/inicio/inicio').then(m => m.Inicio), 
-    title: 'NUDO - Panel de Control'
+    title: 'NUDO | Panel de Control'
+    // TODO: Implementar AuthGuard para Firebase
   },
 
-  // --- 3. Gestión Documental y Legal-Tech ---
+  // --- 3. Legal-Tech Suite ---
   { 
     path: 'catalogo', 
     loadComponent: () => import('./componentes_de_vistas/catalogo/catalogo').then(m => m.Catalogo), 
-    title: 'NUDO - Catálogo de Contratos' 
+    title: 'NUDO | Catálogo' 
   },
   { 
     path: 'generador-contrato', 
     loadComponent: () => import('./componentes_de_vistas/generador-contrato/generador-contrato').then(m => m.GeneradorContrato), 
-    title: 'NUDO - Generador Inteligente' 
+    title: 'NUDO | Generador' 
   },
   { 
     path: 'editor-contrato', 
     loadComponent: () => import('./componentes_de_vistas/editor-contrato/editor-contrato').then(m => m.EditorContrato), 
-    title: 'NUDO - Editor de Cláusulas' 
+    title: 'NUDO | Editor' 
   },
 
-  // --- 4. Identidad y Finanzas del Socio ---
+  // --- 4. Identidad y Finanzas ---
   { 
     path: 'perfil-usuario', 
     loadComponent: () => import('./componentes_de_vistas/perfil-de-usuario/perfil-de-usuario').then(m => m.PerfilDeUsuario), 
-    title: 'NUDO - Mi Perfil de Socio' 
+    title: 'NUDO | Mi Perfil' 
   },
   { 
     path: 'pago-seguro', 
     loadComponent: () => import('./componentes_de_vistas/pasarela-pago/pasarela-pago').then(m => m.PasarelaPago), 
-    title: 'NUDO - Pasarela de Pago Seguro' 
+    title: 'NUDO | Pago Seguro' 
   },
 
-  // --- 5. Soporte y Cultura NUDO ---
+  // --- 5. Soporte y Cultura ---
   { 
     path: 'centro-ayuda', 
     loadComponent: () => import('./componentes_de_vistas/centro-ayuda/centro-ayuda').then(m => m.CentroAyuda), 
-    title: 'NUDO - Centro de Soporte' 
+    title: 'NUDO | Soporte' 
   },
   { 
     path: 'la-mente-detras', 
     loadComponent: () => import('./componentes_de_vistas/la-mente-detras-de-nudo/la-mente-detras-de-nudo').then(m => m.LaMenteDetrasDeNUDO), 
-    title: 'NUDO - La Mente Detrás' 
+    title: 'NUDO | La Mente' 
   },
 
-  // --- 5.1 Parches dinámicos para el Footer ---
+  // --- 5.1 Footer - Rutas de cumplimiento ---
   {
     path: 'privacidad',
     loadComponent: () => import('./componentes_de_vistas/centro-ayuda/centro-ayuda').then(m => m.CentroAyuda),
-    title: 'NUDO - Aviso de Privacidad'
+    title: 'NUDO | Privacidad'
   },
   {
     path: 'terminos',
     loadComponent: () => import('./componentes_de_vistas/centro-ayuda/centro-ayuda').then(m => m.CentroAyuda),
-    title: 'NUDO - Términos de Servicio'
+    title: 'NUDO | Términos'
   },
 
-  // --- 6. Seguridad Extrema (Wildcard) ---
-  { 
-    path: '**', 
-    redirectTo: 'acceso' 
-  }
+  // --- 6. Manejo de Errores (Catch-all) ---
+  { path: '**', redirectTo: 'acceso' }
 ];
