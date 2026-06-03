@@ -2,13 +2,15 @@
   
   <section class="banner-inicio">
     <div class="texto-bienvenida">
-      <h1>¡Qué gusto verte, <span class="nombre-ceo">{{nombreUsuario}}</span>! 🪢</h1>
+      <h1>¡Qué gusto verte, <span class="nombre-ceo">{{ nombreUsuario }}</span>! 🪢</h1>
       <p>Hoy es un gran día para asegurar nuevos proyectos en <strong>NUDO</strong>.</p>
     </div>
-  </section> <div class="tablero-resumen">
+  </section>
+
+  <div class="tablero-resumen">
     <div class="tarjeta-stat shadow-sm">
       <div class="contenido-stat">
-        <span class="cifra">12</span>
+        <span class="cifra">{{ estadisticas.activos }}</span>
         <p>Contratos Activos</p>
       </div>
       <div class="decoracion-card">📂</div>
@@ -16,7 +18,7 @@
     
     <div class="tarjeta-stat shadow-sm">
       <div class="contenido-stat">
-        <span class="cifra">05</span>
+        <span class="cifra">{{ estadisticas.pendientes }}</span>
         <p>Pendientes de Firma</p>
       </div>
       <div class="decoracion-card alerta">⏳</div>
@@ -28,7 +30,7 @@
       </div>
       <div class="texto-especial">
         <p>Pendiente prioritario:</p>
-        <strong>Revisar contrato de "Agencia Creativa"</strong>
+        <strong>{{ estadisticas.prioridad }}</strong>
       </div>
     </div>
   </div>

@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 /**
  * Definición de Rutas NUDO - Grado Ingeniería
  * Centralizamos la navegación para asegurar que el "Blindaje Legal" sea accesible.
- * Implementa Lazy Loading (carga perezosa) para optimizar el rendimiento y la velocidad de carga inicial.
+ * Implementa Lazy Loading (carga perezosa) para optimizar el rendimiento.
  */
 export const routes: Routes = [
   // --- 1. Entrada al Sistema ---
@@ -19,12 +19,11 @@ export const routes: Routes = [
     title: 'NUDO - Acceso Blindado' 
   },
 
-  // --- 2. Centro de Operaciones (Dashboard - Requiere AuthGuard a futuro) ---
+  // --- 2. Centro de Operaciones (Dashboard) ---
   { 
     path: 'inicio', 
     loadComponent: () => import('./componentes_de_vistas/inicio/inicio').then(m => m.Inicio), 
     title: 'NUDO - Panel de Control'
-    // canActivate: [authGuard] <-- Compuerta de seguridad Firebase listoneada
   },
 
   // --- 3. Gestión Documental y Legal-Tech ---

@@ -2,6 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+/**
+ * Interfaz para definir las métricas del tablero y asegurar tipado estricto.
+ */
+interface EstadisticasDashboard {
+  activos: number;
+  pendientes: number;
+  prioridad: string;
+}
+
 @Component({
   selector: 'app-inicio',
   standalone: true,
@@ -9,24 +18,33 @@ import { RouterModule } from '@angular/router';
   templateUrl: './inicio.html',
   styleUrl: './inicio.scss'
 })
-export class Inicio implements OnInit { // Nombre simplificado para el spec.ts
+export class Inicio implements OnInit { 
 
-  // Aquí vive el nombre que se imprime en el banner de bienvenida
   public nombreUsuario: string = 'José';
+  
+  // Modelo de datos para las tarjetas del tablero
+  public estadisticas: EstadisticasDashboard = {
+    activos: 12,
+    pendientes: 5,
+    prioridad: 'Revisar contrato de "Agencia Creativa"'
+  };
 
   constructor() {}
 
   ngOnInit(): void {
-    // Aquí es donde en el futuro podrías llamar a un servicio de Firebase
-    // para traer los datos reales de los "Contratos Activos"
-    console.log(`--- Dashboard NUDO: Bienvenido de nuevo, ${this.nombreUsuario} ---`);
+    // Registro de telemetría inicial
+    console.log(`🚀 [NUDO Dashboard] Inicializando sesión para: ${this.nombreUsuario}`);
+    this.refrescarTablero();
   }
 
   /**
-   * Método opcional por si quieres refrescar las estadísticas
-   * del tablero sin recargar la página.
+   * Método de sincronización: Se conectará a los servicios de Firebase/Firestore
+   * para obtener métricas en tiempo real.
    */
   public refrescarTablero(): void {
-    console.log('🔄 Sincronizando métricas de blindaje...');
+    console.log('🔄 [NUDO Engine] Sincronizando métricas de blindaje contra búnker...');
+    
+    // Aquí implementaremos la lógica asíncrona de carga de datos:
+    // this.contractService.getDashboardStats().subscribe(...)
   }
 }
