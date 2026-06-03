@@ -1,9 +1,10 @@
 @use "sass:color";
 
 // VARIABLES DE MARCA NUDO
-$color-primario: #003366;
-$color-secundario: #00a8cc;
+$color-primario: #003366;       // Azul Legal Profundo
+$color-secundario: #00a8cc;     // Cian Tecnológico
 $color-fondo: #f9fbfd;
+$sombra-premium: 0 15px 35px rgba($color-primario, 0.05);
 $transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 
 .contenedor-ayuda {
@@ -11,9 +12,12 @@ $transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   max-width: 1300px;
   margin: 0 auto;
   background-color: $color-fondo;
+  box-sizing: border-box;
 
+  // ==========================================
+  // ENCABEZADO PRINCIPAL (MODO SOPORTE)
+  // ==========================================
   .encabezado-ayuda {
-    // Degradado con más profundidad y textura
     background: linear-gradient(145deg, $color-primario 0%, #001a33 100%);
     color: white;
     padding: 5rem 2rem;
@@ -22,49 +26,64 @@ $transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     text-align: center;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba($color-primario, 0.2);
+    box-shadow: 0 20px 40px rgba($color-primario, 0.15);
 
-    // Toque decorativo sutil
     &::after {
       content: '🪢';
       position: absolute;
       right: -20px;
       bottom: -20px;
       font-size: 15rem;
-      opacity: 0.05;
+      opacity: 0.04;
       transform: rotate(-15deg);
+      pointer-events: none;
+    }
+
+    .badge-ayuda {
+      background: rgba($color-secundario, 0.15);
+      color: $color-secundario;
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba($color-secundario, 0.2);
     }
 
     h1 { 
       font-size: 3rem; 
-      margin-bottom: 1.5rem; 
+      margin-bottom: 1rem; 
       font-weight: 800;
       letter-spacing: -1px;
     }
 
     p {
       font-size: 1.2rem;
-      opacity: 0.9;
+      opacity: 0.85;
       margin-bottom: 2.5rem;
+      font-weight: 400;
     }
     
     .barra-busqueda {
       display: flex;
-      max-width: 700px;
+      max-width: 650px;
       margin: 0 auto;
       background: white;
-      padding: 10px;
+      padding: 8px;
       border-radius: 20px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
       position: relative;
       z-index: 2;
       
       input {
         flex: 1;
-        padding: 15px 25px;
+        padding: 15px 20px;
         border: none;
         outline: none;
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         color: $color-primario;
         background: transparent;
 
@@ -76,21 +95,24 @@ $transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         color: white;
         border: none;
         padding: 0 35px;
-        border-radius: 15px;
+        border-radius: 14px;
         font-weight: 700;
         font-size: 1rem;
         transition: $transicion;
         cursor: pointer;
         
         &:hover { 
-          background: color.adjust($color-secundario, $lightness: -10%);
-          transform: scale(1.02);
+          background: color.adjust($color-secundario, $lightness: -8%);
+          transform: translateY(-1px);
           box-shadow: 0 5px 15px rgba($color-secundario, 0.3);
         }
       }
     }
   }
 
+  // ==========================================
+  // GRID DE TARJETAS DE CATEGORÍA
+  // ==========================================
   .grid-ayuda {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -100,121 +122,296 @@ $transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     .tarjeta-ayuda {
       background: white;
       border-radius: 28px;
-      padding: 3rem 2rem;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba($color-primario, 0.04);
+      padding: 2.5rem 2rem;
+      box-shadow: $sombra-premium;
       border: 1px solid rgba($color-primario, 0.03);
       transition: $transicion;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      position: relative;
+      cursor: pointer;
 
       &:hover { 
-        transform: translateY(-12px); 
-        box-shadow: 0 25px 50px rgba($color-primario, 0.1);
-        border-color: rgba($color-secundario, 0.2);
-      }
+        transform: translateY(-10px); 
+        box-shadow: 0 25px 50px rgba($color-primario, 0.08);
+        border-color: rgba($color-secundario, 0.3);
 
-      .ilustracion-ayuda {
-        margin-bottom: 2rem;
-        transition: transform 0.3s ease;
-        
-        img { 
-          height: 140px; 
-          width: auto; 
-          filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+        .icono-flotante {
+          background: rgba($color-secundario, 0.1);
+          transform: scale(1.1) rotate(5deg);
+        }
+
+        .footer-tarjeta .enlace-nudo {
+          background: $color-secundario;
+          color: white;
         }
       }
 
-      h3 { 
-        color: $color-primario; 
-        font-size: 1.5rem; 
-        margin-bottom: 1rem;
-        font-weight: 700;
-      }
-
-      p { 
-        color: #64748b; 
-        line-height: 1.7; 
-        margin-bottom: 2rem;
-        font-size: 1rem;
-      }
-
-      .enlace-ayuda { 
-        color: $color-secundario; 
-        font-weight: 700; 
-        text-decoration: none; 
-        cursor: pointer;
-        padding: 8px 20px;
-        border-radius: 12px;
-        background: rgba($color-secundario, 0.05);
+      .icono-flotante {
+        width: 60px;
+        height: 60px;
+        background: #f0faff;
+        border-radius: 16px;
+        font-size: 1.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.8rem;
         transition: $transicion;
+      }
 
-        &:hover {
-          background: $color-secundario;
-          color: white;
+      .info-ayuda {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        h3 { 
+          color: $color-primario; 
+          font-size: 1.35rem; 
+          margin-bottom: 0.8rem;
+          font-weight: 800;
+        }
+
+        p { 
+          color: #64748b; 
+          line-height: 1.6; 
+          margin-bottom: 2rem;
+          font-size: 0.95rem;
+          flex: 1; // Empuja el footer hacia abajo para alinear todas las tarjetas
+        }
+
+        .footer-tarjeta {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-top: 1px solid #f1f5f9;
+          padding-top: 1.2rem;
+
+          .contador {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            font-family: monospace;
+            font-weight: 600;
+          }
+
+          .enlace-nudo { 
+            color: $color-secundario; 
+            font-weight: 700; 
+            font-size: 0.9rem;
+            text-decoration: none; 
+            padding: 8px 18px;
+            border-radius: 10px;
+            background: rgba($color-secundario, 0.05);
+            transition: $transicion;
+          }
         }
       }
     }
   }
 
-  .contacto-directo {
-    .cuadro-contacto {
-      background: linear-gradient(rgba(white, 0.9), rgba(white, 0.9)), 
-                  url('/assets/images/pattern-dots.png'); // Si tienes un patron sutil
-      background-color: #f0faff;
-      padding: 5rem 2rem;
+  // ==========================================
+  // SECCIÓN SOPORTE VIP DIRECTO
+  // ==========================================
+  .contacto-soporte {
+    .tarjeta-contacto {
+      background: linear-gradient(rgba(240, 250, 255, 0.95), rgba(240, 250, 255, 0.95));
+      padding: 3.5rem 3rem;
       border-radius: 32px;
-      text-align: center;
-      border: 2px dashed rgba($color-secundario, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      border: 2px dashed rgba($color-secundario, 0.3);
       transition: $transicion;
 
       &:hover { border-color: $color-secundario; }
 
-      h3 { 
-        color: $color-primario; 
-        font-size: 2.2rem; 
-        margin-bottom: 1rem;
-        font-weight: 800;
+      .icono-contacto {
+        font-size: 3.5rem;
+        background: white;
+        width: 80px;
+        height: 80px;
+        border-radius: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 25px rgba($color-secundario, 0.1);
       }
 
-      p { 
-        color: #64748b; 
-        margin-bottom: 2.5rem; 
-        font-size: 1.2rem;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
+      .texto-contacto {
+        flex: 1;
+        h3 { 
+          color: $color-primario; 
+          font-size: 1.8rem; 
+          margin-bottom: 0.5rem;
+          font-weight: 800;
+        }
+        p { 
+          color: #64748b; 
+          font-size: 1.1rem;
+          max-width: 600px;
+          margin: 0;
+        }
       }
 
-      .btn-soporte {
+      .btn-soporte-directo {
         background: $color-primario;
         color: white;
-        padding: 18px 50px;
-        border-radius: 16px;
+        padding: 16px 36px;
+        border-radius: 14px;
         border: none;
         font-weight: 700;
-        font-size: 1.1rem;
+        font-size: 1rem;
         cursor: pointer;
+        white-space: nowrap;
         transition: $transicion;
-        box-shadow: 0 10px 20px rgba($color-primario, 0.2);
+        box-shadow: 0 10px 20px rgba($color-primario, 0.15);
 
         &:hover { 
           background: #001a33; 
-          transform: translateY(-3px) scale(1.02);
-          box-shadow: 0 15px 30px rgba($color-primario, 0.3);
+          transform: translateY(-3px);
+          box-shadow: 0 15px 30px rgba($color-primario, 0.25);
+        }
+      }
+    }
+  }
+
+  // ==========================================
+  // BÚNKER DE LECTURA LEGAL (AVISO Y TÉRMINOS)
+  // ==========================================
+  .bunker-documento-legal {
+    background: white;
+    padding: 4rem;
+    border-radius: 32px;
+    box-shadow: $sombra-premium;
+    max-width: 850px;
+    margin: 2rem auto;
+    animation: fadeIn 0.5s ease-out;
+
+    .encabezado-legal {
+      margin-bottom: 2.5rem;
+
+      .btn-regresar {
+        background: transparent;
+        border: none;
+        color: #64748b;
+        font-weight: 700;
+        font-size: 0.95rem;
+        cursor: pointer;
+        padding: 0 0 8px 0;
+        margin-bottom: 1.5rem;
+        transition: color 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        &:hover { color: $color-primario; }
+      }
+
+      h1 {
+        color: $color-primario;
+        font-size: 2.4rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.5px;
+      }
+
+      .meta-legal {
+        color: #94a3b8;
+        font-family: monospace;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+    }
+
+    .divisor-legal {
+      border: 0;
+      height: 1px;
+      background: #e2e8f0;
+      margin-bottom: 3rem;
+    }
+
+    .cuerpo-legal {
+      .seccion-clausula {
+        margin-bottom: 2.5rem;
+
+        h3 {
+          color: $color-primario;
+          font-size: 1.3rem;
+          font-weight: 800;
+          margin-bottom: 1rem;
+        }
+
+        p {
+          color: #475569;
+          font-size: 1.05rem;
+          line-height: 1.8;
+          text-align: justify;
         }
       }
     }
   }
 }
 
-// Adaptación para móviles
+// ANIMACIONES NATIVAS
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+// ==========================================
+// MEDIA QUERIES (RESPONSIVIDAD BLINDADA)
+// ==========================================
+@media (max-width: 992px) {
+  .contenedor-ayuda {
+    .contacto-soporte {
+      .tarjeta-contacto {
+        flex-direction: column;
+        text-align: center;
+        padding: 3rem 2rem;
+
+        .icono-contacto { margin: 0 auto; }
+        .btn-soporte-directo { width: 100%; justify-content: center; }
+      }
+    }
+  }
+}
+
 @media (max-width: 768px) {
   .contenedor-ayuda {
-    padding: 1.5rem;
-    .encabezado-ayuda h1 { font-size: 2.2rem; }
-    .barra-busqueda { flex-direction: column; gap: 10px; padding: 15px; }
-    .btn-buscar { width: 100%; padding: 15px; }
+    padding: 1.5rem 1rem;
+
+    .encabezado-ayuda {
+      padding: 3.5rem 1.5rem;
+      margin-bottom: 2.5rem;
+
+      h1 { font-size: 2.1rem; }
+      p { font-size: 1.05rem; }
+
+      .barra-busqueda {
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px;
+        background: transparent;
+        box-shadow: none;
+
+        input {
+          background: white;
+          border-radius: 14px;
+          padding: 14px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .btn-buscar {
+          width: 100%;
+          padding: 14px;
+        }
+      }
+    }
+
+    .bunker-documento-legal {
+      padding: 2rem 1.5rem;
+      h1 { font-size: 1.8rem; }
+    }
   }
 }

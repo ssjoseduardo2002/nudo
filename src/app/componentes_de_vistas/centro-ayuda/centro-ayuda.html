@@ -1,70 +1,76 @@
 <div class="contenedor-ayuda">
   
-  <header class="encabezado-ayuda">
-    <div class="contenido-header">
-      <span class="badge-ayuda">Centro de Soporte NUDO</span>
-      <h1>¿Cómo podemos ayudarte, socio?</h1>
-      <p>Busca soluciones rápidas para proteger tu trabajo.</p>
-      
-      <div class="barra-busqueda">
-        <span class="icono-busqueda">🔍</span>
-        <input type="text" placeholder="Tutoriales, validez legal, firmas...">
-        <button class="btn-buscar">Buscar</button>
-      </div>
-    </div>
-  </header>
-
-  <div class="grid-ayuda">
+  @if (vistaActual === 'ayuda') {
     
-    <div class="tarjeta-ayuda">
-      <div class="icono-flotante">🚀</div>
-      <div class="info-ayuda">
-        <h3>Primeros Pasos</h3>
-        <p>Configura tu perfil de socio y crea tu primer blindaje legal en minutos.</p>
-        <div class="footer-tarjeta">
-          <span class="contador">5 guías</span>
-          <a class="enlace-nudo">Explorar →</a>
+    <header class="encabezado-ayuda">
+      <div class="contenido-header">
+        <span class="badge-ayuda">Centro de Soporte NUDO</span>
+        <h1>¿Cómo podemos ayudarte, socio?</h1>
+        <p>Busca soluciones rápidas para proteger tu trabajo.</p>
+        
+        <div class="barra-busqueda">
+          <span class="icono-busqueda">🔍</span>
+          <input type="text" 
+                 #txtBusqueda 
+                 (keyup.enter)="buscarSolucion(txtBusqueda.value)"
+                 placeholder="Tutoriales, validez legal, firmas...">
+          <button class="btn-buscar" (click)="buscarSolucion(txtBusqueda.value)">Buscar</button>
         </div>
       </div>
-    </div>
+    </header>
 
-    <div class="tarjeta-ayuda">
-      <div class="icono-flotante">🛡️</div>
-      <div class="info-ayuda">
-        <h3>Legal y Seguridad</h3>
-        <p>Validez de las firmas digitales y cómo protegemos tu propiedad intelectual.</p>
-        <div class="footer-tarjeta">
-          <span class="contador">8 artículos</span>
-          <a class="enlace-nudo">Revisar →</a>
+    <div class="grid-ayuda">
+      @for (categoria of categoriasAyuda; track categoria.id) {
+        <div class="tarjeta-ayuda" (click)="seleccionarCategoria(categoria.id)">
+          <div class="icono-flotante">{{ categoria.icono }}</div>
+          <div class="info-ayuda">
+            <h3>{{ categoria.titulo }}</h3>
+            <p>{{ categoria.descripcion }}</p>
+            <div class="footer-tarjeta">
+              <span class="contador">{{ categoria.cantidad }}</span>
+              <a class="enlace-nudo">Explorar →</a>
+            </div>
+          </div>
         </div>
-      </div>
+      }
     </div>
 
-    <div class="tarjeta-ayuda">
-      <div class="icono-flotante">💳</div>
-      <div class="info-ayuda">
-        <h3>Pagos y Créditos</h3>
-        <p>Gestión de planes, facturación y cómo adquirir más créditos de contrato.</p>
-        <div class="footer-tarjeta">
-          <span class="contador">4 tutoriales</span>
-          <a class="enlace-nudo">Consultar →</a>
+    <section class="contacto-soporte">
+      <div class="tarjeta-contacto">
+        <div class="icono-contacto">🤝</div>
+        <div class="texto-contacto">
+          <h3>¿Sigues con dudas?</h3>
+          <p>Si tu duda es muy específica, comunícate con nuestro equipo de soporte.</p>
         </div>
+        <button class="btn-soporte-directo" (click)="contactarSoporte()">
+          Hablar con Soporte ⚡
+        </button>
       </div>
-    </div>
+    </section>
 
-  </div>
+  } 
+  
+  @else {
+    
+    <article class="bunker-documento-legal">
+      <header class="encabezado-legal">
+        <button class="btn-regresar" (click)="regresarAlSoporte()">← Volver al Centro de Soporte</button>
+        <h1>{{ documentoLegal.titulo }}</h1>
+        <p class="meta-legal">📅 Última actualización: {{ documentoLegal.fechaActualizacion }}</p>
+      </header>
 
-  <section class="contacto-soporte">
-    <div class="tarjeta-contacto">
-      <div class="icono-contacto">🤝</div>
-      <div class="texto-contacto">
-        <h3>¿Sigues con dudas, mi pa?</h3>
-        <p>Si tu duda es muy específica, la mente detrás de NUDO te atiende personalmente.</p>
-      </div>
-      <button class="btn-soporte-directo" (click)="contactarSoporte()">
-        Hablar con Soporte ⚡
-      </button>
-    </div>
-  </section>
+      <hr class="divisor-legal" />
+
+      <main class="cuerpo-legal">
+        @for (parrafo of documentoLegal.secciones; track parrafo.subtitulo) {
+          <section class="seccion-clausula">
+            <h3>{{ parrafo.subtitulo }}</h3>
+            <p>{{ parrafo.contenido }}</p>
+          </section>
+        }
+      </main>
+    </article>
+
+  }
 
 </div>
