@@ -1,124 +1,159 @@
-<div class="contenedor-generador">
+<div class="contenedor-generador-nudo">
   
   <header class="header-generador">
-    <div class="branding-mini">
-      <span class="emoji-nudo">🪢</span>
-      <h2>Creador de Blindajes</h2>
+    <div class="branding-asistente">
+      <span class="emoji-nudo" aria-hidden="true">🪢</span>
+      <div class="texto-brand">
+        <h2>Creador de Blindajes</h2>
+        <p class="subtexto">Configuración de Instrumento Legal</p>
+      </div>
     </div>
     
-    <div class="indicador-pasos">
-      <div class="paso" [class.activo]="pasoActual >= 1">
-        <span class="num">1</span>
-        <span class="etiqueta">Tipo</span>
+    <nav class="indicador-pasos-flujo" aria-label="Progreso del formulario">
+      <div class="bloque-paso" [class.activo]="pasoActual >= 1" [attr.aria-current]="pasoActual === 1 ? 'step' : null">
+        <span class="num-identificador">1</span>
+        <span class="etiqueta-paso">Especialidad</span>
       </div>
-      <div class="linea-progreso" [class.llena]="pasoActual >= 2"></div>
-      <div class="paso" [class.activo]="pasoActual >= 2">
-        <span class="num">2</span>
-        <span class="etiqueta">Detalles</span>
+      
+      <div class="linea-enlace-progreso" [class.llena]="pasoActual >= 2"></div>
+      
+      <div class="bloque-paso" [class.activo]="pasoActual >= 2" [attr.aria-current]="pasoActual === 2 ? 'step' : null">
+        <span class="num-identificador">2</span>
+        <span class="etiqueta-paso">Cláusulas Core</span>
       </div>
-      <div class="linea-progreso" [class.llena]="pasoActual >= 3"></div>
-      <div class="paso" [class.activo]="pasoActual >= 3">
-        <span class="num">3</span>
-        <span class="etiqueta">Revisión</span>
+      
+      <div class="linea-enlace-progreso" [class.llena]="pasoActual >= 3"></div>
+      
+      <div class="bloque-paso" [class.activo]="pasoActual >= 3" [attr.aria-current]="pasoActual === 3 ? 'step' : null">
+        <span class="num-identificador">3</span>
+        <span class="etiqueta-paso">Validación</span>
       </div>
-    </div>
+    </nav>
   </header>
 
-  <div class="card-formulario shadow-premium">
+  <main class="card-formulario-nudo shadow-premium" aria-live="polite">
     
-    <div *ngIf="pasoActual === 1" class="seccion-paso animate-in">
-      <h3>¿Qué quieres proteger hoy?</h3>
-      <p class="instruccion">Selecciona la estructura legal que mejor se adapte a tu proyecto.</p>
-      
-      <div class="grid-opciones">
-        <select [(ngModel)]="datosContrato.tipo" class="select-nudo">
-          <option value="" disabled selected>Escoge una especialidad...</option>
-          <option value="servicios">🛠️ Prestación de Servicios Web</option>
-          <option value="nda">🤫 Acuerdo de Confidencialidad (NDA)</option>
-          <option value="obra">🏗️ Contrato por Obra Determinada</option>
-        </select>
+    <section *ngIf="pasoActual === 1" class="seccion-paso-formulario animate-in">
+      <div class="encabezado-seccion">
+        <h3>¿Qué quieres proteger hoy, socio?</h3>
+        <p class="instruccion-contextual">Selecciona la estructura legal que mejor se adapte a la naturaleza de tu proyecto o negocio.</p>
       </div>
-    </div>
+      
+      <div class="wrapper-seleccion-unica">
+        <label for="tipoContrato" class="label-nudo-estricto">Tipo de Contrato Colectivo</label>
+        <div class="select-personalizado-container">
+          <select id="tipoContrato" [(ngModel)]="datosContrato.tipo" class="select-nudo-premium">
+            <option value="" disabled selected>Escoge una especialidad legal...</option>
+            <option value="servicios">🛠️ Prestación de Servicios Web / Software</option>
+            <option value="nda">🤫 Acuerdo de Confidencialidad Mutua (NDA)</option>
+            <option value="obra">🏗️ Contrato por Obra Determinada / Desarrollo</option>
+          </select>
+        </div>
+      </div>
+    </section>
 
-    <div *ngIf="pasoActual === 2" class="seccion-paso animate-in">
-      <h3>Personaliza los términos</h3>
-      <div class="formulario-grid">
-        <div class="grupo-input">
-          <label for="cliente">Nombre del Cliente</label>
-          <div class="input-wrapper">
-            <span class="input-icon">👤</span>
+    <section *ngIf="pasoActual === 2" class="seccion-paso-formulario animate-in">
+      <div class="encabezado-seccion">
+        <h3>Personaliza las variables comerciales</h3>
+        <p class="instruccion-contextual">Los siguientes datos alimentarán los marcadores interactivos del lienzo legal de forma inmediata.</p>
+      </div>
+
+      <div class="grid-formulario-campos">
+        <div class="grupo-input-nudo">
+          <label for="cliente" class="label-nudo-estricto">Nombre del Cliente o Razón Social</label>
+          <div class="input-icono-wrapper">
+            <span class="icono-campo" preset="user" aria-hidden="true">👤</span>
             <input 
               id="cliente"
               type="text" 
               [(ngModel)]="datosContrato.cliente" 
-              placeholder="Ej. Juan Pérez o Empresa S.A." 
-              class="input-nudo">
+              placeholder="Ej. Juan Pérez o Pixel Craft S.A. de C.V." 
+              class="input-nudo-premium"
+              autocomplete="off">
           </div>
         </div>
 
-        <div class="grupo-input">
-          <label for="monto">Monto de Inversión ($)</label>
-          <div class="input-wrapper">
-            <span class="input-icon">💰</span>
+        <div class="grupo-input-nudo">
+          <label for="monto" class="label-nudo-estricto">Monto de Inversión Comercial (MXN)</label>
+          <div class="input-icono-wrapper">
+            <span class="icono-campo" preset="money" aria-hidden="true">🇲🇽</span>
             <input 
               id="monto"
               type="number" 
               [(ngModel)]="datosContrato.monto" 
               placeholder="0.00"
-              class="input-nudo">
+              class="input-nudo-premium"
+              min="0">
           </div>
-          <small class="hint">Este monto se incluirá en la cláusula de pagos.</small>
+          <small class="leyenda-ayuda-input">Este monto se blindará automáticamente en la cláusula de contraprestación financiera.</small>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div *ngIf="pasoActual === 3" class="seccion-paso animate-in">
-      <div class="confirmacion-header">
-        <span class="icono-check">✅</span>
-        <h3>Revisión de Blindaje</h3>
+    <section *ngIf="pasoActual === 3" class="seccion-paso-formulario animate-in">
+      <div class="confirmacion-header-bunker">
+        <div class="circulo-icono-exito">
+          <span class="icono-check-animado" aria-hidden="true">✓</span>
+        </div>
+        <h3>Revisión de Estructura de Blindaje</h3>
+        <p class="subtexto-confirmacion">Verifica que las variables comerciales introducidas coincidan con los acuerdos pactados.</p>
       </div>
       
-      <div class="resumen-nudo glass">
-        <div class="item-resumen">
-          <span class="label">Tipo de Contrato</span>
-          <span class="valor">{{ datosContrato.tipo | uppercase }}</span>
+      <div class="resumen-variables-bunker glass-effect">
+        <div class="renglon-resumen">
+          <span class="propiedad-label">Matriz Legal Seleccionada</span>
+          <span class="valor-dinamico-txt">{{ datosContrato.tipo | uppercase }}</span>
         </div>
-        <div class="item-resumen">
-          <span class="label">Contraparte</span>
-          <span class="valor">{{ datosContrato.cliente || 'No especificado' }}</span>
+        
+        <div class="renglon-resumen">
+          <span class="propiedad-label">Socio / Contraparte</span>
+          <span class="valor-dinamico-txt">{{ datosContrato.cliente || 'No especificado (Se completará en Editor)' }}</span>
         </div>
-        <div class="item-resumen">
-          <span class="label">Valuación</span>
-          <span class="valor destacado">${{ datosContrato.monto | number:'1.2-2' }}</span>
+        
+        <div class="renglon-resumen">
+          <span class="propiedad-label">Valuación del Proyecto</span>
+          <span class="valor-dinamico-txt monto-destacado">
+            {{ datosContrato.monto ? (datosContrato.monto | currency:'MXN':'symbol':'1.2-2') : 'Por definir ($0.00)' }}
+          </span>
         </div>
       </div>
 
-      <div class="alerta-seguridad">
-        <p>🔒 <strong>Sello NUDO:</strong> Al finalizar, se integrará un hash criptográfico único para garantizar la integridad del documento.</p>
+      <div class="banner-alerta-seguridad">
+        <span class="icono-bunker-alerta">🔒</span>
+        <div class="cuerpo-alerta">
+          <strong>Protocolo de Sello Digital NUDO:</strong>
+          <p>Al procesar la firma, el motor inyectará un hash SHA-256 inmutable para blindar el documento contra alteraciones de terceros.</p>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <footer class="controles">
-      <button (click)="anteriorPaso()" *ngIf="pasoActual > 1" class="btn-atras">
-        ← Volver
+    <footer class="barra-controles-asistente">
+      <button 
+        type="button"
+        (click)="anteriorPaso()" 
+        *ngIf="pasoActual > 1" 
+        class="btn-control-nudo secundario-atras">
+        <span class="flecha-btn">←</span> Volver Panel
       </button>
       
-      <div class="spacer"></div>
+      <div class="separador-flex-spacer"></div>
 
       <button 
+        type="button"
         (click)="siguientePaso()" 
         *ngIf="pasoActual < 3" 
-        class="btn-continuar" 
+        class="btn-control-nudo primario-avanzar" 
         [disabled]="!datosContrato.tipo">
-        Siguiente Paso
+        Siguiente Paso <span class="flecha-btn">→</span>
       </button>
 
       <button 
+        type="button"
         (click)="finalizarGeneracion()" 
         *ngIf="pasoActual === 3" 
-        class="btn-finalizar">
-        Finalizar y Blindar 🚀
+        class="btn-control-nudo exito-blindar">
+        Finalizar y Blindar Contrato 🚀
       </button>
     </footer>
-  </div>
+  </main>
 </div>

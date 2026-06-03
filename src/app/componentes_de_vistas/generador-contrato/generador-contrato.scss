@@ -1,37 +1,69 @@
 @use "sass:color";
 
-// VARIABLES DE DISEÑO NUDO
+// ==========================================================================
+// VARIABLES DE SISTEMA E IDENTIDAD NUDO
+// ==========================================================================
 $color-primario: #003366;
 $color-secundario: #00a8cc;
-$color-fondo: #f4f7f9;
+$color-exito: #10b981;
+$color-texto-mutado: #64748b;
+$color-borde: #e2e8f0;
+$color-bg-input: #f8fafc;
 $transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 
-.contenedor-generador {
+// ==========================================================================
+// MAQUETACIÓN CONTENEDORA
+// ==========================================================================
+.contenedor-generador-nudo {
   padding: 3rem 1.5rem;
   max-width: 900px;
   margin: 0 auto;
 
+  // --- Encabezado de Control y Progreso Virtual ---
   .header-generador {
     text-align: center;
     margin-bottom: 3.5rem;
 
-    .branding-mini {
+    .branding-asistente {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      margin-bottom: 2rem;
-      .emoji-nudo { font-size: 2rem; }
-      h2 { color: $color-primario; font-size: 1.8rem; font-weight: 800; margin: 0; }
+      gap: 16px;
+      margin-bottom: 2.5rem;
+
+      .emoji-nudo { 
+        font-size: 2.5rem; 
+        line-height: 1;
+      }
+
+      .texto-brand {
+        text-align: left;
+        
+        h2 { 
+          color: $color-primario; 
+          font-size: 1.8rem; 
+          font-weight: 800; 
+          margin: 0; 
+          line-height: 1.2; 
+        }
+        .subtexto { 
+          color: $color-texto-mutado; 
+          font-size: 0.9rem; 
+          margin: 2px 0 0 0; 
+          font-weight: 500; 
+        }
+      }
     }
 
-    .indicador-pasos {
+    // --- Stepper Flotante Reactivo ---
+    .indicador-pasos-flujo {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 15px;
+      width: 100%;
 
-      .paso {
+      .bloque-paso {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -39,11 +71,11 @@ $transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         position: relative;
         z-index: 2;
 
-        .num {
-          width: 35px;
-          height: 35px;
+        .num-identificador {
+          width: 38px;
+          height: 38px;
           background: white;
-          border: 2px solid #e2e8f0;
+          border: 2px solid $color-borde;
           color: #94a3b8;
           border-radius: 50%;
           display: flex;
@@ -53,155 +85,343 @@ $transicion: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
           transition: $transicion;
         }
 
-        .etiqueta {
+        .etiqueta-paso {
           font-size: 0.85rem;
           font-weight: 600;
           color: #94a3b8;
           transition: $transicion;
+          white-space: nowrap;
         }
 
         &.activo {
-          .num { 
-            background: $color-secundario; 
-            border-color: $color-secundario; 
-            color: white; 
+          .num-identificador {
+            background: $color-secundario;
+            border-color: $color-secundario;
+            color: white;
             box-shadow: 0 0 15px rgba($color-secundario, 0.4);
           }
-          .etiqueta { color: $color-primario; font-weight: 700; }
+          .etiqueta-paso { 
+            color: $color-primario; 
+            font-weight: 700; 
+          }
         }
       }
 
-      .linea-progreso {
-        width: 60px;
+      .linea-enlace-progreso {
+        flex: 1;
+        max-width: 120px;
         height: 3px;
-        background: #e2e8f0;
-        margin-top: -20px; // Alineación con los círculos
+        background: $color-borde;
+        transform: translateY(-13px); // Alineación perfecta con el centro geométrico del círculo
         position: relative;
-        
+
         &::after {
           content: '';
           position: absolute;
           left: 0; top: 0; height: 100%; width: 0;
           background: $color-secundario;
-          transition: width 0.6s ease;
+          transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        &.llena::after { width: 100%; }
+        &.llena::after { 
+          width: 100%; 
+        }
+      }
+
+      // Responsive break para evitar amontonamientos en móvil
+      @media (max-width: 580px) {
+        .bloque-paso .etiqueta-paso { display: none; }
+        .linea-enlace-progreso { transform: translateY(0); }
       }
     }
   }
 
-  .card-formulario {
+  // ==========================================================================
+  // CARD CENTRAL DEL FORMULARIO BÚNKER
+  // ==========================================================================
+  .card-formulario-nudo {
     background: white;
     padding: 3rem;
     border-radius: 24px;
-    box-shadow: 0 20px 50px rgba($color-primario, 0.1);
     border: 1px solid rgba($color-primario, 0.05);
 
-    .animate-in {
-      animation: slideIn 0.5s ease-out;
+    &.shadow-premium {
+      box-shadow: 0 20px 50px rgba($color-primario, 0.08);
     }
 
-    h3 { color: $color-primario; font-size: 1.6rem; font-weight: 800; margin-bottom: 1rem; }
-    .instruccion { color: #64748b; margin-bottom: 2rem; font-size: 1rem; }
+    @media (max-width: 580px) {
+      padding: 1.5rem;
+    }
 
-    .input-wrapper {
+    // --- Control de Animación de Entrada ---
+    .seccion-paso-formulario {
+      &.animate-in {
+        animation: slideIn 0.45s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+      }
+
+      .encabezado-seccion {
+        margin-bottom: 2.5rem;
+        
+        h3 { 
+          color: $color-primario; 
+          font-size: 1.6rem; 
+          font-weight: 800; 
+          margin: 0 0 0.5rem 0; 
+        }
+        .instruccion-contextual { 
+          color: $color-texto-mutado; 
+          font-size: 1rem; 
+          margin: 0; 
+        }
+      }
+    }
+
+    // --- Maquetación Estricta de Inputs ---
+    .label-nudo-estricto {
+      display: block;
+      margin-bottom: 10px;
+      color: $color-primario;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .wrapper-seleccion-unica {
+      max-width: 520px;
+      margin: 2rem auto;
+    }
+
+    .grid-formulario-campos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    .grupo-input-nudo {
+      margin-bottom: 0.5rem;
+      
+      .leyenda-ayuda-input { 
+        color: #94a3b8; 
+        font-size: 0.8rem; 
+        margin-top: 6px; 
+        display: block; 
+      }
+    }
+
+    .input-icono-wrapper, .select-personalizado-container {
       position: relative;
       display: flex;
       align-items: center;
-      
-      .input-icon {
+
+      .icono-campo {
         position: absolute;
-        left: 15px;
+        left: 16px;
         font-size: 1.2rem;
+        pointer-events: none;
+        z-index: 2;
       }
 
-      .input-nudo, .select-nudo {
+      .input-nudo-premium, .select-nudo-premium {
         width: 100%;
-        padding: 14px 15px 14px 45px;
+        padding: 14px 16px 14px 48px;
         border: 2px solid #f1f5f9;
         border-radius: 14px;
         font-size: 1rem;
-        background: #f8fafc;
+        color: $color-primario;
+        background: $color-bg-input;
         transition: $transicion;
         outline: none;
+        font-weight: 500;
+        appearance: none; // Limpia estilos nativos del sistema operativo
 
         &:focus {
           border-color: $color-secundario;
           background: white;
-          box-shadow: 0 0 0 4px rgba($color-secundario, 0.1);
+          box-shadow: 0 0 0 4px rgba($color-secundario, 0.15);
+        }
+
+        &::placeholder {
+          color: #cbd5e1;
         }
       }
     }
 
-    .grupo-input {
-      margin-bottom: 2rem;
-      label { display: block; margin-bottom: 8px; color: $color-primario; font-weight: 700; font-size: 0.9rem; }
-      .hint { color: #94a3b8; font-size: 0.8rem; margin-top: 5px; display: block; }
+    // Inyección de flecha customizada para el select-premium
+    .select-personalizado-container::after {
+      content: '▾';
+      position: absolute;
+      right: 18px;
+      font-size: 1.1rem;
+      color: $color-texto-mutado;
+      pointer-events: none;
     }
 
-    // PASO 3: RESUMEN GLASS
-    .resumen-nudo.glass {
-      background: rgba($color-secundario, 0.05);
-      border: 1px solid rgba($color-secundario, 0.2);
+    // --- PASO 3: RESUMEN CRIOPTO-GLASS ---
+    .confirmacion-header-bunker {
+      text-align: center;
+      margin-bottom: 2rem;
+
+      .circulo-icono-exito {
+        width: 60px;
+        height: 60px;
+        background: rgba($color-exito, 0.1);
+        color: $color-exito;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.2rem;
+        font-size: 1.8rem;
+        font-weight: bold;
+        animation: pulseSuccess 2s infinite;
+      }
+
+      h3 { color: $color-primario; font-size: 1.5rem; font-weight: 800; margin: 0 0 0.4rem 0; }
+      .subtexto-confirmacion { color: $color-texto-mutado; font-size: 0.95rem; margin: 0; }
+    }
+
+    .resumen-variables-bunker.glass-effect {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba($color-secundario, 0.25);
+      background-image: linear-gradient(135deg, rgba($color-secundario, 0.04), rgba($color-primario, 0.02));
       border-radius: 20px;
       padding: 2rem;
       margin: 2rem 0;
+      box-shadow: 0 10px 30px rgba($color-primario, 0.03);
 
-      .item-resumen {
+      .renglon-resumen {
         display: flex;
         justify-content: space-between;
-        padding: 12px 0;
-        border-bottom: 1px solid rgba($color-secundario, 0.1);
+        align-items: center;
+        padding: 14px 0;
+        border-bottom: 1px solid rgba($color-borde, 0.6);
+        
         &:last-child { border: none; }
 
-        .label { color: #64748b; font-weight: 600; }
-        .valor { color: $color-primario; font-weight: 700; }
-        .valor.destacado { color: $color-secundario; font-size: 1.2rem; }
+        .propiedad-label { color: $color-texto-mutado; font-weight: 600; font-size: 0.95rem; }
+        .valor-dinamico-txt { 
+          color: $color-primario; 
+          font-weight: 700; 
+          font-size: 1rem;
+          
+          &.monto-destacado {
+            color: $color-secundario;
+            font-size: 1.25rem;
+            font-weight: 800;
+          }
+        }
       }
     }
 
-    .alerta-seguridad {
+    .banner-alerta-seguridad {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
       background: #f0fdf4;
       border: 1px solid #bbf7d0;
-      padding: 1rem;
-      border-radius: 12px;
-      p { margin: 0; color: #166534; font-size: 0.85rem; }
+      padding: 1.25rem;
+      border-radius: 16px;
+
+      .icono-bunker-alerta { font-size: 1.3rem; margin-top: 2px; }
+      .cuerpo-alerta {
+        font-size: 0.88rem;
+        line-height: 1.5;
+        
+        strong { color: #166534; font-weight: 700; display: block; margin-bottom: 2px;}
+        p { margin: 0; color: #15803d; }
+      }
     }
 
-    // CONTROLES
-    .controles {
+    // --- BARRA DE CONTROLES FLUIDA ---
+    .barra-controles-asistente {
       display: flex;
       align-items: center;
-      margin-top: 3rem;
+      margin-top: 3.5rem;
       padding-top: 2rem;
       border-top: 1px solid #f1f5f9;
 
-      button {
-        padding: 14px 30px;
+      .separador-flex-spacer { flex: 1; }
+
+      .btn-control-nudo {
+        padding: 14px 28px;
         border-radius: 14px;
         font-weight: 700;
+        font-size: 0.95rem;
         cursor: pointer;
         transition: $transicion;
         border: none;
-      }
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
 
-      .btn-atras { background: white; color: #64748b; border: 1px solid #e2e8f0; &:hover { background: #f8fafc; } }
-      .btn-continuar { background: $color-primario; color: white; &:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 10px 20px rgba($color-primario, 0.2); } }
-      .btn-finalizar { background: $color-secundario; color: white; &:hover { transform: scale(1.05); box-shadow: 0 10px 25px rgba($color-secundario, 0.3); } }
-      
-      button:disabled { opacity: 0.5; cursor: not-allowed; }
-      .spacer { flex: 1; }
+        .flecha-btn {
+          display: inline-block;
+          transition: transform 0.3s ease;
+        }
+
+        &:disabled {
+          opacity: 0.45;
+          cursor: not-allowed;
+          transform: none !important;
+          box-shadow: none !important;
+        }
+
+        &.secundario-atras {
+          background: white;
+          color: $color-texto-mutado;
+          border: 2px solid $color-borde;
+          
+          &:hover:not(:disabled) {
+            background: #f8fafc;
+            color: $color-primario;
+            border-color: #cbd5e1;
+          }
+        }
+
+        &.primario-avanzar {
+          background: $color-primario;
+          color: white;
+          
+          &:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba($color-primario, 0.25);
+            
+            .flecha-btn { transform: translateX(4px); }
+          }
+        }
+
+        &.exito-blindar {
+          background: $color-secundario;
+          color: white;
+          
+          &:hover:not(:disabled) {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba($color-secundario, 0.35);
+          }
+        }
+      }
     }
   }
 }
 
+// ==========================================================================
+// SECCIÓN DE ANIMACIONES COMPILADAS
+// ==========================================================================
 @keyframes slideIn {
-  from { opacity: 0; transform: translateX(20px); }
+  from { opacity: 0; transform: translateX(15px); }
   to { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes pulseSuccess {
+  0% { box-shadow: 0 0 0 0 rgba($color-exito, 0.3); }
+  70% { box-shadow: 0 0 0 10px rgba($color-exito, 0); }
+  100% { box-shadow: 0 0 0 0 rgba($color-exito, 0); }
 }

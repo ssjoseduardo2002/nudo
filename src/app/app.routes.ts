@@ -68,7 +68,7 @@ export const routes: Routes = [
     title: 'NUDO - La Mente Detrás' 
   },
 
-  // --- 5.1 Parches dinámicos para el Footer (Consumen el mismo búnker de soporte de forma inteligente) ---
+  // --- 5.1 Parches dinámicos para el Footer ---
   {
     path: 'privacidad',
     loadComponent: () => import('./componentes_de_vistas/centro-ayuda/centro-ayuda').then(m => m.CentroAyuda),
@@ -80,7 +80,7 @@ export const routes: Routes = [
     title: 'NUDO - Términos de Servicio'
   },
 
-  // --- 6. Seguridad Extrema (Wildcard / Comodín de Redirección para URLs rotas) ---
+  // --- 6. Seguridad Extrema (Wildcard) ---
   { 
     path: '**', 
     redirectTo: 'acceso' 

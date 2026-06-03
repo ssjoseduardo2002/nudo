@@ -3,6 +3,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 
+/**
+ * Interfaz de Control Estricto para Modelos de Contratos NUDO
+ */
+export interface ContratoModel {
+  tipo: string;
+  cliente: string;
+  monto: number;
+  fechaEntrega: string;
+}
+
 @Component({
   selector: 'app-generador-contrato',
   standalone: true,
@@ -10,57 +20,81 @@ import { Router, RouterModule } from '@angular/router';
   templateUrl: './generador-contrato.html',
   styleUrl: './generador-contrato.scss'
 })
-export class GeneradorContrato { // Nombre simplificado para que el spec.ts no llore
+export class GeneradorContrato {
   
+  // Estado del flujo del Asistente Virtual
   public pasoActual: number = 1;
+  public isProcesando: boolean = false;
   
-  // Modelo de datos blindado
-  public datosContrato = {
+  // Inicialización del Modelo de Negocio con Tipado Estricto
+  public datosContrato: ContratoModel = {
     tipo: '',
     cliente: '',
     monto: 0,
-    fechaEntrega: new Date().toISOString().split('T')[0] // Fecha de hoy por defecto
+    fechaEntrega: new Date().toISOString().split('T')[0] // Formato ISO AAAA-MM-DD
   };
 
   constructor(private router: Router) {}
 
   /**
-   * Avanza en el stepper de blindaje
+   * Avanza al siguiente nivel de configuración del asistente legal
    */
   public siguientePaso(): void {
     if (this.pasoActual < 3) {
       this.pasoActual++;
-      console.log(`➡️ Avanzando al paso ${this.pasoActual}`);
+      console.log(`🪢 [NUDO Engine] Avanzando a la etapa: ${this.pasoActual}`);
     }
   }
 
   /**
-   * Retrocede para corregir datos
+   * Regresa un paso en el flujo para corrección de variables comerciales
    */
   public anteriorPaso(): void {
     if (this.pasoActual > 1) {
       this.pasoActual--;
-      console.log(`⬅️ Retrocediendo al paso ${this.pasoActual}`);
+      console.log(`🪢 [NUDO Engine] Retrocediendo a la etapa: ${this.pasoActual}`);
     }
   }
 
   /**
-   * El gran final: Genera el NUDO y teletransporta al socio al Editor
+   * Procesa el formulario, inyecta datos limpios en la navegación y redirige al Editor de Cláusulas
    */
   public finalizarGeneracion(): void {
-    console.log('🏗️ Generando NUDO inteligente...', this.datosContrato);
-    
-    // Simulamos una pequeña carga de procesamiento legal
-    const confirmacion = confirm('¿Confirmas que los datos son correctos para el blindaje digital? 🪢');
-    
-    if (confirmacion) {
-      // Usamos el Router para navegar al editor pasando los datos en el estado
-      // Así el Editor podrá leerlos y llenar la "hoja" automáticamente
-      this.router.navigate(['/editor-contrato'], { 
-        state: { data: this.datosContrato } 
-      });
-      
-      console.log('🚀 Despegue exitoso hacia el Editor.');
+    // Evitar doble envío en clics rápidos
+    if (this.isProcesando) return;
+
+    // Validación estricta final antes del despliegue
+    if (!this.datosContrato.tipo) {
+      console.error('❌ Error de Validación: No se ha seleccionado una matriz legal base.');
+      return;
     }
+
+    // Activamos feedback visual en la UI
+    this.isProcesando = true;
+    console.log('🏗️ [NUDO Engine] Compilando variables comerciales para blindaje digital...', this.datosContrato);
+
+    // Sanitización preventiva de variables comerciales
+    const payloadLimpio: ContratoModel = {
+      tipo: this.datosContrato.tipo,
+      cliente: this.datosContrato.cliente ? this.datosContrato.cliente.trim() : '',
+      monto: Number(this.datosContrato.monto) || 0,
+      fechaEntrega: this.datosContrato.fechaEntrega
+    };
+
+    // Simulamos un delay de 800ms de procesamiento criptográfico (UX Premium)
+    setTimeout(() => {
+      try {
+        // Despachamos al socio al editor pasando el payload seguro en el historial de navegación
+        this.router.navigate(['/editor-contrato'], { 
+          state: { data: payloadLimpio } 
+        });
+        
+        console.log('🚀 [NUDO Engine] Despegue e inyección de datos exitosa hacia el Editor de Cláusulas.');
+      } catch (error) {
+        console.error('❌ Error crítico durante la teletransportación de datos:', error);
+      } finally {
+        this.isProcesando = false;
+      }
+    }, 800);
   }
 }
