@@ -1,12 +1,12 @@
-<div class="contenedor-tarjeta-nudo shadow-premium animate-fade-in">
+<article class="contenedor-tarjeta-nudo shadow-premium animate-fade-in" aria-labelledby="titulo-{{ contrato.folio }}">
   
   <header class="header-tarjeta">
-    <div class="icono-tipo-doc">
+    <div class="icono-tipo-doc" aria-hidden="true">
       <span class="emoji-doc">📄</span>
     </div>
     <div class="meta-contrato">
-      <h3 class="titulo-contrato">{{ contrato.titulo }}</h3>
-      <small class="folio-contrato">ID: {{ contrato.folio }}</small>
+      <h3 id="titulo-{{ contrato.folio }}" class="titulo-contrato">{{ contrato.titulo }}</h3>
+      <small class="folio-contrato" aria-label="Folio del contrato">ID: {{ contrato.folio }}</small>
     </div>
     <app-etiqueta-de-estado [estado]="contrato.estado"></app-etiqueta-de-estado>
   </header>
@@ -29,15 +29,16 @@
   </main>
 
   <footer class="footer-tarjeta">
-    <div class="hash-blockchain" *ngIf="contrato.estado === 'Blockchain'">
-      <span class="key-icon">🔑</span>
+    <div class="hash-blockchain" *ngIf="contrato.estado === 'Blockchain'" [title]="'Hash completo: ' + contrato.hashBlockchain">
+      <span class="key-icon" aria-hidden="true">🔑</span>
       <span class="hash-text">{{ contrato.hashBlockchain | slice:0:12 }}...</span>
     </div>
-    <div class="acciones-btn">
-      <button class="btn-icon" title="Ver Detalles">👁️</button>
-      <button class="btn-icon" title="Descargar PDF">📥</button>
-      <button class="btn-primario-nudo">Gestionar</button>
+    
+    <div class="acciones-btn" role="group" aria-label="Acciones del contrato">
+      <button class="btn-icon" aria-label="Ver detalles" (click)="verDetalles()">👁️</button>
+      <button class="btn-icon" aria-label="Descargar contrato PDF" (click)="descargarPdf()">📥</button>
+      <button class="btn-primario-nudo" (click)="gestionarContrato()">Gestionar</button>
     </div>
   </footer>
 
-</div>
+</article>

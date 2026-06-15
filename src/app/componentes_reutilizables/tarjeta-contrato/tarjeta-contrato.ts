@@ -1,18 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EtiquetaDeEstado } from '../etiqueta-de-estado/etiqueta-de-estado';
 
-/**
- * Interfaz para definir la anatomía de un contrato en NUDO.
- * Esto asegura que siempre tengamos los datos necesarios para la tarjeta.
- */
 export interface ContratoNudo {
   titulo: string;
   folio: string;
   cliente: string;
   fecha: Date;
   monto: number;
-  estado: string;
+  estado: string; // Considerar usar el tipo 'EstadoContrato' de la etiqueta
   hashBlockchain?: string;
 }
 
@@ -25,25 +21,22 @@ export interface ContratoNudo {
 })
 export class TarjetaContrato {
   
-  /**
-   * 📥 Entrada de datos: El objeto contrato que se va a renderizar.
-   * Le ponemos valores por defecto para evitar errores en el template.
-   */
-  @Input() contrato: ContratoNudo = {
-    titulo: 'Contrato sin título',
-    folio: 'ND-0000',
-    cliente: 'Cargando...',
-    fecha: new Date(),
-    monto: 0,
-    estado: 'Pendiente'
-  };
+  // Input requerido para forzar buena práctica desde el padre
+  @Input({ required: true }) contrato!: ContratoNudo;
 
-  /**
-   * Método para gestionar el contrato.
-   * Aquí podrías disparar un evento (Output) para abrir el visor.
-   */
+  // Outputs para comunicación ascendente (Patrón Smart/Dumb)
+  @Output() onGestionar = new EventEmitter<string>();
+  @Output() onDescargar = new EventEmitter<string>();
+
   public gestionarContrato(): void {
-    console.log(`Gestionando contrato: ${this.contrato.folio}`);
-    // Emitir evento o navegar al detalle
+    this.onGestionar.emit(this.contrato.folio);
+  }
+
+  public descargarPdf(): void {
+    this.onDescargar.emit(this.contrato.folio);
+  }
+
+  public verDetalles(): void {
+    console.log(`Navegando a visor de: ${this.contrato.folio}`);
   }
 }

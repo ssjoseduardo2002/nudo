@@ -1,6 +1,9 @@
 $azul-nudo: #003366;
 $cian-nudo: #00a8cc;
 $blanco: #ffffff;
+$gris-claro: #f1f5f9;
+$gris-texto: #94a3b8;
+$gris-oscuro: #334155;
 
 .contenedor-tarjeta-nudo {
   background: $blanco;
@@ -11,7 +14,9 @@ $blanco: #ffffff;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  max-width: 400px; // Tamaño ideal para un grid
+  width: 100%; // Asegura adaptabilidad total
+  max-width: 400px;
+  box-sizing: border-box;
 
   &:hover {
     transform: translateY(-8px);
@@ -23,11 +28,11 @@ $blanco: #ffffff;
     display: flex;
     align-items: center;
     gap: 1rem;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid $gris-claro;
     padding-bottom: 1rem;
 
     .icono-tipo-doc {
-      background: #f8fafc;
+      background: $gris-claro;
       width: 45px; height: 45px;
       display: flex;
       align-items: center;
@@ -38,14 +43,18 @@ $blanco: #ffffff;
 
     .meta-contrato {
       flex: 1;
+      min-width: 0; // Previene desbordamiento en textos largos
       .titulo-contrato {
         margin: 0;
         font-size: 1.05rem;
         color: $azul-nudo;
         font-weight: 800;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .folio-contrato {
-        color: #94a3b8;
+        color: $gris-texto;
         font-family: 'Courier New', Courier, monospace;
         font-weight: 600;
       }
@@ -56,15 +65,16 @@ $blanco: #ffffff;
     .detalle {
       margin-bottom: 0.8rem;
       .label {
+        display: block; // Mejor estructura
         font-size: 0.75rem;
-        color: #94a3b8;
+        color: $gris-texto;
         text-transform: uppercase;
         letter-spacing: 1px;
         font-weight: 700;
       }
       .valor {
         margin: 2px 0 0;
-        color: #334155;
+        color: $gris-oscuro;
         font-weight: 600;
         &.monto { color: $azul-nudo; font-size: 1.1rem; }
       }
@@ -72,6 +82,7 @@ $blanco: #ffffff;
     .fila-doble {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      gap: 1rem;
     }
     .text-right { text-align: right; }
   }
@@ -81,7 +92,7 @@ $blanco: #ffffff;
     justify-content: space-between;
     align-items: center;
     padding-top: 1rem;
-    border-top: 1px dashed #e2e8f0;
+    border-top: 1px dashed $gris-claro;
 
     .hash-blockchain {
       display: flex;
@@ -100,15 +111,20 @@ $blanco: #ffffff;
     .acciones-btn {
       display: flex;
       gap: 8px;
+      
+      .btn-icon, .btn-primario-nudo {
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
       .btn-icon {
-        background: #f1f5f9;
+        background: $gris-claro;
         border: none;
         width: 32px; height: 32px;
         border-radius: 8px;
-        cursor: pointer;
-        transition: background 0.3s;
-        &:hover { background: #e2e8f0; }
+        &:hover { background: darken($gris-claro, 5%); }
       }
+      
       .btn-primario-nudo {
         background: $azul-nudo;
         color: white;
@@ -117,7 +133,6 @@ $blanco: #ffffff;
         border-radius: 8px;
         font-size: 0.85rem;
         font-weight: 700;
-        cursor: pointer;
         &:hover { background: $cian-nudo; }
       }
     }
