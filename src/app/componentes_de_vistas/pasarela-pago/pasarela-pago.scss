@@ -35,7 +35,7 @@ $sombra-premium: 0 15px 35px rgba(0, 51, 102, 0.1);
     text-align: center;
     box-shadow: 0 4px 12px rgba(0,0,0,0.03);
 
-    input { display: none; } // Escondemos el radio original
+    input { display: none; }
 
     .icono { font-size: 1.8rem; display: block; margin-bottom: 8px; }
     .titulo { font-weight: 700; color: $azul-nudo; display: block; font-size: 0.95rem; }
@@ -55,7 +55,7 @@ $sombra-premium: 0 15px 35px rgba(0, 51, 102, 0.1);
 }
 
 // Estilo para Información de Transferencia y OXXO
-.info-pago-detaille {
+.info-pago-detalle {
   background: white;
   padding: 2.5rem;
   border-radius: 20px;

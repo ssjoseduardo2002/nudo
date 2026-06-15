@@ -63,6 +63,7 @@
           <div class="campo">
             <label>Número de Tarjeta</label>
             <input type="text" placeholder="0000 0000 0000 0000" class="input-nudo">
+            <label>Nombre en la Tarjeta</label>
           </div>
           <div class="fila-doble">
             <div class="campo">
@@ -74,12 +75,12 @@
               <input type="password" placeholder="***" class="input-nudo">
             </div>
           </div>
-          <button (click)="procesarPago()" class="btn-pagar-nudo">Finalizar Pago de ${{ total | number:'1.2-2' }}</button>
+          <button type="button" (click)="procesarPago()" class="btn-pagar-nudo">Finalizar Pago de ${{ total | number:'1.2-2' }}</button>
         </form>
 
         <div *ngIf="metodoSeleccionado === 'paypal'" class="form-animado centro">
           <p>Haz clic para conectar con tu cuenta de <strong>PayPal</strong> y autorizar el blindaje.</p>
-          <button (click)="procesarPago()" class="btn-paypal-nudo">Continuar a PayPal</button>
+          <button type="button" (click)="procesarPago()" class="btn-paypal-nudo">Continuar a PayPal</button>
         </div>
 
         <div *ngIf="metodoSeleccionado === 'transferencia'" class="info-pago-detalle form-animado">
@@ -103,7 +104,10 @@
           <p>Dicta el siguiente número al cajero de cualquier tienda OXXO para completar tu trámite.</p>
           <div class="ticket-oxxo">
             <div class="referencia-box">
-              <small>Número de Referencia</small>
+              <small>Números de Referencia</small>
+              <small>Referencia número 1:</small>
+              <small>Referencia número 2:</small>
+              <small>Referencia número 3:</small>
               <span class="referencia-num">[Esperando información...]</span>
             </div>
             <p class="nota">Recuerda que OXXO cobra una comisión adicional en caja.</p>
@@ -115,7 +119,7 @@
 
     <aside class="resumen-pedido">
       <div class="ticket-nudo">
-        <h3>Resumen de Orden</h3>
+        <h3>Te presentamos tu resumen:</h3>
         <div class="fila-ticket">
           <span>{{ plan.nombre }}</span>
           <strong>${{ plan.precio | number:'1.2-2' }}</strong>
@@ -130,7 +134,7 @@
           <span class="monto-final">${{ total | number:'1.2-2' }}</span>
         </div>
         <div class="garantia-box">
-          <p>✅ Blindaje 100% Asegurado por NUDO</p>
+          <p>✅NUDO agradece infinitamente tu confianza. No te fallaremos.</p>
         </div>
       </div>
     </aside>

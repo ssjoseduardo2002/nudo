@@ -19,7 +19,6 @@ export const routes: Routes = [
     path: 'inicio', 
     loadComponent: () => import('./componentes_de_vistas/inicio/inicio').then(m => m.Inicio), 
     title: 'NUDO | Panel de Control'
-    // TODO: Implementar AuthGuard para Firebase
   },
 
   // --- 3. Legal-Tech Suite ---
