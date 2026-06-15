@@ -1,37 +1,42 @@
-<div class="contenedor-visor-nudo shadow-premium">
+<article class="contenedor-visor-nudo shadow-premium" role="dialog" aria-modal="true" aria-label="Visor de documentos">
   
   <header class="toolbar-visor">
     <div class="info-doc-visor">
-      <span class="icon-doc">📄</span>
+      <span class="icon-doc" aria-hidden="true">📄</span>
       <div class="meta">
-        <h4>{{ nombreDocumento }}</h4>
+        <h4 class="titulo-doc">{{ nombreDocumento }}</h4>
         <small>Folio Seguridad: {{ folioDoc }}</small>
       </div>
     </div>
 
-    <div class="controles-lectura">
-      <button class="btn-tool" (click)="cambiarZoom(-10)">➖</button>
-      <span class="porcentaje-zoom">{{ nivelZoom }}%</span>
-      <button class="btn-tool" (click)="cambiarZoom(10)">➕</button>
-      <div class="divisor-v"></div>
-      <button class="btn-tool" (click)="imprimir()">🖨️</button>
-      <button class="btn-tool" (click)="descargar()">📥</button>
+    <div class="controles-lectura" role="toolbar" aria-label="Controles de visualización">
+      <button class="btn-tool" (click)="cambiarZoom(-10)" aria-label="Reducir zoom">➖</button>
+      <span class="porcentaje-zoom" aria-live="polite">{{ nivelZoom }}%</span>
+      <button class="btn-tool" (click)="cambiarZoom(10)" aria-label="Ampliar zoom">➕</button>
+      <div class="divisor-v" aria-hidden="true"></div>
+      <button class="btn-tool" (click)="imprimir()" aria-label="Imprimir documento">🖨️</button>
+      <button class="btn-tool" (click)="descargar()" aria-label="Descargar PDF">📥</button>
     </div>
 
-    <button class="btn-cerrar-visor" (click)="cerrar()">✕</button>
+    <button class="btn-cerrar-visor" (click)="cerrar()" aria-label="Cerrar visor">✕</button>
   </header>
 
   <main class="escenario-documento">
-    <div class="hoja-digital" [style.width.%]="nivelZoom">
-      <div class="contenido-contrato-placeholder">
+    <div class="hoja-digital" [style.transform]="'scale(' + (nivelZoom/100) + ')'">
+      
+      <div class="contenido-contrato-placeholder" [class.cargando]="!cargado">
+        
         <header class="encabezado-legal">
-          <img src="assets/images/logo-nudo-black.png" alt="NUDO Logo" class="logo-contrato">
-          <p class="sello-blockchain-header">Sello Blockchain: {{ hashBlockchain }}</p>
+          <img src="assets/images/logo-nudo-black.png" alt="Logo NUDO" class="logo-contrato">
+          <p class="sello-blockchain-header">Sello Blockchain: <code aria-label="Hash">{{ hashBlockchain }}</code></p>
         </header>
 
         <section class="texto-legal">
           <ng-content></ng-content>
-          <p *ngIf="!cargado" class="cargando-texto">Sincronizando documento con la red...</p>
+          
+          <div *ngIf="!cargado" class="cargando-overlay">
+            <span class="cargando-texto">Sincronizando documento con la red...</span>
+          </div>
         </section>
 
         <footer class="firmas-contrato">
@@ -48,5 +53,7 @@
     </div>
   </main>
 
-  <div class="watermark-nudo">PROTEGIDO POR NUDO © 2026</div>
-</div>
+  <footer class="watermark-nudo">
+    <p>PROTEGIDO POR NUDO © 2026</p>
+  </footer>
+</article>
