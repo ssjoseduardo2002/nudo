@@ -1,7 +1,7 @@
-<div class="contenedor-etiqueta">
+<div class="contenedor-etiqueta" role="status" [attr.aria-label]="'Estado del documento: ' + estado">
   <span class="badge-nudo" [ngClass]="'estado-' + estado.toLowerCase().replace(' ', '-')">
     
-    <span class="icono-estado">
+    <span class="icono-estado" aria-hidden="true">
       <ng-container [ngSwitch]="estado.toLowerCase()">
         <span *ngSwitchCase="'firmado'">✅</span>
         <span *ngSwitchCase="'pendiente'">⏳</span>
@@ -11,8 +11,8 @@
       </ng-container>
     </span>
 
-    <span class="texto-estado">{{ estado }}</span>
+    <span class="texto-estado">{{ estado | titlecase }}</span>
     
     <span class="pulso" *ngIf="estado.toLowerCase() === 'blockchain'"></span>
   </span>
-</div><p>etiqueta-de-estado works!</p>
+</div>

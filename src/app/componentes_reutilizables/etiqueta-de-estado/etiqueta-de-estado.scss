@@ -5,7 +5,7 @@ $rojo-error: #ef4444;
 $gris-neutral: #94a3b8;
 
 .contenedor-etiqueta {
-  display: inline-block;
+  display: inline-flex;
 }
 
 .badge-nudo {
@@ -14,7 +14,7 @@ $gris-neutral: #94a3b8;
   gap: 8px;
   padding: 6px 14px;
   border-radius: 50px;
-  font-size: 0.8rem;
+  font-size: 0.75rem; // Ligeramente más compacto para mayor versatilidad
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -23,28 +23,28 @@ $gris-neutral: #94a3b8;
   transition: all 0.3s ease;
 
   .icono-estado {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   // --- VARIANTES DE ESTADO ---
 
   &.estado-firmado {
     background: rgba($verde-exito, 0.1);
-    color: $verde-exito;
+    color: darken($verde-exito, 5%);
     border-color: rgba($verde-exito, 0.2);
   }
 
   &.estado-pendiente {
     background: rgba($amarillo-alerta, 0.1);
-    color: #854d0e;
+    color: darken($amarillo-alerta, 20%);
     border-color: rgba($amarillo-alerta, 0.2);
   }
 
   &.estado-blockchain {
-    background: linear-gradient(135deg, rgba($azul-blockchain, 0.1), rgba($azul-blockchain, 0.2));
+    background: rgba($azul-blockchain, 0.1);
     color: $azul-blockchain;
     border-color: rgba($azul-blockchain, 0.3);
-    box-shadow: 0 0 15px rgba($azul-blockchain, 0.1);
+    box-shadow: 0 0 10px rgba($azul-blockchain, 0.1);
   }
 
   &.estado-rechazado {
@@ -53,20 +53,22 @@ $gris-neutral: #94a3b8;
     border-color: rgba($rojo-error, 0.2);
   }
 
-  // Animación de pulso para lo que está en la red
+  // Animación de pulso para Blockchain optimizada
   .pulso {
     position: absolute;
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     background: $azul-blockchain;
     border-radius: 50%;
-    right: -2px;
-    top: -2px;
-    animation: ripple 1.5s infinite;
+    top: 50%;
+    right: 6px;
+    transform: translateY(-50%);
+    animation: ripple 2s infinite;
   }
 }
 
 @keyframes ripple {
-  0% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(3); opacity: 0; }
+  0% { transform: translateY(-50%) scale(0.8); opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { transform: translateY(-50%) scale(2); opacity: 0; }
 }

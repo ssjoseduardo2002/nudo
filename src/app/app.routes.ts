@@ -2,8 +2,7 @@ import { Routes } from '@angular/router';
 
 /**
  * NUDO - CORE ROUTING ENGINE (Grado Ingeniería)
- * Optimizaciones aplicadas: Lazy loading, rutas protegidas (placeholder)
- * y resolución de componentes de alta prioridad.
+ * Optimizaciones aplicadas: Lazy loading, rutas agrupadas y limpieza de redundancias.
  */
 export const routes: Routes = [
   // --- 1. Entrada al Sistema ---
@@ -61,25 +60,27 @@ export const routes: Routes = [
     loadComponent: () => import('./componentes_de_vistas/la-mente-detras-de-nudo/la-mente-detras-de-nudo').then(m => m.LaMenteDetrasDeNUDO), 
     title: 'NUDO | La Mente' 
   },
-  // --- NUEVA RUTA: Muro de Confianza ---
   { 
     path: 'referencias', 
     loadComponent: () => import('./componentes_de_vistas/referencias-de-clientes/referencias-de-clientes').then(m => m.ReferenciasDeClientes), 
     title: 'NUDO | Confianza' 
   },
 
-// --- 5.1 Footer - Rutas de cumplimiento (Optimizado) ---
-{
-  path: 'legal',
-  children: [
-    { path: 'privacidad', loadComponent: () => import('./componentes_de_vistas/centro-ayuda/centro-ayuda').then(m => m.CentroAyuda), title: 'NUDO | Privacidad' },
-    { path: 'terminos', loadComponent: () => import('./componentes_de_vistas/centro-ayuda/centro-ayuda').then(m => m.CentroAyuda), title: 'NUDO | Términos' }
-  ]
-},
+  // --- 5.1 Rutas de cumplimiento (Agrupadas bajo /legal) ---
   {
-    path: 'terminos',
-    loadComponent: () => import('./componentes_de_vistas/centro-ayuda/centro-ayuda').then(m => m.CentroAyuda),
-    title: 'NUDO | Términos'
+    path: 'legal',
+    children: [
+      { 
+        path: 'privacidad', 
+        loadComponent: () => import('./componentes_de_vistas/centro-ayuda/centro-ayuda').then(m => m.CentroAyuda), 
+        title: 'NUDO | Privacidad' 
+      },
+      { 
+        path: 'terminos', 
+        loadComponent: () => import('./componentes_de_vistas/centro-ayuda/centro-ayuda').then(m => m.CentroAyuda), 
+        title: 'NUDO | Términos' 
+      }
+    ]
   },
 
   // --- 6. Manejo de Errores (Catch-all) ---

@@ -2,8 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 /**
- * Los estados permitidos para mantener la consistencia en NUDO.
- * Usamos un tipo personalizado para que TypeScript nos ayude a no cometer errores.
+ * Estados estrictos para garantizar consistencia en la UI.
  */
 export type EstadoContrato = 'Firmado' | 'Pendiente' | 'Blockchain' | 'Rechazado' | 'En Revisión';
 
@@ -17,16 +16,15 @@ export type EstadoContrato = 'Firmado' | 'Pendiente' | 'Blockchain' | 'Rechazado
 export class EtiquetaDeEstado {
   
   /**
-   * 📥 La entrada de datos: Aquí es donde el componente padre define el estado.
-   * Por defecto lo ponemos en 'Pendiente'.
+   * Entrada de estado. 
+   * Usamos el tipo EstadoContrato para guiar al desarrollador.
    */
-  @Input() estado: string = 'Pendiente';
+  @Input({ required: true }) estado: EstadoContrato | string = 'Pendiente';
 
   /**
-   * Getter opcional por si necesitas normalizar el texto 
-   * antes de que el HTML lo procese.
+   * Getter para normalización rápida y segura.
    */
-  get estadoFormateado(): string {
+  get estadoNormalizado(): string {
     return this.estado.trim();
   }
 }
