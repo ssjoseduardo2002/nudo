@@ -1,39 +1,39 @@
-<footer class="nudo-footer">
+<footer class="nudo-footer" role="contentinfo">
   <div class="contenedor-footer">
     
-    <div class="columna-footer">
+    <section class="columna-footer">
       <div class="brand-footer">
         <h3>NUDO</h3>
-        <div class="divisor-brillo"></div>
+        <div class="divisor-brillo" aria-hidden="true"></div>
       </div>
       <p>Protección legal y tecnológica para mentes creativas. Blindamos tu talento con seguridad de grado ingeniería.</p>
-    </div>
+    </section>
     
-    <div class="columna-footer">
+    <section class="columna-footer">
       <h3>Legal</h3>
-      <nav>
-        <ul>
-          <li><a href="#" class="link-nudo">Términos de Servicio</a></li>
-          <li><a href="#" class="link-nudo">Política de Privacidad</a></li>
+      <nav aria-label="Navegación legal">
+        <ul class="lista-footer">
+          <li><a routerLink="/legal/terminos" class="link-nudo">Términos de Servicio</a></li>
+          <li><a routerLink="/legal/privacidad" class="link-nudo">Política de Privacidad</a></li>
           <li><a href="#" class="link-nudo">Cookies</a></li>
         </ul>
       </nav>
-    </div>
+    </section>
 
-    <div class="columna-footer">
+    <section class="columna-footer">
       <h3>Ayuda</h3>
       <div class="soporte-container">
         <p>¿Necesitas asesoría técnica o legal?</p>
-        <button (click)="irAyuda()" class="enlace-soporte">
-          <span class="icon">🎧</span> Contactar Soporte
+        <button (click)="irAyuda()" class="enlace-soporte" aria-label="Contactar con el equipo de soporte técnico">
+          <span class="icon" aria-hidden="true">🎧</span> Contactar Soporte
         </button>
       </div>
-    </div>
+    </section>
 
   </div>
   
   <div class="copyright">
-    <div class="divisor-final"></div>
-    <p>© {{ fechaActual }} NUDO — Desarrollado por y para socios creativos.</p>
+    <div class="divisor-final" aria-hidden="true"></div>
+    <p>&copy; {{ fechaActual | date:'yyyy' }} NUDO — Desarrollado por y para socios creativos.</p>
   </div>
 </footer>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'; // 👈 Importamos Input para recibir datos del padre
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -12,34 +12,34 @@ import { CommonModule } from '@angular/common';
 export class Footer {
   
   /**
-   * ⚡ DESTRUCCIÓN DE ERROR: 
-   * Con esto, el binding [enPantallaAcceso]="mostrarSoloAcceso" del app.html ya funciona.
+   * Determina si el footer debe ocultarse en pantallas de acceso/login.
+   * La lógica de control residirá en el componente padre.
    */
   @Input() enPantallaAcceso: boolean = false; 
 
-  public fechaActual: number = new Date().getFullYear();
+  // Usamos Date directamente para mayor flexibilidad en el template
+  public fechaActual: Date = new Date();
 
   constructor(private router: Router) {}
 
   /**
-   * Navega hacia el Centro de Ayuda.
+   * Navegación segura hacia el Centro de Ayuda.
    */
   public irAyuda(): void {
-    console.log('--- NUDO: Contactando Soporte ---');
-    this.router.navigate(['/centro-ayuda']).catch(err => {
-      console.error('Error al navegar a ayuda:', err);
+    this.router.navigate(['/centro-ayuda']).catch((err) => {
+      console.error('[NUDO-CORE] Error al navegar a centro-ayuda:', err);
     });
   }
 
   /**
-   * Navega a la sección biográfica del fundador.
+   * Navegación hacia la identidad de NUDO.
    */
   public irSobreNudo(): void {
-    this.router.navigate(['/la-mente-detras-de-nudo']);
+    this.router.navigate(['/la-mente-detras']);
   }
 
   /**
-   * Scroll suave al inicio.
+   * Scroll programático optimizado.
    */
   public volverArriba(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
