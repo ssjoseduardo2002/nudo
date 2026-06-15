@@ -52,7 +52,7 @@ $azul-suave: #f0f4f8;
           display: flex;
           align-items: center;
           justify-content: center;
-          border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%; // Forma orgánica NUDO
+          border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
           font-weight: 800;
           box-shadow: 0 15px 35px rgba($azul-nudo, 0.2);
         }
@@ -85,7 +85,6 @@ $azul-suave: #f0f4f8;
         cursor: pointer;
         transition: all 0.3s;
         
-        // ⚡ SOLUCIÓN MODERNA SASS: Cambiamos darken() obsoleto por color.adjust()
         &:hover { background: color.adjust($azul-suave, $lightness: -5%); }
       }
 
@@ -135,14 +134,20 @@ $azul-suave: #f0f4f8;
             .prefix { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); opacity: 0.5; }
             .input-nudo {
               width: 100%;
-              padding: 14px 14px 14px 40px;
+              padding: 14px 14px 14px 14px; // Padding base sin prefix
               border: 1.5px solid #e2e8f0;
               border-radius: 12px;
               font-family: inherit;
               transition: all 0.3s;
+              
+              // Ajuste de padding si tiene prefix
+              &[name="nombreNegocio"], &[name="email"], &[name="profesion"] {
+                padding-left: 40px;
+              }
+
               &:focus { border-color: $cian-nudo; box-shadow: 0 0 0 4px rgba($cian-nudo, 0.1); outline: none; }
             }
-            textarea.input-nudo { padding-left: 15px; } // Bio no lleva prefix
+            textarea.input-nudo { padding-left: 14px; }
           }
           .hint { font-size: 0.75rem; color: #94a3b8; margin-top: 5px; display: block; }
         }
@@ -176,7 +181,6 @@ $azul-suave: #f0f4f8;
   }
 }
 
-// Animaciones
 @keyframes popIn {
   from { opacity: 0; transform: scale(0.5); }
   to { opacity: 1; transform: scale(1); }

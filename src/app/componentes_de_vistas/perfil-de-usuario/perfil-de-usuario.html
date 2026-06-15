@@ -10,19 +10,19 @@
     
     <div class="avatar-seccion">
       <div class="wrapper-avatar">
-        <div class="circulo-avatar">{{ usuario.nombre[0] | uppercase }}</div>
-        <div class="badge-negocio" *ngIf="usuario.nombreNegocio">🏢</div>
+        <div class="circulo-avatar">{{ usuario?.nombre ? (usuario.nombre[0] | uppercase) : '?' }}</div>
+        <div class="badge-negocio" *ngIf="usuario?.nombreNegocio">🏢</div>
         <div class="efecto-brillo"></div>
       </div>
       
-      <button class="btn-foto-nudo">
+      <button type="button" class="btn-foto-nudo">
         <span class="icon">📷</span>
         Actualizar Foto
       </button>
 
       <div class="estado-cuenta">
-        <span class="dot" [class.activo]="usuario.nombreNegocio"></span>
-        {{ usuario.nombreNegocio ? 'Cuenta Empresarial' : 'Cuenta Individual' }}
+        <span class="dot" [class.activo]="usuario?.nombreNegocio"></span>
+        {{ usuario?.nombreNegocio ? 'Cuenta Empresarial' : 'Cuenta Individual' }}
       </div>
     </div>
 
@@ -76,7 +76,7 @@
         </div>
 
         <div class="campo-nudo full-width">
-          <label for="biografia">Descripción Profesional / Bio</label>
+          <label for="biografia">¿Cuál es tu papel dentro del negocio?</label>
           <div class="input-container">
             <textarea id="biografia" [(ngModel)]="usuario.biografia" name="biografia" class="input-nudo" rows="4" placeholder="Cuéntale al mundo sobre tu trayectoria o tu negocio..."></textarea>
           </div>

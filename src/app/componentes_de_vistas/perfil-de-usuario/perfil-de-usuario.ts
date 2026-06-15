@@ -2,14 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-// Definimos la estructura profesional del Socio de NUDO
+/**
+ * Estructura profesional del Socio de NUDO
+ * Define la identidad visual y legal en la plataforma.
+ */
 interface UsuarioNudo {
   nombre: string;
   apellido: string;
   email: string;
   profesion: string;
   biografia: string;
-  nombreNegocio: string; // La pieza clave que añadimos hoy 🏢
+  nombreNegocio: string; 
 }
 
 @Component({
@@ -21,25 +24,24 @@ interface UsuarioNudo {
 })
 export class PerfilDeUsuario implements OnInit {
 
-  // Inicializamos los datos del socio
+  // Estado del perfil del socio
   public usuario: UsuarioNudo = {
     nombre: 'José',
     apellido: '',
     email: 'jose.nudo@ejemplo.com',
     profesion: 'Ingeniero Informático & CEO',
     biografia: 'Mente detrás del proyecto NUDO, enfocado en blindar el talento creativo.',
-    nombreNegocio: 'NUDO' // Al llenar esto, el perfil se vuelve "Empresarial"
+    nombreNegocio: 'NUDO'
   };
 
   constructor() {}
 
   ngOnInit(): void {
-    console.log('--- Perfil de Socio NUDO cargado ---');
-    // Aquí podrías cargar los datos desde un servicio de Firebase o una API
+    console.log('[NUDO-SYSTEM] Perfil de Socio cargado y verificado.');
   }
 
   /**
-   * Guarda los cambios y actualiza la identidad en la plataforma
+   * Guarda los cambios y sincroniza la identidad en la plataforma
    */
   public guardarCambios(): void {
     if (!this.usuario.nombre || !this.usuario.email) {
@@ -47,22 +49,27 @@ export class PerfilDeUsuario implements OnInit {
       return;
     }
 
-    // Simulamos la actualización
-    console.log('Sincronizando identidad NUDO:', this.usuario);
+    // Aquí iría el servicio de Firebase: this.authService.updateProfile(...)
+    console.log('[NUDO-SYSTEM] Sincronizando identidad...', this.usuario);
     
-    const mensajeExitose = this.usuario.nombreNegocio 
+    const mensaje = this.usuario.nombreNegocio 
       ? `¡Identidad corporativa de ${this.usuario.nombreNegocio} actualizada!` 
       : `¡Perfil de ${this.usuario.nombre} actualizado con éxito!`;
 
-    alert(mensajeExitose);
+    alert(mensaje);
   }
 
   /**
-   * Método extra por si quieres resetear campos (Opcional)
+   * Preparación para la integración de cambio de imagen
    */
+  public actualizarFoto(): void {
+    console.log('[NUDO-SYSTEM] Iniciando selector de archivos para avatar...');
+    // Lógica para abrir explorador de archivos o modal de recorte
+  }
+
   public cancelarEdicion(): void {
     if(confirm('¿Deseas descartar los cambios no guardados?')) {
-      // Lógica para recargar datos originales
+      console.log('[NUDO-SYSTEM] Edición descartada.');
     }
   }
 }
