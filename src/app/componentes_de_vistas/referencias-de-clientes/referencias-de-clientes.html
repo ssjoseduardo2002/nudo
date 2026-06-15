@@ -11,30 +11,32 @@
       <div class="header-card">
         <div class="info-cliente">
           <div class="avatar-cliente">
-            <span>{{ ref.cliente[0] }}</span>
+            <span>{{ ref?.cliente?.charAt(0) | uppercase }}</span>
           </div>
           <div class="meta">
-            <h4>{{ ref.cliente }}</h4>
-            <small>{{ ref.empresa }}</small>
+            <h4>{{ ref?.cliente }}</h4>
+            <small>{{ ref?.empresa }}</small>
           </div>
         </div>
-        <div class="sello-verificado">🛡️</div>
+        <div class="sello-verificado" title="Proyecto Blindado en Blockchain">🛡️</div>
       </div>
 
       <div class="cuerpo-card">
-        <div class="estrellas">⭐⭐⭐⭐⭐</div>
-        <p class="comentario">"{{ ref.comentario }}"</p>
+        <div class="estrellas" aria-label="5 estrellas">⭐⭐⭐⭐⭐</div>
+        <p class="comentario">"{{ ref?.comentario }}"</p>
       </div>
 
       <footer class="footer-card">
-        <span class="badge-servicio">{{ ref.servicioAdquirido }}</span>
-        <span class="fecha-registro">Sello Blockchain: #{{ ref.idHash }}</span>
+        <span class="badge-servicio">{{ ref?.servicioAdquirido }}</span>
+        <span class="fecha-registro">Sello Blockchain: #{{ ref?.idHash }}</span>
       </footer>
     </article>
   </div>
 
   <footer class="footer-seccion">
     <p>¿Listo para ser nuestra próxima historia de éxito?</p>
-    <button class="btn-nudo-primario">Blindar mi primer proyecto</button>
+    <button type="button" class="btn-nudo-primario" (click)="irABlindaje()">
+      ¡Anímate a blindar tu proyecto con NUDO!
+    </button>
   </footer>
 </div>

@@ -55,7 +55,7 @@ $sombra-premium: 0 20px 40px rgba(0, 51, 102, 0.08);
 
 .card-testimonio {
   background: rgba($blanco-puro, 0.8);
-  backdrop-filter: blur(10px); // Efecto Glassmorphism
+  backdrop-filter: blur(10px);
   border-radius: 30px;
   padding: 3rem;
   border: 1px solid rgba(255, 255, 255, 0.6);
@@ -177,7 +177,6 @@ $sombra-premium: 0 20px 40px rgba(0, 51, 102, 0.08);
   }
 }
 
-// Adaptabilidad para móviles
 @media (max-width: 768px) {
   .contenedor-referencias {
     padding: 3rem 1rem;

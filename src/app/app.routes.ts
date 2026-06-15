@@ -61,6 +61,12 @@ export const routes: Routes = [
     loadComponent: () => import('./componentes_de_vistas/la-mente-detras-de-nudo/la-mente-detras-de-nudo').then(m => m.LaMenteDetrasDeNUDO), 
     title: 'NUDO | La Mente' 
   },
+  // --- NUEVA RUTA: Muro de Confianza ---
+  { 
+    path: 'referencias', 
+    loadComponent: () => import('./componentes_de_vistas/referencias-de-clientes/referencias-de-clientes').then(m => m.ReferenciasDeClientes), 
+    title: 'NUDO | Confianza' 
+  },
 
   // --- 5.1 Footer - Rutas de cumplimiento ---
   {

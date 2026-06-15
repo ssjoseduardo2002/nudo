@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// Definimos la estructura de una referencia para mantener el orden
+/**
+ * Interface para asegurar la integridad de la prueba social.
+ */
 interface Referencia {
   cliente: string;
   empresa: string;
@@ -19,7 +21,7 @@ interface Referencia {
 })
 export class ReferenciasDeClientes implements OnInit {
 
-  // Listado de valientes que ya blindaron su talento
+  // Lista de testimonios (Ready for Service Injection)
   public referencias: Referencia[] = [
     {
       cliente: 'Carlos Rivera',
@@ -47,15 +49,14 @@ export class ReferenciasDeClientes implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log('--- Muro de Confianza NUDO Inicializado ---');
-    // Aquí es donde en el futuro llamarías a tu API para traer testimonios reales
+    console.log('[NUDO-SYSTEM] Muro de Confianza cargado. Prueba social activa.');
   }
 
   /**
-   * Método para que los nuevos clientes se sumen al muro
+   * Navegación hacia el flujo de adquisición de blindaje.
    */
-  public invitarABlindar(): void {
-    console.log('Redirigiendo al flujo de blindaje...');
-    // Lógica para ir a la pasarela o registro
+  public irABlindaje(): void {
+    console.log('[NUDO-SYSTEM] Redirigiendo al flujo de blindaje...');
+    // Implementar navegación a 'pago-seguro' o 'generador-contrato'
   }
 }
