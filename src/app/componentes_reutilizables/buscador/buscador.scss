@@ -91,25 +91,26 @@ $gris-suave: #f1f5f9;
     transition: all 0.3s;
 
     &:hover {
-      background: $azul-suave;
+      background: $gris-suave;
       border-color: $cian-nudo;
       color: $cian-nudo;
     }
   }
 }
 
-// Estilo para el Dropdown de resultados rápidos
 .resultados-sugeridos {
   position: absolute;
-  top: 70px;
+  top: 75px; // Ajustado ligeramente
   left: 0;
   right: 0;
   background: white;
   border-radius: 16px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.1);
   border: 1px solid #f1f5f9;
-  z-index: 100;
+  z-index: 1000; // Blindaje de capa superior
   overflow: hidden;
+  max-height: 400px;
+  overflow-y: auto;
   animation: fadeIn 0.2s ease-out;
 
   .item-sugerido {
@@ -120,7 +121,7 @@ $gris-suave: #f1f5f9;
     cursor: pointer;
     transition: background 0.2s;
 
-    &:hover { background: #f8fafc; }
+    &:hover { background: $gris-suave; }
     
     .tipo-doc { font-size: 1.2rem; }
     .info-item {
@@ -130,7 +131,7 @@ $gris-suave: #f1f5f9;
     }
     .estado-badge {
       font-size: 0.7rem;
-      background: #f1f5f9;
+      background: $gris-suave;
       padding: 4px 10px;
       border-radius: 20px;
       font-weight: 700;

@@ -10,52 +10,45 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './buscador.scss',
 })
 export class Buscador {
-  // El término que el usuario escribe
   public terminoBusqueda: string = '';
-
-  // Lista de resultados rápidos (puedes alimentarla desde un servicio después)
   public resultadosPrevios: any[] = [];
 
-  // 📢 El altavoz: Avisa al componente padre cada que el usuario busca algo
   @Output() onBuscar = new EventEmitter<string>();
 
   /**
-   * Se ejecuta en cada pulsación de tecla o cambio en el input
+   * Dispara la búsqueda con validación de estado
    */
   public alBuscar(): void {
     this.onBuscar.emit(this.terminoBusqueda);
     
-    // Aquí podrías filtrar resultados rápidos localmente si quisieras
-    if (this.terminoBusqueda.length > 2) {
+    // Solo simulamos resultados si hay longitud mínima para mejorar rendimiento
+    if (this.terminoBusqueda.trim().length > 2) {
       this.simularResultadosRapidos();
+    } else {
+      this.resultadosPrevios = [];
     }
   }
 
-  /**
-   * Lógica para los chips de sugerencias
-   */
   public setFiltro(filtro: string): void {
     this.terminoBusqueda = filtro;
-    this.alBuscar(); // Disparamos la búsqueda automáticamente
+    this.alBuscar();
   }
 
-  /**
-   * Limpia el buscador y resetea la vista
-   */
   public limpiarBusqueda(): void {
     this.terminoBusqueda = '';
     this.resultadosPrevios = [];
     this.onBuscar.emit('');
   }
 
-  /**
-   * Una pequeña simulación para que veas cómo luciría el dropdown
-   */
   private simularResultadosRapidos(): void {
-    // Esto es solo visual para que pruebes tu SCSS
-    this.resultadosPrevios = [
+    const data = [
       { id: 'ND-001', nombre: 'Contrato Freelance SCSS', estado: 'Firmado' },
-      { id: 'ND-002', nombre: 'Blindaje de Marca NUDO', estado: 'Blockchain' }
-    ].filter(res => res.nombre.toLowerCase().includes(this.terminoBusqueda.toLowerCase()));
+      { id: 'ND-002', nombre: 'Blindaje de Marca NUDO', estado: 'Blockchain' },
+      { id: 'ND-003', nombre: 'NDA Empresa Consultora', estado: 'Pendiente' }
+    ];
+
+    this.resultadosPrevios = data.filter(res => 
+      res.nombre.toLowerCase().includes(this.terminoBusqueda.toLowerCase())
+    );
   }
 }

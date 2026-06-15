@@ -2,35 +2,45 @@
   <div class="barra-busqueda-wrapper">
     
     <div class="input-group-nudo shadow-premium">
-      <span class="lupa-icon">🔍</span>
+      <span class="lupa-icon" aria-hidden="true">🔍</span>
       <input 
         type="text" 
         [(ngModel)]="terminoBusqueda" 
         (input)="alBuscar()" 
         placeholder="Buscar contratos, clientes o folios de seguridad..."
-        class="input-buscador">
+        class="input-buscador"
+        aria-label="Buscar documentos en NUDO"
+        [attr.aria-expanded]="resultadosPrevios.length > 0">
       
-      <button *ngIf="terminoBusqueda" (click)="limpiarBusqueda()" class="btn-clear">
+      <button 
+        *ngIf="terminoBusqueda" 
+        (click)="limpiarBusqueda()" 
+        class="btn-clear"
+        aria-label="Limpiar búsqueda">
         ✕
       </button>
     </div>
 
-    <div class="filtros-rapidos">
+    <div class="filtros-rapidos" role="group" aria-label="Filtros de búsqueda">
       <span class="label-filtros">Sugerencias:</span>
       <button class="chip-filtro" (click)="setFiltro('Pendiente')">⏳ Pendientes</button>
       <button class="chip-filtro" (click)="setFiltro('Firmado')">✍️ Firmados</button>
       <button class="chip-filtro" (click)="setFiltro('Blockchain')">⛓️ En Blockchain</button>
     </div>
 
-    <div class="resultados-sugeridos" *ngIf="resultadosPrevios.length > 0 && terminoBusqueda">
-      <div class="item-sugerido" *ngFor="let item of resultadosPrevios">
-        <span class="tipo-doc">📄</span>
+    <div class="resultados-sugeridos" *ngIf="terminoBusqueda && resultadosPrevios.length > 0" role="listbox">
+      <div class="item-sugerido" *ngFor="let item of resultadosPrevios" role="option">
+        <span class="tipo-doc" aria-hidden="true">📄</span>
         <div class="info-item">
           <p class="nombre-doc">{{ item.nombre }}</p>
           <small class="folio-doc">Folio: {{ item.id }}</small>
         </div>
-        <span class="estado-badge">{{ item.estado }}</span>
+        <span class="estado-badge" [attr.aria-label]="'Estado: ' + item.estado">{{ item.estado }}</span>
       </div>
+    </div>
+
+    <div class="resultados-vacios" *ngIf="terminoBusqueda && resultadosPrevios.length === 0">
+      <small>No encontramos resultados para "{{ terminoBusqueda }}"</small>
     </div>
 
   </div>

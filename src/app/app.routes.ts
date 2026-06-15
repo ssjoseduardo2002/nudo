@@ -68,12 +68,14 @@ export const routes: Routes = [
     title: 'NUDO | Confianza' 
   },
 
-  // --- 5.1 Footer - Rutas de cumplimiento ---
-  {
-    path: 'privacidad',
-    loadComponent: () => import('./componentes_de_vistas/centro-ayuda/centro-ayuda').then(m => m.CentroAyuda),
-    title: 'NUDO | Privacidad'
-  },
+// --- 5.1 Footer - Rutas de cumplimiento (Optimizado) ---
+{
+  path: 'legal',
+  children: [
+    { path: 'privacidad', loadComponent: () => import('./componentes_de_vistas/centro-ayuda/centro-ayuda').then(m => m.CentroAyuda), title: 'NUDO | Privacidad' },
+    { path: 'terminos', loadComponent: () => import('./componentes_de_vistas/centro-ayuda/centro-ayuda').then(m => m.CentroAyuda), title: 'NUDO | Términos' }
+  ]
+},
   {
     path: 'terminos',
     loadComponent: () => import('./componentes_de_vistas/centro-ayuda/centro-ayuda').then(m => m.CentroAyuda),
